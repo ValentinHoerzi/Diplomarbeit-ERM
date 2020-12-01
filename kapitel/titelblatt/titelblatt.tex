@@ -1,0 +1,151 @@
+\newcommand{\IncludeSchoolTemplate}[2]{
+	\vspace*{-7em}
+	\makebox[\textwidth]{
+		\begin{tikzpicture}[
+			every node/.style={anchor=north west,inner sep=0pt},
+			x=1mm, y=1mm]
+			\node (templatepage) at (0,0)
+			{\includegraphics[width=\paperwidth,page=#1]{./summary.pdf}};
+			#2
+		\end{tikzpicture}
+	}
+	\newpage
+}
+
+\pagenumbering{gobble}
+
+\selectlanguage{german}
+\includegraphics[width=\textwidth]{./grafiken/school-header.png}
+{\centering
+	\vskip1cm
+	Fachrichtung Informatik
+	\vskip2cm
+	Schuljahr 2020/21
+	\vskip4cm
+	\Huge\textbf{ERM}
+	\vskip10pt
+	\large
+	Gesamtprojekt
+	\vskip5pt
+	\Huge\textbf{Endkundenportal: Registrierung und Maschinenpark}
+	\small
+	\vskip4cm
+	\begin{flushleft}
+		\textbf{Ausgeführt von:}\tabto{9cm}\textbf{Betreuer/Beteuerin:}\linebreak
+		\ThRealAuthorNameOne, \ThAuthorsClass-\ThAuthorOneNumber\tabto{9cm}\ThSupervisorName\linebreak
+		\ThRealAuthorNameTwo, \ThAuthorsClass-\ThAuthorTwoNumber
+		\vskip1cm
+		\ThPhysicalLocation, am \today
+		\vskip1cm
+		\hrule
+		Abgabevermerk:\linebreak
+		Datum:\tabto{10cm}Betreuer/Beteuerin:
+	\end{flushleft}
+}
+
+
+
+\selectlanguage{german}
+\chapter*{\hspace{5pt}Erklärung gemäß Prüfungsordnung}
+„Ich erkläre an Eides statt, dass ich die vorliegende Diplomarbeit selbstständig und ohne fremde Hilfe verfasst, andere als die angegebenen Quellen und Hilfsmittel nicht benutzt und alle den benutzten Quellen wörtlich oder sinngemäß entnommenen Stellen als solche kenntlich gemacht habe.“
+
+\ThPhysicalLocation, \today\tabto{9cm}{Verfasser*innen:}
+\selectlanguage{english}
+
+\SignatureLine{\ThRealAuthorNameOne}
+\SignatureLine{\ThRealAuthorNameTwo}
+\newpage
+\IncludeSchoolTemplate{1}{
+	\node at (77,-28)
+		{Informatik};
+	\node at (77,-63)
+		{\ThRealAuthorNameOne};
+	\node at (77,-70)
+		{\ThRealAuthorNameTwo};
+	\node at (77,-80)
+		{2020/21};
+	\node at (77,-92)
+		{Beispielarbeit};
+	\node at (77,-109)
+		{\ThPartner};
+	\node at (77,-127) [text width=305,align=justify] {
+		\fontsize{12pt}{12pt}
+		\selectfont
+		\par
+		Ziel des Projekts war die Entwicklung eines Tools zu \lipsum[1][1-3]
+		\vskip10pt
+		\par
+		Alle Programme sollten in Java realisiert werden.
+	};
+	\node at (77,-174) [text width=300,align=justify] {
+		\fontsize{12pt}{12pt}
+		\selectfont
+		\par
+		\lipsum[2][1-3]
+		\vskip10pt
+		\par
+		\lipsum[3][1-3]
+	};
+	\node at (77, -222) [text width=300,align=justify] {
+		\fontsize{12pt}{12pt}
+		\selectfont
+		\par
+ \lipsum[4]
+	};
+}
+\IncludeSchoolTemplate{2}{
+	\node at (77,-28)
+		{Informatik};
+	\node at (77,-80){
+		\includegraphics[width=310pt,trim=0pt 0pt 0pt 0pt,clip]{./grafiken/sample_graphic.png}
+	};
+	\node at (77,-171) [text width=305,align=center]
+		{\emph{Screenshot des Programms}};
+	\node at (77,-220)
+		{--};
+	\node at (77,-239)
+		{Öffentlich; Bibliothek der \ThSchoolName};
+}
+\IncludeSchoolTemplate{3}{
+	\node at (76,-28)
+		{Informatics};
+	\node at (77,-63)
+		{\ThRealAuthorNameOne};
+	\node at (77,-80)
+		{2019/20};
+	\node at (77,-92)
+		{Sample Project};
+	\node at (77,-109)
+		{\ThPartner};
+	\node at (77,-125) [text width=305,align=justify] {
+		\fontsize{12pt}{12pt}
+		\selectfont
+		\par
+		\lipsum[1][1-5]
+	};
+	\node at (77,-173) [text width=300,align=justify] {
+		\fontsize{12pt}{12pt}
+		\selectfont
+		\par
+		\lipsum[5][1-5]
+	};
+	\node at (77, -225) [text width=300,align=justify] {
+		\fontsize{12pt}{12pt}
+		\selectfont
+		\par
+		\lipsum[6][1-8]
+	};
+}
+\IncludeSchoolTemplate{4}{
+	\node at (76,-28)
+		{Informatics};
+	\node at (77,-75){
+		\includegraphics[width=310pt,trim=0pt 0pt 0pt 0pt,clip]{./grafiken/sample_graphic.png}
+	};
+	\node at (77,-166) [text width=305,align=center]
+		{\emph{Screenshot of the program}};
+	\node at (77,-220)
+		{--};
+	\node at (77,-240)
+		{Public; Library of the \ThSchoolName};
+}

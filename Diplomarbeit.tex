@@ -1,0 +1,228 @@
+\documentclass[12pt,a4paper,oneside]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{fontspec}
+\usepackage{titlesec}
+\usepackage{tocloft}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{lipsum}
+\usepackage[skip=10pt]{parskip}
+\usepackage{mwe,tikz}
+\usepackage{tabto}
+\usepackage{dashrule}
+\usepackage[backend=biber,style=verbose]{biblatex}
+\usepackage{listings,lstautogobble}
+\usepackage{scrextend}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{makecell}
+\usepackage[german,english]{babel}
+
+\newcommand{\ThRealAuthorNameOne}{Valentin Hörzi}
+\newcommand{\ThRealAuthorNameTwo}{Alexander Schörgendorfer}
+
+\newcommand{\ThRealAuthorOneEmail}{valentin.hoerzi@gmail.com}
+\newcommand{\ThRealAuthorTwoEmail}{alex.schoergi@gmail.com}
+
+\newcommand{\ThAuthorsClass}{5AHIF}
+
+\newcommand{\ThAuthorOneNumber}{13}
+\newcommand{\ThAuthorTwoNumber}{22}
+
+
+\newcommand{\ThPartner}{Pöttinger Landtechnik GmbH, Industriestraße 1, 4710 Grieskirchen}
+\newcommand{\ThPartnerName}{Pöttinger Landtechnik GmbH}
+\newcommand{\ThPartnerPersonName}{Dominik Augustin}
+\newcommand{\ThPartnerPersonEmail}{Dominik.Augustin@poettinger.at}
+\newcommand{\ThSchoolName}{HTBLA Grieskirchen}
+\newcommand{\ThPhysicalLocation}{Grieskirchen}
+\newcommand{\ThSupervisorName}{Mag. Dipl.-Ing. Rainer Sickinger}
+\newcommand{\ThSupervisorEmail}{sickinger@docsced.at}
+
+\addbibresource{citations.bib}
+
+\setcounter{secnumdepth}{3}
+\addtolength{\textwidth}{-1cm}
+\addtolength{\oddsidemargin}{1cm}
+\addtolength{\evensidemargin}{1cm}
+
+\lstset{autogobble=true}
+\lstset{language=sh,basicstyle=\ttfamily}
+\lstset{language=,basicstyle=\ttfamily}
+
+% Calibri or sans-serif as default font
+\defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
+\IfFontExistsTF{Calibre}{
+	\setmainfont{Calibre}
+}{
+	\renewcommand{\familydefault}{\sfdefault}
+}
+
+% TOC horizontal spacing
+\cftsetindents{chapter}{0cm}{1cm}
+\cftsetindents{section}{1cm}{1cm}
+\cftsetindents{subsection}{2cm}{1.2cm}
+
+% TOC vertical spacing
+\renewcommand{\cftchapfont}{
+	\bfseries
+	\fontsize{13pt}{13pt}
+	\selectfont
+	\vspace{6pt}
+}
+\cftbeforechapskip12pt
+\renewcommand{\cftsecfont}{
+	\fontsize{11pt}{11pt}
+	\selectfont
+	\vspace{6pt}
+}
+\cftbeforesecskip6pt
+\renewcommand{\cftsubsecfont}{
+	\fontsize{10pt}{10pt}
+	\selectfont
+	\vspace{3pt}
+}
+\cftbeforesubsecskip6pt
+
+% TOC title
+\renewcommand\cfttoctitlefont{
+	\hfill
+	\fontsize{16pt}{16pt}
+	\selectfont
+	\bfseries
+}
+\cftbeforetoctitleskip6pt
+\cftaftertoctitleskip12pt
+
+% Title format for chapter, section, sub- and subsubsection
+% See https://tex.stackexchange.com/questions/511981/titlesec-vertical-align-chapter-and-section
+% The -5pt is just pixel pushing bc I couldn't figure out why my chapter/section/subsection/subsubsection headings are slightly indented
+\titleformat{\chapter}[hang]{
+	\normalfont
+	\bfseries
+	\filright
+	\fontsize{16pt}{16pt}
+	\selectfont
+}{
+	\makebox[1.7cm][l]{\thechapter}
+}{0em}{}
+\titlespacing{\chapter}{-5pt}{18pt}{12pt}
+
+\titleformat{\section}[hang]{
+	\normalfont
+	\bfseries
+	\filright
+	\fontsize{14pt}{14pt}
+	\selectfont
+}{
+	\makebox[1.7cm][l]{\thesection}
+}{0em}{}
+\titlespacing{\section}{-5pt}{18pt}{12pt}
+
+\titleformat{\subsection}[hang]{
+	\normalfont
+	\bfseries
+	\filright
+	\fontsize{12pt}{12pt}
+	\selectfont
+}{
+	\makebox[1.7cm][l]{\thesubsection}
+}{0em}{}
+\titlespacing{\subsection}{-5pt}{18pt}{12pt}
+
+\titleformat{\subsubsection}[hang]{
+	\normalfont
+	\bfseries
+	\filright
+	\fontsize{11pt}{11pt}
+	\selectfont
+}{
+	\makebox[1.7cm][l]{\thesubsubsection}
+}{0em}{}
+\titlespacing{\subsubsection}{-5pt}{12pt}{12pt}
+
+% Have list of figures title style be the same as TOC title stile
+\renewcommand{\cftloftitlefont}{\cfttoctitlefont}
+
+
+
+\newcommand{\SignatureLine}[1]{
+	\vskip15pt
+	\tabto{9cm}#1
+	\vskip10pt
+	\tabto{9cm}\hdashrule[0pt][x]{\fill}{.5pt}{.75mm}
+}
+
+\newcommand{\BlockCite}[2]{
+	\begin{addmargin}[1cm]{0pt}
+		#1
+		
+		\fullcite{#2}
+	\end{addmargin}
+}
+
+\newcounter{appendix}
+\newcommand{\Appendix}[1]{
+	\stepcounter{appendix}
+	\chapter*{\hspace{\fill}Appendix \Alph{appendix}} \label{app:\Alph{appendix}}
+	#1
+}
+
+\newcommand{\RefAppendix}[1]{\hyperref[app:#1]{Appendix~#1}}
+
+
+\title{ERM-Diplomarbeit}
+\author{Valentin Hörzi, Alexander Schörgendorfer}
+
+\begin{document}
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%   TITELBLATT    %%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\include{./kapitel/titelblatt/titelblatt.tex}
+	
+	\clearpage
+	\tableofcontents
+	\newpage
+	\pagenumbering{arabic}
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%   EINLEITUNG    %%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+	\include{./kapitel/einleitung/einleitung.tex}
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%   BIBLIOGRAPHY  %%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+	\printbibliography[title={\hspace{\fill}Bibliography}]
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%   BEGLEITPROTOKOLL  %%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+	\include{./kapitel/begleitprotokoll/begleitprotokoll.tex}
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%   LIST OF FIGURES  %%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+	\listoffigures
+	\pagebreak
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%   APPENDIX  %%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\Appendix{
+		\includegraphics[angle=90,height=.65\paperheight]{./grafiken/sample_graphic.png}
+	}
+	
+\end{document}
