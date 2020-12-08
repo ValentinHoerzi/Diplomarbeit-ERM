@@ -1,0 +1,11 @@
+\chapter{Verwendete Technologien} \label{technologien}
+\section{Twilio} \label{sec:twilio}
+Twilio wurde 2008 von Jeff Lawson, Evan Cooke und John Wolthuis in Amerika gegründet. Es betreibt eine Cloud-Kommunikationsplattform als Platform as a Service. Mit den von Twilio zur Verfügung gestellten Dienst, können Entwickler Programmierschnittstellen zum ausführen und empfangen von Anrufen, senden von SMS, verifizieren von Telefonnummern sowie für andere Kommunikationsfunktionen nutzen. In unseren Fall wurde mit Twilio überprüft, ob der Nutzer eine gültige Telefonnummer eingegeben hat. \cite{twilioWebsite}
+
+\section{Address Validator}
+Der Address Validator wurde von Byteplant Software Solutions \& Services entwickelt. Dieses Unternehmen wurde 2003 in Deutschland gegründet. Neben dem Address Validator bieten sie auch einen Email Validator und einen Phone Validator an. Durch die Addressvalidierung erhält Informationen über die Zustellbarkeit, Korrekturvorschläge falls die Adresse nicht ganz gültig ist und eine einheitliche Adressformatierung nach den nationalen Standards. Für eine Überprüfung benötigt man Straße, Stadt, Internationales Länderkürzel und den API-Key. Optional kann man noch mehr, wie zum Beispiel Postleitzahl oder die Locale in der man das Ergebnis erhalten möchte. 
+Als Antwort bekommt man ein JSON. Aus diesem JSON bekommt man viele Informationen über die Adresse. Falls die Adresse gültig ist, bekommt man im Feld Status ein VALID, bei ungültiger Adresse ein INVALID und falls die Überprüfung kein genaues Ergebnis herausgefunden hat, aber eine Adresse gefunden hat, die es sein könnte, ist der Status SUSPECT mit einen Adressvorschlag. Weiters beinhaltet die Antwort alles von den einzelnen Adressfelder bis hin zu der formatierten Adresse des Landes und den Geografischen Koordinaten. \cite{addressValidator}
+
+\section{Google Translator}
+Die Schnittstelle für den Google Cloud Translator wurde von Google LLC entwickelt. Damit kann man schnell Texte in mehr als 100 Sprachen im eigenen Programm übersetzen lassen. Als Antwort der Übersetzung bekommt man den Titel, den Content und die Abkürzung der Sprache. Nun kann man die Übersetzungen speichern und man braucht nur nach der Spachenabkürzung suchen.
+\cite{googleTranslator}
