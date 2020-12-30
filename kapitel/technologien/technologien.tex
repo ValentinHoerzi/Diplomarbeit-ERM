@@ -1,4 +1,15 @@
 \chapter{Verwendete Technologien} \label{technologien}
+
+\section{\LaTeX}
+Diese Diplomarbeit wurde mit \LaTeX \space (\textit{{\bf{\textit{La}}}mport {\bf{\textit{\TeX}}}}) verfasst. Dieses Softwarepaket stellt eine Bibliothek von \TeX-Makros dar. \LaTeX ist plattformunabhängig und eine gute Möglichkeit gegenüber anderen Textverarbeitungsprogrammen. Dieses Softwarepaket funktioniert nach dem WYSIWYAF-Prinzip (\textit{{\bf{W}}hat {\bf{y}}ou {\bf{s}}ee {\bf{i}}s {\bf{w}}hat {\bf{y}}ou {\bf{a}}sked {\bf{f}}or}), das bedeutet es wird in normalen Textdateien mit Befehlen gearbeitet, die dann in verschiedene Formate (PDF, DVI, PostScript) kompiliert werden können. \autocite{wikiLatex}
+
+\section{BibTeX}
+BibTeX erstellt in \LaTeX-Dokumenten Literaturangaben und -verzeichnisse. Dafür wird eine Literaturdatenbank, ein Textdokument mit der Endung .bib, erstellt, wo jedes Buch, Webseite oder Werk nach einem bestimmten Syntax hineingeschrieben wird. Zur erstellung eines Verzeichnises werden aus dem \LaTeX-Dokument alle Zitatverweise herausgesucht und mit der Literaturdatenbank zu einem Werk zugewiesen. Das Verzeichnis wird somit automatisch nach dem eingestellten Stil erstellt. \autocite{wikiBibtex}
+
+\section{TeXstudio}
+Die \LaTeX-Dokumente dieser Diplomarbeit wurden mit TeXstudio erstellt. Dieser Editor ist plattformunabhängig und es kompiliert und zeigt Dokumente an. Es besitzt ein Autocomplete für \LaTeX-Befehle, Echtzeit-Syntaxkontrolle und -Rechtschreibüberprüfung. 
+
+
 \section{Twilio} \label{sec:twilio}
 Twilio wurde 2008 von Jeff Lawson, Evan Cooke und John Wolthuis in Amerika gegründet. Es betreibt eine Cloud-Kommunikationsplattform als Platform as a Service. Mit den von Twilio zur Verfügung gestellten Dienst, können Entwickler Programmierschnittstellen zum ausführen und empfangen von Anrufen, senden von SMS, verifizieren von Telefonnummern sowie für andere Kommunikationsfunktionen nutzen. In unseren Fall wurde mit Twilio überprüft, ob der Nutzer eine gültige Telefonnummer eingegeben hat. \cite{twilioWebsite}
 
@@ -9,3 +20,7 @@ Als Antwort bekommt man ein JSON. Aus diesem JSON bekommt man viele Informatione
 \section{Google Translator}
 Die Schnittstelle für den Google Cloud Translator wurde von Google LLC entwickelt. Damit kann man schnell Texte in mehr als 100 Sprachen im eigenen Programm übersetzen lassen. Als Antwort der Übersetzung bekommt man den Titel, den Content und die Abkürzung der Sprache. Nun kann man die Übersetzungen speichern und man braucht nur nach der Spachenabkürzung suchen.
 \cite{googleTranslator}
+
+\section{Auth0}
+Auth0 wurde 2013 gegründet. Der Hauptsitz dieses Unternehmen liegt in Bellevue, Amerika.\\
+"Auth0 ist eine Identitätsmanagement Lösung, welche Sie in den Bereichen Authentifizierung, Registrierung und der Speicherung von Userdaten unterstützt. Über Auth0 kann ein Single sign-on von verschiedenen Plattformen und Applikationen (inklusive sozialer Kanäle wie Facebook, LinkedIn und Twitter) realisiert werden. Im Hintergrund können mehrere Datenquellen zum Login verwendet werden (Datenbank, ADFS, LDAP, etc.) Da Auth0 bereits mit einer Vielzahl an Connectors daher kommt, ist der Entwicklungsaufwand um ein Vielfaches kleiner als bei herkömmlichen Projekten." \autocite{auth0}
