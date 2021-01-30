@@ -88,7 +88,7 @@ Durch .NET Standard wird gesorgt, dass Programmierschnittstellen von .NET in den
 .NET Core wurde 2015 als harte Absplittung vom .NET Framework vorgestellt. Es wurde für eine bessere Modularität und eine leichtere Portierbarkeit auf Microsoft-fremde Plattformen entwickelt. 2016 wurde angekündigt, dass .NET Core mit mehr APIs ausgestatted wird, um die Kompatibilität zwischen verschiedenen .NET Frameworks zu verbessern. \autocite{wikiDotnet}
 
 \subsection{C\#}
-c\# wurde 2001 von Microsoft veröffentlicht. Diese plattformunabhängige, objektorientierte Programmiersprache basiert auf Konzepte von den Programmiersprachen Delphi, C, Haskell, C++ und Java.
+C\# wurde 2001 von Microsoft veröffentlicht. Diese plattformunabhängige, objektorientierte Programmiersprache basiert auf Konzepte von den Programmiersprachen Delphi, C, Haskell, C++ und Java.
 
 C\# wird meist nicht gleich von den Compiler in die Maschinensprache, sondern in die Zwischensprache Common Intermediate Language (CIL) übersetzt. \autocite{wikiCSharp}
 
@@ -131,3 +131,61 @@ Durch JSON Web Signature(JWS) wird die Signature definiert. Die ist nach RFC 751
 Der JWT-Token setzt sich nun aus dem jeweils Base64-Url kodierten Header, Payload und Signature mit einem Punkt getrennt zusammen. \autocite{wikiJWT}
 Der Nachfolgende Token setzt sich aus den zwei Beispielen zusammen:\\
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4MTM1NzMxNTk0IiwibmFtZSI6I\\k1heCBNdXN0ZXJtYW5uIiwiYWRtaW4iOnRydWV9.8NyZnCtWX\_QAlNhfl70zD2tHR\\9j1mtSl9Dwdfnnh60k
+
+\section{Angular}
+Das Frontend dieser Diplomarbeit wurde mit den Webapplikationsframework Angular geschrieben. Angular ist ein Open-Source-Software, basiert auf TypeScript und wird von einer Online-Community und Google LLC entwickelt.\\
+Das Architekturkonzept von Angular ist eine Hierarchie von Komponenten. Durch Module wird Code schneller und Funktionalitäten können ausgelagert werden. TypeScript wird als Entwicklungssprache empfohlen, da diese Generics, statische Typisierung und Klassenbasierte objektorientierte Programmierung ermöglicht. \autocite{wikiAngular}
+Weiters bietet Angular:
+\begin{itemize}
+	\item Reaktive Programmierung mit RxJs
+	\item Einfaches Routing
+	\item Asynchrone Kompilierung von Templates
+	\item Dynamisches Laden
+	\item Dependency Injection
+\end{itemize}
+\section{TypeScript}
+TypeScript wurde 2012 von Microsoft veröffentlicht. Diese Programmiersprache basiert auf den ECMAScript-6-Standard. Der TypeScript-Compiler kompliliert den Code in plain JavaScript, deshalb ist jeder JavaScript-Code auch ein gültiger TypeScript-Code. Somit sind Bibliotheken wie jQuery oder AngularJS auch in TypeScript verwendbar. \autocite{wikiTypeScript} \\
+TypeScript bietet viele unterstützende Features:
+\begin{itemize}
+	\item Klassen
+	\item Module
+	\item Arrow-Syntax für anonyme Funktionen
+	\item Optionale Parameter und Standardparameter
+	\item Namensräume
+	\item Tupel
+	\item Async/Await
+	\item Generische Programmierung
+	\item Aufzählungstyp
+	\item Interfaces
+	\item Type Erasure
+	\item Typinferenz
+	\item Methodensignatur
+\end{itemize}
+
+\begin{lstlisting}[caption={TypeScript-Beispiel Function},captionpos=b, numbers=left, backgroundcolor=\color{black!10},language=JavaScript]
+function add(a: number, b: number): number {
+	return a + b;
+}
+\end{lstlisting}
+\begin{lstlisting}[caption={TypeScript-Beispiel Klasse},captionpos=b, numbers=left, backgroundcolor=\color{black!10},language=JavaScript]
+	class Person {
+		private name: string;
+		private age: number;
+		private salary: number;
+		
+		constructor(name: string, age: number, salary: number) {
+			this.name = name;
+			this.age = age;
+			this.salary = salary;
+		}
+		
+		toString(): string {
+			return `${this.name} (${this.age}) 		(${this.salary})`;
+		}
+	}
+\end{lstlisting}
+\begin{lstlisting}[caption={TypeScript-Beispiel Generische Programmierung},captionpos=b, numbers=left, backgroundcolor=\color{black!10},language=JavaScript]
+	function doSomething<T>(arg: T): T {
+		return arg;
+	}
+\end{lstlisting}
