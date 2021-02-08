@@ -15,7 +15,7 @@
 \usepackage{mwe,tikz}
 \usepackage{tabto}
 \usepackage{dashrule}
-\usepackage[backend=biber,style=verbose]{biblatex}
+\usepackage[backend=biber,style=numeric]{biblatex}
 \usepackage{listings,lstautogobble}
 \usepackage{scrextend}
 \usepackage{enumitem}
@@ -245,13 +245,13 @@
 	\tabto{9cm}\hdashrule[0pt][x]{\fill}{.5pt}{.75mm}
 }
 
-\newcommand{\BlockCite}[2]{
-	\begin{addmargin}[1cm]{0pt}
-		#1
-		
-		\fullcite{#2}
-	\end{addmargin}
-}
+%\newcommand{\BlockCite}[2]{
+%	\begin{addmargin}[1cm]{0pt}
+%		#1
+%		
+%		\fullcite{#2}
+%	\end{addmargin}
+%}
 
 \newcounter{appendix}
 \newcommand{\Appendix}[1]{
