@@ -83,6 +83,24 @@
 }
 % end of C# listing
 
+%JavaScript listing (TypeScript)
+\lstdefinelanguage{JavaScript}{
+	morekeywords=[1]{break, continue, delete, else, for, function, if, in,
+		new, return, this, typeof, var, void, while, with},
+	% Literals, primitive types, and reference types.
+	morekeywords=[2]{false, null, true, boolean, number, undefined,
+		Array, Boolean, Date, Math, Number, String, Object},
+	% Built-ins.
+	morekeywords=[3]{eval, parseInt, parseFloat, escape, unescape},
+	sensitive,
+	morecomment=[s]{/*}{*/},
+	morecomment=[l]//,
+	morecomment=[s]{/**}{*/}, % JavaDoc style comments
+	morestring=[b]',
+	morestring=[b]"
+}[keywords, comments, strings]
+%end of JS listing
+
 % json listing
 \definecolor{delim}{RGB}{20,105,176}
 \definecolor{numb}{RGB}{106, 109, 32}
@@ -251,7 +269,7 @@
 \begin{document}
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	%%%   TITELBLATT    %%%%%%%%%%%%%%%%%%%%%
+	%%%   TITELBLATT   %%%%%%%%%%%%%%%%%%%%%%
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\include{./kapitel/titelblatt/titelblatt.tex}
 	
@@ -261,46 +279,59 @@
 	\pagenumbering{arabic}
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	%%%   EINLEITUNG    %%%%%%%%%%%%%%%%%%%%%
+	%%%   EINLEITUNG   %%%%%%%%%%%%%%%%%%%%%%
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
 	\include{./kapitel/einleitung/einleitung.tex}
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	%%%   Beispiel    %%%%%%%%%%%%%%%%%%%%%%%
+	%%%   Beispiel   %%%%%%%%%%%%%%%%%%%%%%%%
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
 	\include{./kapitel/example/beispiel.tex}
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	%%%   Verwendete Technologien    %%%%%%%%
+	%%%   VERWENDETE TECHNOLOGIEN   %%%%%%%%%
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
 	\include{./kapitel/technologien/technologien.tex}
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	%%%   CI / CD    %%%%%%%%%%%%%%%%%%%%%%%%
+	%%%   CI / CD   %%%%%%%%%%%%%%%%%%%%%%%%%
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
 	\include{./kapitel/ci-cd/cicd.tex}
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	%%%   BIBLIOGRAPHY  %%%%%%%%%%%%%%%%%%%%%
+	%%%   Beschreibung aus Anwendersicht   %%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+	\include{./kapitel/anwendersicht/anwendersicht.tex}
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%   BIBLIOGRAPHY   %%%%%%%%%%%%%%%%%%%%
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
 	\printbibliography[title={\hspace{\fill}Bibliography}]
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	%%%   BEGLEITPROTOKOLL  %%%%%%%%%%%%%%%%%
+	%%%   BEGLEITPROTOKOLL   %%%%%%%%%%%%%%%%
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
 	\include{./kapitel/begleitprotokoll/begleitprotokoll.tex}
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	%%%   LIST OF FIGURES  %%%%%%%%%%%%%%%%%%
+	%%%   LIST OF FIGURES   %%%%%%%%%%%%%%%%%
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
 	\listoffigures
+	\pagebreak
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%   LIST OF LISTINGS  %%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\renewcommand{\lstlistlistingname}{Listingverzeichnis}
+	\lstlistoflistings	
 	\pagebreak
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
