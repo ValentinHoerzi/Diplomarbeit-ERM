@@ -1,4 +1,15 @@
 \chapter{Verwendete Technologien} \label{technologien}
+
+\section{\LaTeX}
+Diese Diplomarbeit wurde mit \LaTeX \space (\textit{{\bf{\textit{La}}}mport {\bf{\textit{\TeX}}}}) verfasst. Dieses Softwarepaket stellt eine Bibliothek von \TeX-Makros dar. \LaTeX ist plattformunabhängig und eine gute Möglichkeit gegenüber anderen Textverarbeitungsprogrammen. Dieses Softwarepaket funktioniert nach dem WYSIWYAF-Prinzip (\textit{{\bf{W}}hat {\bf{y}}ou {\bf{s}}ee {\bf{i}}s {\bf{w}}hat {\bf{y}}ou {\bf{a}}sked {\bf{f}}or}), das bedeutet es wird in normalen Textdateien mit Befehlen gearbeitet, die dann in verschiedene Formate (PDF, DVI, PostScript) kompiliert werden können. \autocite{wikiLatex}
+
+\section{BibTeX}
+BibTeX erstellt in \LaTeX-Dokumenten Literaturangaben und -verzeichnisse. Dafür wird eine Literaturdatenbank, ein Textdokument mit der Endung .bib, erstellt, wo jedes Buch, Webseite oder Werk nach einem bestimmten Syntax hineingeschrieben wird. Zur erstellung eines Verzeichnises werden aus dem \LaTeX-Dokument alle Zitatverweise herausgesucht und mit der Literaturdatenbank zu einem Werk zugewiesen. Das Verzeichnis wird somit automatisch nach dem eingestellten Stil erstellt. \autocite{wikiBibtex}
+
+\section{TeXstudio}
+Die \LaTeX-Dokumente dieser Diplomarbeit wurden mit TeXstudio erstellt. Dieser Editor ist plattformunabhängig und es kompiliert und zeigt Dokumente an. Es besitzt ein Autocomplete für \LaTeX-Befehle, Echtzeit-Syntaxkontrolle und -Rechtschreibüberprüfung. Weiters besteht die Möglichkeit, dass Unicode-kodierte Dateien verarbeitet werden. \autocite{wikiTexstudio}
+
+
 \section{Twilio} \label{sec:twilio}
 Twilio wurde 2008 von Jeff Lawson, Evan Cooke und John Wolthuis in Amerika gegründet. Es betreibt eine Cloud-Kommunikationsplattform als Platform as a Service. Mit den von Twilio zur Verfügung gestellten Dienst, können Entwickler Programmierschnittstellen zum ausführen und empfangen von Anrufen, senden von SMS, verifizieren von Telefonnummern sowie für andere Kommunikationsfunktionen nutzen. In unseren Fall wurde mit Twilio überprüft, ob der Nutzer eine gültige Telefonnummer eingegeben hat. \cite{twilioWebsite}
 
@@ -9,3 +20,114 @@ Als Antwort bekommt man ein JSON. Aus diesem JSON bekommt man viele Informatione
 \section{Google Translator}
 Die Schnittstelle für den Google Cloud Translator wurde von Google LLC entwickelt. Damit kann man schnell Texte in mehr als 100 Sprachen im eigenen Programm übersetzen lassen. Als Antwort der Übersetzung bekommt man den Titel, den Content und die Abkürzung der Sprache. Nun kann man die Übersetzungen speichern und man braucht nur nach der Spachenabkürzung suchen.
 \cite{googleTranslator}
+
+\section{Auth0}
+Auth0 wurde 2013 gegründet. Der Hauptsitz dieses Unternehmen liegt in Bellevue, Amerika.\\
+"Auth0 ist eine Identitätsmanagement Lösung, welche Sie in den Bereichen Authentifizierung, Registrierung und der Speicherung von Userdaten unterstützt. Über Auth0 kann ein Single sign-on von verschiedenen Plattformen und Applikationen (inklusive sozialer Kanäle wie Facebook, LinkedIn und Twitter) realisiert werden. Im Hintergrund können mehrere Datenquellen zum Login verwendet werden (Datenbank, ADFS, LDAP, etc.) Da Auth0 bereits mit einer Vielzahl an Connectors daher kommt, ist der Entwicklungsaufwand um ein Vielfaches kleiner als bei herkömmlichen Projekten." \autocite{auth0}
+
+\section{Visual Studio Code}
+Das Frontend dieser Diplomarbeit wurde in Visual Studio Code programmiert. Dieser Quelltexteditor erschien 2015 von Microsoft und arbeitet mit Quelldateien und Ordnern in Workspaces. Es bietet Versionsverwaltung, Autovervollständigung, Debugging und Syntaxhervorhebung. Es unterstützt Programmiersprachen wie Java, C++, C\#, JavaScript, TypeScript, Python und viele mehr. Für Visual Studio Code gibt es Plug-ins, die das programmieren sehr vereinfachen können. \autocite{wikiVisualStudioCode}
+
+\section{Visual Studio 2019}
+%Das Backend dieser Diplomarbeit wurde im Visual Studio programmiert. Die von Microsoft stammende Entwicklungsumgebung ist 1997 erschienen und arbeitet mit Projektdateien. Visual Studio bietet viele Funktionen wie IntelliSense, automatische Syntaxprüfung, Debugger mit Bearbeiten und Fortfahren und vieles mehr. Seit 2005 hat es einen integrierten Webserver. Es unterstützt einige Programmiersprachen, wie C\#, C++, C, Visual Basic .NET, TypeScript und viele mehr. \autocite{wikiVisualStudio}
+
+Für das Backend der Diplomarbeit wurde Microsoft Visual Studio gewählt. Diese IDE (Integrated Development Environment) unterstützt den Programmierer durch eine ausgereifte Entwicklungsumgebung mit vielen Features.\\
+
+Am nachfolgenden Screenshot sieht man den Startbildschirm von Microsoft Visual Studio 2019
+\begin{figure}[h]
+	\centerline{
+	\includegraphics[width=0.8\textwidth]{./grafiken/visual_studio_startview.png}
+	}
+	\vskip0pt
+	\caption{Screenshot vom Startbildschirm von Microsoft Visual Studio 2019} \label{fig:visualStudioStartview}
+\end{figure}
+
+Es gibt folgende Editionen von Microsoft Visual Studio 2019, wobei sie sich in den vorhandenen Funktionen unterscheiden:
+\begin{itemize}
+	\item Community Edition
+	\item Professional Edition
+	\item Test Professional Edition
+	\item Enterprise Edition
+\end{itemize}
+
+Diese Diplomarbeit wurde mit der Community Edition erstellt, da diese Version alles zur Verfügung stellt, was gebraucht wurde. \autocite{wikiVisualStudio}
+
+Micrsofot Visual Studio 2019 bietet viele unterstützende Features:
+\begin{itemize}
+	\item Online-Hilfe, die von der Cursorposition abhängig ist
+	\item Ein- und Ausblenden von Codeblöcken
+	\item Server-Explorer zum Zugriff auf Datenquellen
+	\item Automatische Syntaxprüfung und IntelliSense
+	\item Automatische Methoden- und Funktionsergänzung während der Quelltext-Eingabe
+	\item Einbindung von Web Services
+	\item ActiveX- und .NET-Bibliotheken
+    \item Farbliche Kennung von Schlüsselwörtern
+    \item Integrierter Debugger mit der Bearbeiten-und-Fortfahren-Funktion
+	\item Windows-Nachrichtendienst
+	\item WYSIWYG-Editoren zur Benutzeroberflächenentwicklung
+\end{itemize}
+
+\section{Postman}
+Um die APIs (application programming interface) des Backendes der Diplomarbeit zu testen wurde Postman verwendet. Postman bietet die Funktion, Requests an jegliche URL zu senden. Somit besteht die Möglichkeit, die programmierten Schnittstellen mit verschiedenen Daten schnell zu testen. Dieses Tool unterstützt SOAP, GraphQL und REST. Des weiteren ist Automated Testing möglich und es lassen sich Endpoints simulieren. Somit kann man das Verhalten der APIs sehr gut beobachten, was es einem Programmierer leichter macht Fehler zu finden.\\
+Da das Backend dieser Diplomarbeit mit JWT (JSON Web Token) geschützt ist, ist es bei einem Postman-Request diesen Token in den Header hinzuzufügen, um die API zu testen. \autocite{postmanDocs} \\
+Am nachfolgenden Screenshot sieht man einen Request von Postman.
+\begin{figure}[h]
+	\centerline{
+		\includegraphics[width=0.8\textwidth]{./grafiken/postman.png}
+	}
+	\vskip0pt
+	\caption{Screenshot von Postman} \label{fig:postman}
+\end{figure}
+
+\section{.NET Standard 2.0, .NET Core 2.2 und C\#}
+Für das Backend der Diplomarbeit wurden die Microsoft .NET Frameworks .NET Standard 2.0 und .NET Core 2.2 verwendet. Die Anwendungen wurden mit der objektorientierten Programmiersprache C\#  erstellt.
+\subsection{.NET Standard 2.0 Framework}
+Durch .NET Standard wird gesorgt, dass Programmierschnittstellen von .NET in den verschiedenen Implementierungen einheitlich zur Verfügung stehen. Portable Class Libraries wird durch .NET Standard ersetzt, was die API-Angleichung für .NET Core steuert. Dieses Framework ist von .NET Framework, .NET Core und Xamarin implementiert.
+
+\subsection{.NET Core 2.2}
+.NET Core wurde 2015 als harte Absplittung vom .NET Framework vorgestellt. Es wurde für eine bessere Modularität und eine leichtere Portierbarkeit auf Microsoft-fremde Plattformen entwickelt. 2016 wurde angekündigt, dass .NET Core mit mehr APIs ausgestatted wird, um die Kompatibilität zwischen verschiedenen .NET Frameworks zu verbessern. \autocite{wikiDotnet}
+
+\subsection{C\#}
+c\# wurde 2001 von Microsoft veröffentlicht. Diese plattformunabhängige, objektorientierte Programmiersprache basiert auf Konzepte von den Programmiersprachen Delphi, C, Haskell, C++ und Java.
+
+C\# wird meist nicht gleich von den Compiler in die Maschinensprache, sondern in die Zwischensprache Common Intermediate Language (CIL) übersetzt. \autocite{wikiCSharp}
+
+\begin{lstlisting}[caption={C\#-Syntaxbeispiel},captionpos=b, numbers=left, backgroundcolor=\color{black!10}, language={[Sharp]C}]
+using System;
+namespace HelloWorld
+{
+	public class Program
+	{
+		public static void Main(string[] args)
+		{
+			Console.WriteLine("Hello World!");
+		}
+	}
+}
+\end{lstlisting}
+
+\section{JSON Web Token}
+JSON Web Token(JWT) ist ein Access-Token, der auf JSON basiert. Durch JWT kann man verifizierbare Claims austauschen. Mit JWT sind Stateless Sessions möglich, da jede benötigte Information für eine Authentifikation mit dem Token übertragen werden kann. Ein JSON Web Token setzt sich aus dem Header, Payload und der Signatur zusammen. Bei einem Request mit einem Token schreibt man vor dem Token noch "Bearer".
+
+Der Header ist ein JSON-Element. Darin ist gespeichert, welcher Token-Typ es ist und welche Verschlüsselungsmethode angewendet wird. Der Typ ist JWT unda ls Verschlüsselungsmethoden wird meist HMAC mit SHA-256 oder RSA mit SHA-256 verwendet.\\
+\begin{lstlisting}[caption={JWT-Header Beispiel},captionpos=b, numbers=left, backgroundcolor=\color{black!10}, language=json]
+{
+	"alg": "HS256",
+	"typ": "JWT"
+}
+\end{lstlisting}
+
+Payload ist ebenfalls ein JSON-Element. In diesem JSON sind die Claims beschrieben. Es gibt einige reservierte Claims, die den Aussteller, das Subject oder das Ablaufdatum beschreiben, jedoch kann der Aussteller auch einen Private Claim definieren.\\
+\begin{lstlisting}[caption={JWT-Payload Beispiel},captionpos=b, numbers=left, backgroundcolor=\color{black!10}, language=json]
+	{
+		"sub": "8135731594",
+		"name": "Max Mustermann",
+		"admin": true
+	}
+\end{lstlisting}
+
+Durch JSON Web Signature(JWS) wird die Signature definiert. Die ist nach RFC 7515 genormt. Mit der im Header festgelegten Hashmethode wir der Header und der Payload im Base64 kodierten und durch einen Punkt getrennten Format gehasht. Das Ergebnis ist die Signature.
+
+Der JWT-Token setzt sich nun aus dem jeweils Base64-Url kodierten Header, Payload und Signature mit einem Punkt getrennt zusammen. \autocite{wikiJWT}
+Der Nachfolgende Token setzt sich aus den zwei Beispielen zusammen:\\
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4MTM1NzMxNTk0IiwibmFtZSI6I\\k1heCBNdXN0ZXJtYW5uIiwiYWRtaW4iOnRydWV9.8NyZnCtWX\_QAlNhfl70zD2tHR\\9j1mtSl9Dwdfnnh60k
