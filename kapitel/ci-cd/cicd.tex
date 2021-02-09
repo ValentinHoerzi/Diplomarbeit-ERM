@@ -44,9 +44,10 @@ Die abschließende Phase der CI/CD-Pipeline ist das Continuous Deployment. Als E
 
 In der Praxis bedeutet Continuous Deployment, dass App-Änderungen eines Entwicklers binnen weniger Minuten nach ihrer Erstellung live gehen können (vorausgesetzt, sie bestehen den automatischen Test). Dies erleichtert eine kontinuierliche Integration von User Feedback ungemein. All diese zusammenhängenden CI/CD-Praktiken machen eine Anwendungsimplementierung weniger riskant, weil Änderungen in Teilen und nicht auf einmal freigegeben werden. Die Vorabinvestitionen sind allerdings beträchtlich, da automatische Tests für die diversen Prüf- und Release-Phasen in der CI/CD-Pipeline geschrieben werden müssen.\autocite{whatIsCICD}
 
-\section{Gitlab Pipeline}
+\section{GitLab Pipeline}
 
 Pipelines sind top-level Komponenten der Continuous Integration, Delivery und Deployment. Pipelines umfassen:\autocite{gitlabPipelines}
+
 \begin{itemize}
 	\item Jobs, welche definieren \textit{was} auszuführen ist. Zum Beispiel gibt es Jobs, welche den Code kompilieren, Packete installieren und testen.
 	\item Stages, welche definieren \textit{wann} Jobs auszuführen sind. Beispielsweise ist die Kompile-Stage üblicherweise vor der Test-Stage.
@@ -58,11 +59,57 @@ Wenn \textit{irgendein} Job in einer Stage fehlschlägt, wird die nächste Stage
 
 \newpage
 
-Im Allgemeinen werden Pipelines automatisch ausgeführt und erfordern nach ihrer Erstellung keinen weiteren manuellen Eingriff.
+Im Allgemeinen werden Pipelines in der Regel automatisch  nach dem Hochladen eines Commits ausgeführt und erfordern nach ihrer Erstellung keinen weiteren manuellen Eingriff.
 Eine typische Pipeline kann aus vier Phasen bestehen, die in der folgenden Reihenfolge ausgeführt werden:\autocite{gitlabPipelines}
+
 \begin{itemize}
 	\item Eine \colorbox{lightgray}{\texttt{Build-Stage}}, mit einem \colorbox{lightgray}{\texttt{Compile-Job}}.
 	\item Eine \colorbox{lightgray}{\texttt{Test-Stage}}, welche mehrere \colorbox{lightgray}{\texttt{Test-Jobs}} beinhalten kann.
 	\item Eine \colorbox{lightgray}{\texttt{Staging-Stage}}, mit einem \colorbox{lightgray}{\texttt{Deploy-to-Stage-Job}}.
 	\item Eine \colorbox{lightgray}{\texttt{Production-Stage}}, mit einem \colorbox{lightgray}{\texttt{Deploy-to-Production-Job}}.
 \end{itemize}
+
+\section{GitLab Runner}
+\subsection{Registrierung}
+
+GitLab Runner ist eine Anwendung, die mit GitLab CI/CD arbeitet, um Aufträge in einer Pipeline auszuführen.
+Man kann die GitLab Runner-Anwendung auf der Infrastruktur installieren, die man besitzen oder verwalten. In diesem Fall sollte man GitLab Runner auf einem Rechner installieren, der von dem Rechner getrennt ist, der die GitLab-Instanz hostet. GitLab Runner ist Open-Source und in Go geschrieben. Er kann als einzelne Binärdatei ausgeführt werden, wobei es keine sprachspezifischen Anforderungen benötigt.
+Es ist auch möglich, GitLab Runner auf verschiedenen unterstützten Betriebssystemen installieren. Andere Betriebssysteme sind ebenfalls in der Lage Runner bereitzustellen, sofern diese eine Go-Binärdatei kompilieren können.
+GitLab Runner kann auch in einem Docker-Container ausgeführt oder in einem Kubernetes-Cluster bereitgestellt werden.\autocite{gitlabRunner}
+
+\begin{figure}[h]
+	\centerline{
+		\includegraphics[width=1.1\textwidth]{./grafiken/gitlab_runner_status.JPG}
+	}
+	\vskip0pt
+	\caption{GitLab Runner Instanz auf einem lokalen Windows-Rechner}
+\end{figure}
+
+\subsection{Executors}
+
+Wenn Sie einen Runner registrieren, müssen Sie einen Executor auswählen. Ein Executor bestimmt die Umgebung, in der jeder Job läuft.\autocite{gitlabRunner}
+
+Wenn man zum Beispiel will, dass ein CI/CD-Auftrag PowerShell-Befehle ausführt, kann man GitLab Runner auf einem Windows-Server installieren und dann einen Runner registrieren, der den Shell-Executor verwendet.
+Wenn man möchte, dass ein CI/CD-Job Befehle in einem benutzerdefinierten Docker-Container ausgeführt wird, muss man GitLab Runner auf einem Linux-Server installieren und einen Runner registrieren, der den Docker-Executor verwendet.
+Dies sind nur einige der möglichen Konfigurationen. Man könnte GitLab Runner auch auf einer virtuellen Maschine installieren und eine andere virtuelle Maschine als Executor verwenden lassen.
+Wenn man GitLab Runner in einem Docker-Container installieren und den Docker-Executor für die Ausführung der Jobs auswählen, wird dies manchmal als "Docker-in-Docker"-Konfiguration bezeichnet.\autocite{gitlabRunner}
+
+\subsection{Shared Runners}
+
+Shared Runners sind für jedes Projekt in einer GitLab-Instanz verfügbar.
+
+Shared Runners werden verwendet, wenn man mehrere Jobs mit ähnlichen Anforderungen in mehreren Projekten hat. Also anstatt viele Runner für viele Projekte im Leerlauf zu haben, kann man eine Gruppe von Runner für alle Projekte benützen.\autocite{gitlabSharedRunner}
+
+\subsection{Tags}
+
+Registrierte Runner kann man sogenannte Tags zuweisen. Wenn ein CI/CD Job läuft, kann dieser anhand seiner zugewiesener Tags determinieren, welchen Runner er verwenden soll. Das hat den Vorteil, dass man für beispielsweise einen Job, der ein Ruby Projekt kompilieren soll, seinen Runner nicht umkonfigurieren muss, sondern automatisch der Ruby-Runner verwendet wird.
+
+Man muss dazu lediglich folgendes in seine  \colorbox{lightgray}{\texttt{.gitlab-ci.yml}} Datei einbinden:
+
+\begin{figure}[h]
+	\centerline{
+		\includegraphics{./grafiken/ruby_runner_tag_in_gitlab-ci-yml_file.JPG}
+	}
+	\vskip0pt
+	\caption{ruby Tag in gitlab-ci.yml Datei (Bild wurde entnommen aus \autocite{gitlabRunner})}
+\end{figure}
