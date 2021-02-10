@@ -69,7 +69,7 @@ Eine typische Pipeline kann aus vier Phasen bestehen, die in der folgenden Reihe
 	\item Eine \colorbox{lightgray}{\texttt{Production-Stage}}, mit einem \colorbox{lightgray}{\texttt{Deploy-to-Production-Job}}.
 \end{itemize}
 
-\section{GitLab Runner}
+\section{GitLab Runner} \label{sec:lblGitLabRunner}
 \subsection{Registrierung}
 
 GitLab Runner ist eine Anwendung, die mit GitLab CI/CD arbeitet, um Aufträge in einer Pipeline auszuführen.
@@ -85,7 +85,7 @@ GitLab Runner kann auch in einem Docker-Container ausgeführt oder in einem Kube
 	\caption{GitLab Runner Instanz auf einem lokalen Windows-Rechner}
 \end{figure}
 
-\subsection{Executors}
+\subsection{Executors} \label{sssec:lblExecutor}
 
 Wenn Sie einen Runner registrieren, müssen Sie einen Executor auswählen. Ein Executor bestimmt die Umgebung, in der jeder Job läuft.\autocite{gitlabRunner}
 
@@ -114,100 +114,139 @@ Man muss dazu lediglich folgendes in seine  \colorbox{lightgray}{\texttt{.gitlab
 	\caption{ruby Tag in gitlab-ci.yml Datei (Bild wurde entnommen aus \autocite{gitlabRunner})}
 \end{figure}
 
-\begin{lstlisting}[caption={yaml besipiel},captionpos=b, numbers=left, backgroundcolor=\color{black!10}, language=docker-compose-2]
+\newpage
+
+\section{MyPöttinger GitLab Pipeline}
+
+Die Umgestaltung der GitLab Pipeline für das MyPöttinger-Repository ist ein wichtiger Bestandteil der Diplomarbeit. Die neue Pipeline besteht aus drei Stages:
+
+\begin{itemize}
+	\item Der \colorbox{lightgray}{\texttt{Build-Stage}}
+	\item Der \colorbox{lightgray}{\texttt{Test-Stage}}
+	\item Der \colorbox{lightgray}{\texttt{Release-Stage}}
+\end{itemize}
+
+\subsection{Die {\texttt{gitlab-ci.yml}} - Datei }
+
+Die \texttt{gitlab-ci.yml} Datei ist in GitLab hauptverantwortlich für das CI/CD Geschehen. Sie beschreibt die Aufgaben der einzelnen Jobs, definiert in welcher Stage diese auszuführen sind und legt die Reihenfolge der Abarbeitung klar fest. Bevor man sich über die \texttt{gitlab-ci.yml} Datei Gedanken macht, ist es wichtig, auf mehrere Aspekte zu achten. Man muss sich überlegen, welchen Runner[\ref{sec:lblGitLabRunner}] man verwenden will, welchen Executor[\ref{sssec:lblExecutor}] dieser ausführt und in welcher Umgebung alles stattfindet.
+
+Zu Beginn der gitlab-ci.yml Datei muss man definieren, in welcher Umgebung Befehle ausgeführt werden sollen. Für MyPöttinger ist standardmäßig das \texttt{mcr.microsoft.com/dotnet/sdk:5.0} Image von Microsoft gewählt, da diese bereits .NET CLI, .NET runtime und ASP.NET Core bereit stellt, welche alle für das Kompilieren, Bauen und Veröffentlichen einer .NET-Applikation benötigt werden.
+
+\begin{lstlisting}[caption={Erste Zeilen der gitlab-ci.yml Datei},captionpos=b, numbers=left, backgroundcolor=\color{black!10}, language=docker-compose]
 	default:
 		image: mcr.microsoft.com/dotnet/sdk:5.0
-	
-	variables:
-		ENTRYPOINT_DLL: MyPoettinger.dll
-		DOCKER_IMAGE_VERSION: latest
-	
 	cache:
 		paths:
 		- src/MyPoettinger.App/node_modules/
-		
 	stages:
 		- build
 		- test
 		- release
-		- images
+\end{lstlisting}
+
+Am Start ist die Definition der standardmäßigen Umgebung, welche mit \texttt{image:} angegeben wird. 
+
+Der \texttt{cache:} Befehl ermöglicht es, Dateien oder Verzeichnisse, welche im Laufe der Pipeline-Jobs im angegebenen Ordner erzeugt wurden, zu speichern, um diese im weiteren Verlauf zu verwenden.
+
+Die einzelnen Stages werden mit \texttt{stages:} deklariert. Alle folgenden Jobs können nun zu einer der aufgelisteten Stages hinzugefügt werden und laufen in dieser Reihenfolge ab.
+
+\newpage
+
+\subsection{Die Build-Stage}
+
+\begin{lstlisting}[caption={Die Build-Stage der gitlab-ci.yml Datei},captionpos=b, numbers=left, backgroundcolor=\color{black!10},
+language=docker-compose]
 	build_dotnet:
 		stage: build
 		script:
-			- echo "Started building dotnet"
-			- cd src/MyPoettinger.Web
+		- echo "Started building dotnet"
+		- cd src/MyPoettinger.Web
 		
-			- dotnet restore ./MyPoettinger.Web.csproj --no-cache --force
-			- dotnet build ./MyPoettinger.Web.csproj -c Release --no-restore
+		- dotnet restore ./MyPoettinger.Web.csproj --no-cache --force
+		- dotnet build ./MyPoettinger.Web.csproj -c Release --no-restore
 		tags:
-			- e
+		- e
+	
 	build_angular:
 		stage: build
 		image: trion/ng-cli:10.0.4
 		script: 
-			-  echo "Started building angular"
-			- "cd src/MyPoettinger.App"
-			
-			- "npm i"
-			- "npm audit fix"
+		- echo "Started building angular"
+		- cd src/MyPoettinger.App
+		
+		- npm install
+		- npm audit fix
 		tags:
-			- e
+		- e
+\end{lstlisting}
+
+Da die Diplomarbeit aus einem Angular-Frontend (\texttt{src/MyPoettinger.App}) und einem .NET Backend (\texttt{src/MyPoettinger.Web}) besteht, müssen zwei unterschiedliche Projekte in dieser Stage behandelt werden. Bei dem \texttt{build\_dotnet} Job wird am Anfang \texttt{dotnet restore} ausgeführt, welcher mithilfe von NuGet die Abhängigkeiten des Projektes wieder herstellet. 
+
+Der \texttt{dotnet build}-Befehl erstellt das Projekt und die zugehörigen Abhängigkeiten in einen Satz von Binärdateien. Die Binärdateien enthalten den Projektcode in IL-Dateien (Intermediate Language) mit der Erweiterung DLL. Abhängig vom Projekttyp und den Einstellungen können auch andere Dateien enthalten sein.\cite{dotnetBuildDesc}
+
+Durch den Node Package Manager, kurz \texttt{npm}, werden mit den Befehl \texttt{npm install} alle benötigten Pakete für das Angular Projekt heruntergeladen und installiert. Im folgenden Schritt wird mit \texttt{npm audit fix} erörtert, welche Pakete mögliche Sicherheitsrisiken darstellen. Diese werden danach automatisch behoben. 
+
+\newpage
+
+\subsection{Die Test-Stage}
+
+\begin{lstlisting}[caption={Die Test-Stage der gitlab-ci.yml Datei},captionpos=b, numbers=left, backgroundcolor=\color{black!10},
+language=docker-compose]
 	unit_tests:
 		stage: test
-		script: dotnet vstest test/*UnitTests/bin/Release/**/*UnitTests.dll --Blame
+		script: 
+		- dotnet vstest test/*UnitTests/bin/Release/**/*UnitTests.dll --Blame
 		rules:
-			- exists:
-			- test/*UnitTests/*UnitTests.csproj
+		- exists:
+		- test/*UnitTests/*UnitTests.csproj
 		tags:
-			- i  
+		- i  
+	
 	integration_tests:
 		stage: test
-		script: dotnet vstest test/*IntegrationTests/bin/Release/**/*IntegrationTests.dll --Blame
+		script: 
+		- dotnet vstest test/*IntegrationTests/bin/Release/
+		**/*IntegrationTests.dll --Blame
 		rules:
-			- exists:
-			- test/*IntegrationTests/*IntegrationTests.csproj
+		- exists:
+		- test/*IntegrationTests/*IntegrationTests.csproj
 		tags:
-			- i
+		- i
+\end{lstlisting}
+
+\subsection{Die Release-Stage}
+
+\begin{lstlisting}[caption={Die Release-Stage der gitlab-ci.yml Datei},captionpos=b, numbers=left, backgroundcolor=\color{black!10}, language=docker-compose]
 	publish_dotnet:
 		stage: release
 		script:
-			- echo "Started publishing dotnet"
-			- cd src/MyPoettinger.Web
-			
-			- dotnet publish ./MyPoettinger.Web.csproj -c Release
+		- echo "Started publishing dotnet"
+		- cd src/MyPoettinger.Web
+		
+		- dotnet publish ./MyPoettinger.Web.csproj -c Release
 		artifacts:
-		name: DotArtifact
-		paths:
-			- /builds/it-entwicklung/dotnet/mypoettinger/src/MyPoettinger.Web/bin/Release/netcoreapp3.1/publish/
-		expire_in: 1 hour
+		  name: DotArtifact
+		  expire_in: 1 hour
+		  paths:
+		  - /builds/it-entwicklung/dotnet/mypoettinger
+		    /src/MyPoettinger.Web/bin/Release
+		    /netcoreapp3.1/publish/
 		tags:
-			- e
+		- e
+		
 	publish_angular:
 		stage: release
 		image: trion/ng-cli-karma:9.0.1
 		script:
-			- "cd src/MyPoettinger.App"
-			- "[ -d node_modules ] || npm ci"
-			- ng build --prod --aot=true
-		tags:
-			- e
+		- echo "Started publishing angular"
+		- cd src/MyPoettinger.App
+		- ng build --prod --aot=true
 		artifacts:
-		expire_in: 1 day
-		paths:
-			- src/MyPoettinger.App/dist
-	containerize:
-s
-e: gcr.io/kaniko-project/executor:debug
-arted containerizing dotnet"
-file"
-MAGE:$CI_COMMIT_TAG"
-PROJECT_DIR/Dockerfile
-I_PROJECT_DIR/Dockerfile
-DLL\"]" >> $CI_PROJECT_DIR/Dockerfile
-me\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
-STRY_IMAGE:$DOCKER_IMAGE_VERSION
-
-		when: manual
-e
-stlisting}
+	  	  name: AngularArtifact
+		  expire_in: 1 day
+		  paths:
+		  - src/MyPoettinger.App/dist
+		tags:
+		- e
+\end{lstlisting}
 
