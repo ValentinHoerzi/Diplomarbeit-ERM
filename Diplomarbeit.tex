@@ -20,7 +20,7 @@
 \usepackage{listings,lstautogobble}
 \usepackage{scrextend}
 \usepackage{enumitem}
-\usepackage{hyperref}
+\usepackage[hidelinks]{hyperref} %hidelinks removes red borders around hyperlinks
 \usepackage{float}
 \usepackage{wrapfig}
 \usepackage{makecell}
@@ -138,7 +138,7 @@
 }
 %End of Json listing
 
-%%%%%%%%%%%% yaml listing
+%YAML listing
 \lstdefinelanguage{docker}{
 	keywords={FROM, RUN, COPY, ADD, ENTRYPOINT, CMD,  ENV, ARG, WORKDIR, EXPOSE, LABEL, USER, VOLUME, STOPSIGNAL, ONBUILD, MAINTAINER},
 	keywordstyle=\color{blue}\bfseries,
@@ -152,7 +152,7 @@
 }
 
 \lstdefinelanguage{docker-compose}{
-	keywords={image, environment, ports, container_name, ports, volumes, links},
+	keywords={image, stage, script, tags, artifacts, paths, expire_in, rules,name},
 	keywordstyle=\color{blue}\bfseries,
 	identifierstyle=\color{black},
 	sensitive=false,
@@ -184,7 +184,7 @@
 	extendedchars=true
 }
 
-%%%%%%%%%%% end of yaml listing
+%%End of YAML listing
 
 % Calibri or sans-serif as default font
 \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
