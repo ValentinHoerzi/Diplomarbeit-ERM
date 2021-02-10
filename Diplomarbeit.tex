@@ -1,7 +1,8 @@
 \documentclass[12pt,a4paper,oneside]{report}
+
+%Packages
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
@@ -25,18 +26,14 @@
 \usepackage{makecell}
 \usepackage[german,english]{babel}
 
+%Commands
 \newcommand{\ThRealAuthorNameOne}{Valentin Hörzi}
 \newcommand{\ThRealAuthorNameTwo}{Alexander Schörgendorfer}
-
 \newcommand{\ThRealAuthorOneEmail}{valentin.hoerzi@gmail.com}
 \newcommand{\ThRealAuthorTwoEmail}{alex.schoergi@gmail.com}
-
 \newcommand{\ThAuthorsClass}{5AHIF}
-
 \newcommand{\ThAuthorOneNumber}{13}
 \newcommand{\ThAuthorTwoNumber}{22}
-
-
 \newcommand{\ThPartner}{Pöttinger Landtechnik GmbH, Industriestraße 1, 4710 Grieskirchen}
 \newcommand{\ThPartnerName}{Pöttinger Landtechnik GmbH}
 \newcommand{\ThPartnerPersonName}{Dominik Augustin}
@@ -81,9 +78,9 @@
 	stringstyle=\color{greencomments},
 	basicstyle=\ttfamily\small,
 }
-% end of C# listing
+% End of C# listing
 
-%JavaScript listing (TypeScript)
+%TypeScript listing
 \lstdefinelanguage{JavaScript}{
 	morekeywords=[1]{break, continue, delete, else, for, function, if, in,
 		new, return, this, typeof, var, void, while, with},
@@ -99,9 +96,9 @@
 	morestring=[b]',
 	morestring=[b]"
 }[keywords, comments, strings]
-%end of JS listing
+%End of TypeScript listing
 
-% json listing
+%Json listing
 \definecolor{delim}{RGB}{20,105,176}
 \definecolor{numb}{RGB}{106, 109, 32}
 \definecolor{string}{rgb}{0.64,0.08,0.08}
@@ -139,7 +136,7 @@
 	{[}{{{\color{delim}{[}}}}{1}
 	{]}{{{\color{delim}{]}}}}{1},
 }
-%end of json listing
+%End of Json listing
 
 
 % Calibri or sans-serif as default font
@@ -245,14 +242,6 @@
 	\tabto{9cm}\hdashrule[0pt][x]{\fill}{.5pt}{.75mm}
 }
 
-%\newcommand{\BlockCite}[2]{
-%	\begin{addmargin}[1cm]{0pt}
-%		#1
-%		
-%		\fullcite{#2}
-%	\end{addmargin}
-%}
-
 \newcounter{appendix}
 \newcommand{\Appendix}[1]{
 	\stepcounter{appendix}
@@ -265,6 +254,10 @@
 
 \title{ERM-Diplomarbeit}
 \author{Valentin Hörzi, Alexander Schörgendorfer}
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%   Beginn   %%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
 	
