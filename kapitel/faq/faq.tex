@@ -1,0 +1,26 @@
+\chapter{FAQ}
+\section{Was ist FAQ}
+FAQ steht für "Frequently Asked Questions". Es handelt sich dabei um eine Ansammlung von häufig gestellten Fragen, die auch für weitere Benutzer interessant sein könnten. Somit findet man auf einer Webseite im Bereich FAQ eine Auflistung dieser Ansammlung der wiederkehrenden Benutzerfragen.
+\section{FAQ-Backend}
+Eine der Aufgaben war, ein funktionierendes Backend für einen zukünftigen FAQ-Bereich zu programmieren. Im Allgemeinen, ging es darum, wenn eine Frage gestellt wird, wird diese bearbeitet. Wenn die Person, die diese Frage bearbeitet und beantwortet, empfindet, diese Frage könnte auch noch für weitere Benutzer von Interesse sein und diese Person hat auch die benötigten Rechte dafür, kann sie aus dieser Frage ein FAQ erstellen.\\
+Dafür wurde zuerst eine Tabelle in der Datenbank definiert. Ein FAQ besteht in der Datenbank aus einer ID, einem Sprachenkürzel, dem Titel, den Inhalt der Frage, einem Zähler, der die Abfragen mitzählt und einer Liste mit den vorhandenen Übersetzungen für diese Frage.\\
+Die Berechtigung ist mit einem Claim in dem JSON Web-Token gespeichert. Wenn nun der Befehl um eine FAQ zu erstellen aufgerufen wird, wird zuerst überprüft, ob die benötigte Berechtigung vorhanden ist. Falls vorhanden, wird die FAQ erstellt und automatisch mit Google Cloud Translate übersetzt und gespeichert. In diesen folgenden Sprachen ist die FAQ danach übersetzt:
+\begin{multicols}{2}
+\begin{itemize}
+	\item Deutsch
+	\item Englisch
+	\item Französisch
+	\item Niederländisch
+	\item Dänisch
+	\item Spanisch
+	\item Italienisch
+	\item Ungarisch
+	\item Polnisch
+	\item Slowakisch
+	\item Finnisch
+	\item Schwedisch
+	\item Tschechisch
+	\item Russisch
+	\item Ukrainisch
+\end{itemize}
+\end{multicols}
