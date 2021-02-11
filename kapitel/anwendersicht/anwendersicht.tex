@@ -1,5 +1,7 @@
 \chapter{Beschreibung aus Anwendersicht} \label{anwendersicht}
+
 Dieses Projekt ist für den Kunden entwickelt worden, daher wird hier die Anwendersicht beschrieben.
+
 \section{Länderwahl}
 \begin{figure}[h]
 	\centerline{
@@ -8,26 +10,30 @@ Dieses Projekt ist für den Kunden entwickelt worden, daher wird hier die Anwend
 	\vskip0pt
 	\caption{Screenshot von Länderwahl} \label{fig:countrySelection}
 \end{figure}
-Um auf die Webseite zu gelangen, muss man davor in der Länderwahl sein Land und bei den Ländern, wo es mehrere Landssprachen gibt, auch die Sprache wählen. Aus dem Länder- und Sprachenkürzel setzt sich die Locale zusammen. Für Österreich wäre die Locale daher "de\_AT" und für Deutschland "de\_DE". Diese Locale wird in den Cookies gespeichert und die Webseite richtet sich nach dieser Locale in den Cookies. Es ist auch möglich, im Nachhinein das Land und die Sprache zu ändern, indem man im Header der Webseite auf das Land klickt. Durch diesen Klick gelangt man von überall auf die Länderwahl.
+
+Um auf die Webseite zu gelangen, muss man davor in der Länderwahl sein Land und bei den Ländern, wo es mehrere Landssprachen gibt, auch die Sprache wählen. Aus dem Länder- und Sprachenkürzel setzt sich die Locale zusammen. Für Österreich wäre die Locale daher "de\_AT" und für Deutschland "de\_DE". Diese Locale wird in den Cookies gespeichert und die Webseite richtet sich nach dieser Locale in den Cookies. Es ist auch möglich, im Nachhinein das Land und die Sprache zu ändern, indem man im Header der Webseite auf das Land (hier: Österreich) klickt. Durch diesen Klick gelangt man von überall auf die Länderwahl.
 
 \section{Startseite}
+\subsection{Startseite vor dem Login}
 \begin{figure}[H]
 	\centerline{
 		\includegraphics[width=0.8\textwidth]{./grafiken/erm_home_not_logged_in.png}
 	}
 	\vskip0pt
-	\caption{Screenshot von der Startseite nicht eingeloggt} \label{fig:homeNotLoggedIn}
+	\caption{Screenshot von der Startseite, wenn der Benutzer nicht eingeloggt ist} \label{fig:homeNotLoggedIn}
 \end{figure}
-\begin{figure}[H]
-	\centerline{
-		\includegraphics[width=0.8\textwidth]{./grafiken/erm_home_not_logged_in_2.png}
-	}
-	\vskip0pt
-	\caption{Zweiter Screenshot von der Startseite nicht eingeloggt} \label{fig:homeNotLoggedIn2}
-\end{figure}
-Nach der Länderwahl gelangt man zu der Startseite. Anfangs ist man noch nicht eingeloggt, daher ist ein Login-Feld in der Mitte. Am zweiten Screenshot sieht man, dass das Feld "Mein Maschinenpark" etwas heller ist als die anderen Felder, da man den Maschinenpark nur als eingeloggter Benutzer nutzen kann. Die zwei anderen Felder sind auch ohne Registrierung nutzbar.
+
+%\begin{figure}[H]
+%	\centerline{
+%		\includegraphics[width=0.8\textwidth]{./grafiken/erm_home_not_logged_in_2.png}
+%	}
+%	\vskip0pt
+%	\caption{Zweiter Screenshot von der Startseite nicht eingeloggt} \label{fig:homeNotLoggedIn2}
+%\end{figure}
+
+Nach der Länderwahl gelangt man zu der Startseite. Anfangs ist man noch nicht eingeloggt, daher erscheint das Login-Feld in der Mitte. Am zweiten Screenshot sieht man, dass das Feld "Mein Maschinenpark" etwas heller ist als die anderen Felder, da man den Maschinenpark nur als eingeloggter Benutzer nutzen kann. Die zwei anderen Felder sind auch ohne Registrierung nutzbar.
  
-\subsection{Startseite nach dem Login}
+\subsection{Startseite nach einem erfolgreichen Login}
 \begin{figure}[H]
 	\centerline{
 		\includegraphics[width=0.8\textwidth]{./grafiken/erm_home_logged_in.png}
@@ -35,9 +41,13 @@ Nach der Länderwahl gelangt man zu der Startseite. Anfangs ist man noch nicht e
 	\vskip0pt
 	\caption{Screenshot von der Startseite eingeloggt} \label{fig:homeLoggedIn}
 \end{figure}
-Nach dem Login ist das Feld "Mein Maschinenpark" aktiv. Als eingeloggter Benutzer hat man Zugriff auf den Maschinenpark. 
+
+Nach einem erfolgreichen Login ist das Feld "Mein Maschinenpark" aktiv. Als eingeloggter Benutzer hat man nun Zugriff auf den Maschinenpark. 
+
 \section{Registrierungsseite}
+
 Falls man noch nicht registriert ist und man auf der Startseite auf "Registrieren" drückt, wird man zur Registrierungsseite weitergeleitet.
+
 \subsection{Registrierung}
 \begin{figure}[H]
 	\centerline{
@@ -46,7 +56,9 @@ Falls man noch nicht registriert ist und man auf der Startseite auf "Registriere
 	\vskip0pt
 	\caption{Screenshot von der Registrierungsseite} \label{fig:register}
 \end{figure}
+
 Während der Passworteingabe bekommt man Feedback, wie sicher das ausgewählte Passwort ist und was noch fehlt, um den Passwortanforderungen zu entsprechen. Die Passwortanforderungen entsprechen den Voraussetzungen von Auth0, da die Registrierung über Auth0 läuft. Der Balken unter dem Passwortfeld gibt die Sicherheit des Passwortes an. Das Passwort wird mit gängigen Namen und Nachnamen aus Amerika, beliebte englische Wörter und Muster wie Datumsangaben, Wiederholungen und Tastaturmuster verglichen um die Stärke angeben zu können.
+
 \begin{figure}[H]
 	\centerline{
 		\includegraphics[width=0.8\textwidth]{./grafiken/passwordSecurity.PNG}
@@ -57,8 +69,10 @@ Während der Passworteingabe bekommt man Feedback, wie sicher das ausgewählte P
 	}
 	\caption{Screenshot von der Passworteingabe} \label{fig:pw}
 \end{figure}
+
 \subsection{Weitere Daten für die Registrierung}
-In diesem Schritt der Registrierung füllt man persönliche Daten aus. Das Land und die Sprache werden von der am Beginn ausgewählten Locale übernommen. Diese kann man aber auch hier ändern. Wenn das Land oder die Sprache geändert wird, wird dieses Formular neu generiert und die Felder werden nach dem Standard des Landes erzeugt. Das bedeutet, dass die Reihenfolge der angezeigten Felder von dem ausgewählten Land abhängt, da in gewissen Ländern der Nachname vor dem Vornamen in einem Formular steht. Die Feldbeschreibung wird auch nach der ausgewählten Sprache geändert. Weiters wird auch die Validierung der Felder geändert, denn die Postleitzahl in den verschiedenen Länder variiert. (4-stellig in Österreich, 5-stellig in Deutschland)\\
+
+In diesem Schritt der Registrierung füllt man persönliche Daten aus. Das Land und die Sprache werden von der am Beginn ausgewählten Locale übernommen. Diese kann man aber auch hier ändern. Wenn das Land oder die Sprache geändert wird, wird dieses Formular neu generiert und die Felder werden nach den Standard des Landes erzeugt. Das bedeutet, dass die Reihenfolge der angezeigten Felder von dem ausgewählten Land abhängt, da in gewissen Ländern der Nachname vor dem Vornamen in einem Formular steht. Die Feldbeschreibung wird auch nach der ausgewählten Sprache geändert. Weiters wird auch die Validierung der Felder angepasst, denn die Postleitzahl in den verschiedenen Länder variiert. (4-stellig in Österreich, 5-stellig in Deutschland)\\
 
 Für die Adresseingabe hat der Benutzer 3 Möglichkeiten:
 Es besteht die Möglichkeit, jedes Adressfeld selber auszufüllen. Somit sind die Felder Straße und Hausnummer, Ort, Postleitzahl und bei gewissen Ländern die Provinzen oder Staaten auszufüllen.\\
@@ -66,6 +80,7 @@ Es besteht die Möglichkeit, jedes Adressfeld selber auszufüllen. Somit sind di
 Eine etwas schnellere Variante ist die Verwendung von dem integrierten Typeaheads. Bei der Eingabe des Feldes Straße und Hausnummer erscheinen Adresseingabevorschläge darunter. Wenn man auf die gewünschte Adresse klickt, werden die Felder Ort, Postleitzahl und falls vorhanden die Provinz oder der Staat automatisch ausgefüllt.\\
 
 Die schnellste Variante ist die Verwendung von der integrierten Standorterkennung. Dafür drückt man den "Use my location" über dem Adressfeld. Dadurch wird der Standort bestmöglich erkannt und alle vorhandenen Adressfelder werden automatisch ausgefüllt. Falls der Standort nicht ganz richtig erkannt wurde, kann man es danach noch bearbeiten. Die Standorterkennung ändert auch das ausgewählte Land, falls diese nicht übereinstimmen.
+
 \begin{figure}[H]
 	\centerline{
 		\includegraphics[width=0.8\textwidth]{./grafiken/erm_register_2.png}
@@ -73,6 +88,7 @@ Die schnellste Variante ist die Verwendung von der integrierten Standorterkennun
 	\vskip0pt
 	\caption{Screenshot von der Dateneingabe der Registrierung} \label{fig:register2}
 \end{figure}
+
 \begin{figure}[H]
 	\centerline{
 		\includegraphics[width=0.8\textwidth]{./grafiken/erm_register_3.png}
@@ -84,6 +100,7 @@ Die schnellste Variante ist die Verwendung von der integrierten Standorterkennun
 Der Benutzer muss angeben, ob er auf dem eigenen landwirtschaftlichen Betrieb arbeitet, auf einem anderen landwirtschaftlichen Betrieb angestellt ist oder dass er auf keinen Betrieb arbeitet. Falls der Benutzer auswählt, dass er auf einen anderen Betrieb angestellt ist, erscheint zusätzlich das Feld für den Namen des Unternehmens.\\
 
 Jedes Eingabefeld wird sofort nach Abgabe des Cursorfokus validiert. Falls ein Fehler auftritt wird das Feld rot umrandet und unter dem Feld erscheint eine Fehlermeldung, was falsch ist. Die Eingaben werden im Frontend und im Backend validiert. Im folgenden Screenshot sieht man die Felder mit einigen möglichen Fehlermeldungen.
+
 \begin{figure}[H]
 	\centerline{
 		\includegraphics[width=0.8\textwidth]{./grafiken/dateneingabe_Errors.PNG}
@@ -93,7 +110,9 @@ Jedes Eingabefeld wird sofort nach Abgabe des Cursorfokus validiert. Falls ein F
 \end{figure}
 
 \subsection{Letzter Schritt der Registrierung}
+
 Um die Registrierung erfolgreich abzuschließen, bekommt man eine Bestätigung per E-Mail zugesendet. Darin befindet sich ein Aktivierungslink. Diese Seite sieht wie folgt aus:
+
 \begin{figure}[H]
 	\centerline{
 		\includegraphics[width=0.8\textwidth]{./grafiken/erm_register_4.png}
@@ -103,6 +122,7 @@ Um die Registrierung erfolgreich abzuschließen, bekommt man eine Bestätigung p
 \end{figure}
 
 Nach der Bestätigung in der E-Mail kommt man wieder zurück auf die Startseite und es erscheint ein Pop-Up.
+
 \begin{figure}[H]
 	\centerline{
 		\includegraphics[width=0.8\textwidth]{./grafiken/erm_home_after_email.png}
@@ -112,7 +132,9 @@ Nach der Bestätigung in der E-Mail kommt man wieder zurück auf die Startseite 
 \end{figure}
 
 \section{Profilübersicht}
+
 Auf die Profilübersicht gelangt man, wenn man in dem Bestätigungs-Pop-Up auf "Profil bearbeiten" klickt oder man klickt auf den eigenen Namen rechts oben und danach auf "Mein Profil". Die Profilübersicht sieht folgendermaßen aus:
+
 \begin{figure}[H]
 	\centerline{
 		\includegraphics[width=0.8\textwidth]{./grafiken/erm_profil.png}
@@ -120,10 +142,13 @@ Auf die Profilübersicht gelangt man, wenn man in dem Bestätigungs-Pop-Up auf "
 	\vskip0pt
 	\caption{Screenshot von der Profilübersicht} \label{fig:profil}
 \end{figure}
+
 In der Profilübersicht kann man all seine persönlichen Daten einsehen und diese auch bearbeiten. Es besteht auch die Möglichkeit, die E-Mail und das Passwort zu ändern.
 
 \subsection{Persönliche/Betriebliche Daten}
+
 Nach der Registrierung ist es möglich, hier noch weiter persönliche und betriebliche Daten einzutragen. Falls der Benutzer ausgewählt hat, dass er auf dem eigenen oder einem anderen landwirtschaftlichen Betrieb arbeitet, erweitern sich die Daten um einige Felder für den Betrieb. Bei einem Klick auf "Persönliche/Betriebliche Daten" klappt sich ein Datenformular auf, dass wie folgt aussieht:
+
 \begin{figure}[H]
 	\centerline{
 		\includegraphics[width=0.8\textwidth]{./grafiken/erm_profil_daten.png}
@@ -131,9 +156,13 @@ Nach der Registrierung ist es möglich, hier noch weiter persönliche und betrie
 	\vskip0pt
 	\caption{Persönliche/Betriebliche Daten} \label{fig:profilData}
 \end{figure}
+
 Bei den Daten über den Betrieb wird gefragt, wie der Benutzer auf den Betrieb angestellt ist. Weiters ist auszufüllen, um welche Art von landwirtschaftlichen Betrieb es sich handelt. Die Betriebsfläche ist in Hektar und die Ackerfläche in Prozent anzugeben und für die Bewirtschaftungsform stehen Konventionell und Biologisch zur Auswahl. Danach wählt man noch die Betriebsform und die Anzahl der jeweiligen Tiere.
+
 \subsection{Newsletter}
+
 Die Firma Pöttinger bietet Newsletter in verschiedenen Sprachen für die Kunden an. Es besteht die Möglichkeit sich von diesen Newsletter jederzeit an- oder abzumelden. Das geschieht mit einem Klick auf den jeweiligen Knopf unter der gewünschten Sprache. Falls ein Newsletter abonniert ist, sieht man darunter, seit wann man diesen Newsletter erhält.
+
 \begin{figure}[H]
 	\centerline{
 		\includegraphics[width=0.8\textwidth]{./grafiken/erm_profil_newsletter.png}
@@ -143,7 +172,9 @@ Die Firma Pöttinger bietet Newsletter in verschiedenen Sprachen für die Kunden
 \end{figure}
 
 \section{Produktpalette}
+
 Mit der Produktpalette erhält man eine Vielzahl an Informationen zu den Landmaschinen der Firma Pöttinger. Um die gewünschte Maschine zu finden, gibt es verschiedene Möglichkeiten. Eine Möglichkeit ist, die Maschine in der Produktpalette zu suchen. Dafür klickt man auf "Suche in der Produktpalette" und danach öffnet sich ein Baumstruktur, in der man von oben nach unten in den Kategorien suchen kann. Am Beginn stehen Grünland und Ackerbau zur Auswahl. Öffnet man Grünland, erscheinen die Unterkategorien dieser Kategorie. Es gibt bis zu fünf Ebenen, bis man zu den einzelnen Maschinen gelangt. Diese Suche in der Baumstruktur kann man mit einer Eingabe in der Stichwortsuche über dem Baum noch einschränken. Wenn das eingegebene Stichwort in einer Ebene und darunter nicht vorkommt, sieht man diese Ebene auch nicht mehr.
+
 \begin{figure}[H]
 	\centerline{
 		\includegraphics[width=0.8\textwidth]{./grafiken/erm_produktpalette.png}
@@ -151,6 +182,7 @@ Mit der Produktpalette erhält man eine Vielzahl an Informationen zu den Landmas
 	\vskip0pt
 	\caption{Produktpalette} \label{fig:produktpalette}
 \end{figure}
+
 \begin{figure}[H]
 	\centerline{
 		\includegraphics[width=0.8\textwidth]{./grafiken/erm_produktpalette_offen.png}
@@ -158,6 +190,7 @@ Mit der Produktpalette erhält man eine Vielzahl an Informationen zu den Landmas
 	\vskip0pt
 	\caption{Offene Produktpalette} \label{fig:produktpaletteOffen}
 \end{figure}
+
 \begin{figure}[H]
 	\centerline{
 		\includegraphics[width=0.8\textwidth]{./grafiken/erm_produktpalette_offen_stichwort.PNG}
@@ -165,10 +198,13 @@ Mit der Produktpalette erhält man eine Vielzahl an Informationen zu den Landmas
 	\vskip0pt
 	\caption{Offene Produktpalette mit Stichwortsuche} \label{fig:produktpaletteMitStichwort}
 \end{figure}
+
 Eine andere Möglichkeit ist noch die Suche mit einer gültigen Maschinennummer. Gibt man diese Nummer ein, gelangt man direkt zur Produktübersicht.
 
 \section{Produktübersicht}
+
 Hat man sich eine Maschine in der Produktpalette, direkt mit der Maschinennummer oder eine in Maschinenpark gespeicherte Maschine gesucht, gelangt man auf die Produktübersicht. Hier findet man jegliche nützliche Information der ausgewählten Maschine. Die angezeigten Informationen variieren je nach Maschine und Verfügbarkeit.
+
 \begin{figure}[H]
 	\centerline{
 		\includegraphics[width=0.8\textwidth]{./grafiken/erm_produktübersicht.png}
@@ -176,8 +212,11 @@ Hat man sich eine Maschine in der Produktpalette, direkt mit der Maschinennummer
 	\vskip0pt
 	\caption{Produktübersicht} \label{fig:produktübersicht}
 \end{figure}
+
 \subsection{Highlights}
+
 Bei den Highlights des Produktes werden wissenswerte Informationen aufgelistet. Wird ein eines davon ausgewählt, gelangt man zu einer genaueren Beschreibung der jeweiligen Besonderheit.
+
 \begin{figure}[H]
 	\centerline{
 		\includegraphics[width=0.8\textwidth]{./grafiken/erm_detailansicht_highlights.PNG}
@@ -185,6 +224,7 @@ Bei den Highlights des Produktes werden wissenswerte Informationen aufgelistet. 
 	\vskip0pt
 	\caption{Highlights} \label{fig:highlight}
 \end{figure}
+
 \begin{figure}[H]
 	\centerline{
 		\includegraphics[width=0.8\textwidth]{./grafiken/erm_detailansicht_highlights_beschreibung.PNG}
@@ -192,8 +232,11 @@ Bei den Highlights des Produktes werden wissenswerte Informationen aufgelistet. 
 	\vskip0pt
 	\caption{Highlight-Beschreibung} \label{fig:highlightbeschreibung}
 \end{figure}
+
 \subsection{Ausstattung}
+
 Bei der Ausstattung findet man die verbauten Teile. Diese Teile sind mit Materialnummer und einer Bezeichnung aufgelistet. Darunter sieht man noch optionale Ausrüstungen, die mit dieser Maschine kompatibel sind.
+
 \begin{figure}[H]
 	\centerline{
 		\includegraphics[width=0.8\textwidth]{./grafiken/erm_detailansicht_ausstattung.PNG}
@@ -201,8 +244,11 @@ Bei der Ausstattung findet man die verbauten Teile. Diese Teile sind mit Materia
 	\vskip0pt
 	\caption{Ausstattung} \label{fig:ausstattung}
 \end{figure}
+
 \subsection{Technische Daten}
+
 Bei den technischen Daten findet man nützliche Informationen wie Anbau, Gewicht, Arbeitsbreite, Transportbreite, Kraftbedarf und vieles mehr.
+
 \begin{figure}[H]
 	\centerline{
 		\includegraphics[width=0.8\textwidth]{./grafiken/erm_detailansicht_technisch.PNG}
@@ -210,10 +256,15 @@ Bei den technischen Daten findet man nützliche Informationen wie Anbau, Gewicht
 	\vskip0pt
 	\caption{Ausstattung} \label{fig:ausstattung}
 \end{figure}
+
 \subsection{Videos, Prospekte und Betriebsanleitung}
+
 In diesen Kategorien findet man Videos, Prospekte und eine Betriebsanleitung für die Maschine. Diese Videos werden über YouTube abgespielt. Die Prospekte und die Betriebsanleitung sind zum Download verfügbar.
+
 \section{Maschinenpark}
+
 Im Maschinenpark ist eine Auflistung aller gespeicherten Maschinen des Benutzers. Somit hat der Nutzer einen schnellen Zugriff auf nützliche Tipps zur der gespeicherten Maschine, Bedienungsanleitungen, Ersatzteillisten, Wartungsinformationen, sowie alle technischen Details und Unterlagen.
+
 \begin{figure}[H]
 	\centerline{
 		\includegraphics[width=0.8\textwidth]{./grafiken/erm_maschinenpark.png}
@@ -221,7 +272,9 @@ Im Maschinenpark ist eine Auflistung aller gespeicherten Maschinen des Benutzers
 	\vskip0pt
 	\caption{Maschinenpark} \label{fig:maschinenpark}
 \end{figure}
+
 Navigiert man über den Maschinenpark zu der gespeicherten Maschine, ändert sich die Detailansicht etwas. Hinzugekommen ist ein Bild der Maschine und es bietet die Möglichkeit, diese Maschine einen individuellen Namen zu vergeben.
+
 \begin{figure}[H]
 	\centerline{
 		\includegraphics[width=0.8\textwidth]{./grafiken/erm_detailansicht_saved_machine.png}
@@ -229,7 +282,9 @@ Navigiert man über den Maschinenpark zu der gespeicherten Maschine, ändert sic
 	\vskip0pt
 	\caption{Detailansicht der gespeicherten Maschine} \label{fig:maschinenpark}
 \end{figure}
+
 Wenn die Maschine einen individuellen Namen erhalten hat, wird dieser Name auch im eigenen Maschinenpark wie folgt angezeigt:
+
 \begin{figure}[H]
 	\centerline{
 		\includegraphics[width=0.8\textwidth]{./grafiken/erm_maschinenpark_benannteMaschine.png}
