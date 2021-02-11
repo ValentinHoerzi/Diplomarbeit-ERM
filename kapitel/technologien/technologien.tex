@@ -14,16 +14,14 @@ Die \LaTeX-Dokumente dieser Diplomarbeit wurden mit TeXstudio erstellt. Dieser E
 Twilio wurde 2008 von Jeff Lawson, Evan Cooke und John Wolthuis in Amerika gegründet. Es betreibt eine Cloud-Kommunikationsplattform als Platform as a Service. Mit den von Twilio zur Verfügung gestellten Dienst, können Entwickler Programmierschnittstellen zum ausführen und empfangen von Anrufen, senden von SMS, verifizieren von Telefonnummern sowie für andere Kommunikationsfunktionen nutzen. In unseren Fall wurde mit Twilio überprüft, ob der Nutzer eine gültige Telefonnummer eingegeben hat. \cite{twilioWebsite}
 
 \section{Address Validator}
-Der Address Validator wurde von Byteplant Software Solutions \& Services entwickelt. Dieses Unternehmen wurde 2003 in Deutschland gegründet. Neben dem Address Validator bieten sie auch einen Email Validator und einen Phone Validator an. Durch die Addressvalidierung erhält Informationen über die Zustellbarkeit, Korrekturvorschläge falls die Adresse nicht ganz gültig ist und eine einheitliche Adressformatierung nach den nationalen Standards. Für eine Überprüfung benötigt man Straße, Stadt, Internationales Länderkürzel und den API-Key. Optional kann man noch mehr, wie zum Beispiel Postleitzahl oder die Locale in der man das Ergebnis erhalten möchte. 
-Als Antwort bekommt man ein JSON. Aus diesem JSON bekommt man viele Informationen über die Adresse. Falls die Adresse gültig ist, bekommt man im Feld Status ein VALID, bei ungültiger Adresse ein INVALID und falls die Überprüfung kein genaues Ergebnis herausgefunden hat, aber eine Adresse gefunden hat, die es sein könnte, ist der Status SUSPECT mit einen Adressvorschlag. Weiters beinhaltet die Antwort alles von den einzelnen Adressfelder bis hin zu der formatierten Adresse des Landes und den Geografischen Koordinaten. \cite{addressValidator}
+Der Address Validator wurde von Byteplant Software Solutions \& Services entwickelt. Dieses Unternehmen wurde 2003 in Deutschland gegründet. Neben dem Address Validator bieten sie auch einen Email Validator und einen Phone Validator an. Durch die Addressvalidierung erhält Informationen über die Zustellbarkeit, Korrekturvorschläge falls die Adresse nicht ganz gültig ist und eine einheitliche Adressformatierung nach den nationalen Standards. Für eine Überprüfung benötigt man Straße, Stadt, Internationales Länderkürzel und den API-Key. Optional kann man noch mehr, wie zum Beispiel Postleitzahl oder die Locale in der man das Ergebnis erhalten möchte. Als Antwort bekommt man ein JSON. Aus diesem JSON bekommt man viele Informationen über die Adresse. Falls die Adresse gültig ist, bekommt man im Feld Status ein VALID, bei ungültiger Adresse ein INVALID und falls die Überprüfung kein genaues Ergebnis herausgefunden hat, aber eine Adresse gefunden hat, die es sein könnte, ist der Status SUSPECT mit einen Adressvorschlag. Weiters beinhaltet die Antwort alles von den einzelnen Adressfelder bis hin zu der formatierten Adresse des Landes und den Geografischen Koordinaten. \cite{addressValidator}
 
 \section{Google Translator}
 Die Schnittstelle für den Google Cloud Translator wurde von Google LLC entwickelt. Damit kann man schnell Texte in mehr als 100 Sprachen im eigenen Programm übersetzen lassen. Als Antwort der Übersetzung bekommt man den Titel, den Content und die Abkürzung der Sprache. Nun kann man die Übersetzungen speichern und man braucht nur nach der Spachenabkürzung suchen.
 \cite{googleTranslator}
 
 \section{Auth0}
-Auth0 wurde 2013 gegründet. Der Hauptsitz dieses Unternehmen liegt in Bellevue, Amerika.\\
-"Auth0 ist eine Identitätsmanagement Lösung, welche Sie in den Bereichen Authentifizierung, Registrierung und der Speicherung von Userdaten unterstützt. Über Auth0 kann ein Single sign-on von verschiedenen Plattformen und Applikationen (inklusive sozialer Kanäle wie Facebook, LinkedIn und Twitter) realisiert werden. Im Hintergrund können mehrere Datenquellen zum Login verwendet werden (Datenbank, ADFS, LDAP, etc.) Da Auth0 bereits mit einer Vielzahl an Connectors daher kommt, ist der Entwicklungsaufwand um ein Vielfaches kleiner als bei herkömmlichen Projekten." \autocite{auth0}
+Auth0 wurde 2013 gegründet. Der Hauptsitz dieses Unternehmen liegt in Bellevue, Amerika. "Auth0 ist eine Identitätsmanagement Lösung, welche Sie in den Bereichen Authentifizierung, Registrierung und der Speicherung von Userdaten unterstützt. Über Auth0 kann ein Single sign-on von verschiedenen Plattformen und Applikationen (inklusive sozialer Kanäle wie Facebook, LinkedIn und Twitter) realisiert werden. Im Hintergrund können mehrere Datenquellen zum Login verwendet werden (Datenbank, ADFS, LDAP, etc.) Da Auth0 bereits mit einer Vielzahl an Connectors daher kommt, ist der Entwicklungsaufwand um ein Vielfaches kleiner als bei herkömmlichen Projekten." \autocite{auth0}
 
 \section{Visual Studio Code}
 Das Frontend dieser Diplomarbeit wurde in Visual Studio Code programmiert. Dieser Quelltexteditor erschien 2015 von Microsoft und arbeitet mit Quelldateien und Ordnern in Workspaces. Es bietet Versionsverwaltung, Autovervollständigung, Debugging und Syntaxhervorhebung. Es unterstützt Programmiersprachen wie Java, C++, C\#, JavaScript, TypeScript, Python und viele mehr. Für Visual Studio Code gibt es Plug-ins, die das programmieren sehr vereinfachen können. \autocite{wikiVisualStudioCode}
@@ -68,8 +66,8 @@ Micrsofot Visual Studio 2019 bietet viele unterstützende Features:
 \end{itemize}
 
 \section{Postman}
-Um die APIs (application programming interface) des Backendes der Diplomarbeit zu testen wurde Postman verwendet. Postman bietet die Funktion, Requests an jegliche URL zu senden. Somit besteht die Möglichkeit, die programmierten Schnittstellen mit verschiedenen Daten schnell zu testen. Dieses Tool unterstützt SOAP, GraphQL und REST. Des weiteren ist Automated Testing möglich und es lassen sich Endpoints simulieren. Somit kann man das Verhalten der APIs sehr gut beobachten, was es einem Programmierer leichter macht Fehler zu finden.\\
-Da das Backend dieser Diplomarbeit mit JWT (JSON Web Token) geschützt ist, ist es bei einem Postman-Request diesen Token in den Header hinzuzufügen, um die API zu testen. \autocite{postmanDocs} \\
+Um die APIs (application programming interface) des Backendes der Diplomarbeit zu testen wurde Postman verwendet. Postman bietet die Funktion, Requests an jegliche URL zu senden. Somit besteht die Möglichkeit, die programmierten Schnittstellen mit verschiedenen Daten schnell zu testen. Dieses Tool unterstützt SOAP, GraphQL und REST. Des weiteren ist Automated Testing möglich und es lassen sich Endpoints simulieren. Somit kann man das Verhalten der APIs sehr gut beobachten, was es einem Programmierer leichter macht Fehler zu finden. \autocite{postmanDocs} \\
+Da das Backend dieser Diplomarbeit mit JWT (JSON Web Token) geschützt ist, ist es bei einem Postman-Request diesen Token in den Header hinzuzufügen, um die API zu testen.  \\
 Am nachfolgenden Screenshot sieht man einen Request von Postman.
 \begin{figure}[h]
 	\centerline{
@@ -80,16 +78,15 @@ Am nachfolgenden Screenshot sieht man einen Request von Postman.
 \end{figure}
 
 \section{.NET Standard 2.0, .NET Core 2.2 und C\#}
-Für das Backend der Diplomarbeit wurden die Microsoft .NET Frameworks .NET Standard 2.0 und .NET Core 2.2 verwendet. Die Anwendungen wurden mit der objektorientierten Programmiersprache C\#  erstellt.
+Für das Backend der Diplomarbeit wurden die Microsoft .NET Frameworks .NET Standard 2.0 und .NET Core 2.2 verwendet. Die Anwendungen wurden mit der objektorientierten Programmiersprache C\#  erstellt. \autocite{wikiDotnet}
 \subsection{.NET Standard 2.0 Framework}
-Durch .NET Standard wird gesorgt, dass Programmierschnittstellen von .NET in den verschiedenen Implementierungen einheitlich zur Verfügung stehen. Portable Class Libraries wird durch .NET Standard ersetzt, was die API-Angleichung für .NET Core steuert. Dieses Framework ist von .NET Framework, .NET Core und Xamarin implementiert.
+Durch .NET Standard wird gesorgt, dass Programmierschnittstellen von .NET in den verschiedenen Implementierungen einheitlich zur Verfügung stehen. Portable Class Libraries wird durch .NET Standard ersetzt, was die API-Angleichung für .NET Core steuert. Dieses Framework ist von .NET Framework, .NET Core und Xamarin implementiert. \autocite{wikiDotnet}
 
 \subsection{.NET Core 2.2}
 .NET Core wurde 2015 als harte Absplittung vom .NET Framework vorgestellt. Es wurde für eine bessere Modularität und eine leichtere Portierbarkeit auf Microsoft-fremde Plattformen entwickelt. 2016 wurde angekündigt, dass .NET Core mit mehr APIs ausgestatted wird, um die Kompatibilität zwischen verschiedenen .NET Frameworks zu verbessern. \autocite{wikiDotnet}
 
 \subsection{C\#}
 C\# wurde 2001 von Microsoft veröffentlicht. Diese plattformunabhängige, objektorientierte Programmiersprache basiert auf Konzepte von den Programmiersprachen Delphi, C, Haskell, C++ und Java.
-
 C\# wird meist nicht gleich von den Compiler in die Maschinensprache, sondern in die Zwischensprache Common Intermediate Language (CIL) übersetzt. \autocite{wikiCSharp}
 
 \begin{lstlisting}[caption={C\#-Syntaxbeispiel},captionpos=b, numbers=left, backgroundcolor=\color{black!10}, language={[Sharp]C}]
@@ -107,9 +104,9 @@ namespace HelloWorld
 \end{lstlisting}
 
 \section{JSON Web Token}
-JSON Web Token(JWT) ist ein Access-Token, der auf JSON basiert. Durch JWT kann man verifizierbare Claims austauschen. Mit JWT sind Stateless Sessions möglich, da jede benötigte Information für eine Authentifikation mit dem Token übertragen werden kann. Ein JSON Web Token setzt sich aus dem Header, Payload und der Signatur zusammen. Bei einem Request mit einem Token schreibt man vor dem Token noch "Bearer".
+JSON Web Token(JWT) ist ein Access-Token, der auf JSON basiert. Durch JWT kann man verifizierbare Claims austauschen. Mit JWT sind Stateless Sessions möglich, da jede benötigte Information für eine Authentifikation mit dem Token übertragen werden kann. Ein JSON Web Token setzt sich aus dem Header, Payload und der Signatur zusammen. Bei einem Request mit einem Token schreibt man vor dem Token noch "Bearer". \autocite{wikiJWT}
 
-Der Header ist ein JSON-Element. Darin ist gespeichert, welcher Token-Typ es ist und welche Verschlüsselungsmethode angewendet wird. Der Typ ist JWT unda ls Verschlüsselungsmethoden wird meist HMAC mit SHA-256 oder RSA mit SHA-256 verwendet.\\
+Der Header ist ein JSON-Element. Darin ist gespeichert, welcher Token-Typ es ist und welche Verschlüsselungsmethode angewendet wird. Der Typ ist JWT unda ls Verschlüsselungsmethoden wird meist HMAC mit SHA-256 oder RSA mit SHA-256 verwendet. \autocite{wikiJWT} \\
 \begin{lstlisting}[caption={JWT-Header Beispiel},captionpos=b, numbers=left, backgroundcolor=\color{black!10}, language=json]
 {
 	"alg": "HS256",
@@ -117,7 +114,7 @@ Der Header ist ein JSON-Element. Darin ist gespeichert, welcher Token-Typ es ist
 }
 \end{lstlisting}
 
-Payload ist ebenfalls ein JSON-Element. In diesem JSON sind die Claims beschrieben. Es gibt einige reservierte Claims, die den Aussteller, das Subject oder das Ablaufdatum beschreiben, jedoch kann der Aussteller auch einen Private Claim definieren.\\
+Payload ist ebenfalls ein JSON-Element. In diesem JSON sind die Claims beschrieben. Es gibt einige reservierte Claims, die den Aussteller, das Subject oder das Ablaufdatum beschreiben, jedoch kann der Aussteller auch einen Private Claim definieren. \autocite{wikiJWT} \\
 \begin{lstlisting}[caption={JWT-Payload Beispiel},captionpos=b, numbers=left, backgroundcolor=\color{black!10}, language=json]
 	{
 		"sub": "8135731594",
@@ -126,9 +123,9 @@ Payload ist ebenfalls ein JSON-Element. In diesem JSON sind die Claims beschrieb
 	}
 \end{lstlisting}
 
-Durch JSON Web Signature(JWS) wird die Signature definiert. Die ist nach RFC 7515 genormt. Mit der im Header festgelegten Hashmethode wir der Header und der Payload im Base64 kodierten und durch einen Punkt getrennten Format gehasht. Das Ergebnis ist die Signature.
+Durch JSON Web Signature(JWS) wird die Signature definiert. Die ist nach RFC 7515 genormt. Mit der im Header festgelegten Hashmethode wir der Header und der Payload im Base64 kodierten und durch einen Punkt getrennten Format gehasht. Das Ergebnis ist die Signature. \autocite{wikiJWT}
 
-Der JWT-Token setzt sich nun aus dem jeweils Base64-Url kodierten Header, Payload und Signature mit einem Punkt getrennt zusammen. \autocite{wikiJWT}
+Der JWT-Token setzt sich nun aus dem jeweils Base64-Url kodierten Header, Payload und Signature mit einem Punkt getrennt zusammen. \autocite{wikiJWT} \\
 Der Nachfolgende Token setzt sich aus den zwei Beispielen zusammen:\\
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4MTM1NzMxNTk0IiwibmFtZSI6I\\k1heCBNdXN0ZXJtYW5uIiwiYWRtaW4iOnRydWV9.8NyZnCtWX\_QAlNhfl70zD2tHR\\9j1mtSl9Dwdfnnh60k
 
@@ -191,8 +188,7 @@ function add(a: number, b: number): number {
 \end{lstlisting}
 
 \section{Git Versionsverwaltung}
-Git wurde 2005 veröffentlicht. Diese Software dient zur verteilten Versionsverwaltung von Dateien.\\
-Wichtige Bestandteile von Git sind die Erstellung neuer Entwicklungszweige und das Zusammenführen von zwei Zweigen. Da es keinen zentralen Server gibt, besitzt jeder Benutzer das gesamte Repository als Kopie lokal. Dadurch benötigt man für fast alle Aktionen keinen Internetzugriff. Mit den Hash-Wert eines Commites wird die History eines Projektes gespeichert. Durch diese Speicherung ist die History gesichert, da es nicht möglich ist, einen Commit zu verändern, der dann den selben Hash-Wert hat. \autocite{wikiGit}
+Git wurde 2005 veröffentlicht. Diese Software dient zur verteilten Versionsverwaltung von Dateien. Wichtige Bestandteile von Git sind die Erstellung neuer Entwicklungszweige und das Zusammenführen von zwei Zweigen. Da es keinen zentralen Server gibt, besitzt jeder Benutzer das gesamte Repository als Kopie lokal. Dadurch benötigt man für fast alle Aktionen keinen Internetzugriff. Mit den Hash-Wert eines Commites wird die History eines Projektes gespeichert. Durch diese Speicherung ist die History gesichert, da es nicht möglich ist, einen Commit zu verändern, der dann den selben Hash-Wert hat. \autocite{wikiGit}
 \subsection{GitHub}
 Für das Diplomarbeitsdokument wurde GitHub verwendet. GitHub wurde 2008 veröffentlicht und gehört seit 2018 zu Microsoft. Es dient zur Versionsverwaltung von Projekten. Diese Open-Source-Software ermöglicht ein leichtes branching, merging und commiting für die Entwickler. \autocite{wikiGitHub}
 Am nachfolgenden Screenshot sieht man GitHub Desktop.
@@ -205,3 +201,6 @@ Am nachfolgenden Screenshot sieht man GitHub Desktop.
 \end{figure}
 \subsection{GitLab}
 Für das Projekt der Diplomarbeit wurde GitLab verwendet. Die Versionsverwaltung basiert auf Git und ist eine Webanwendung. Weitere Features von GitLab ist ein Issue-Tracking-System mit einem Kanban-Board, ein Continuous Integration und Continuous Delivery System, ein Wiki, ein Container-Registry und eine Multi-Cluster-Verwaltung. GitLab ist eine Open-Source-Software und wird als Software as a Service angeboten. \autocite{wikiGitLab}
+
+\section{zxcvbn}
+Um die Passwortstärke herauszufinden, wurde zxcvbn verwendet. Es erkennt und bewertet Passwörter durch Musterabgleich, Vergleich mit häufige Namen und Nachnamen, englische Wörter aus Wikipedia, Fernsehshows und Filme und Wiederholungen und Tastaturmuster. Als Antwort bekommt man Informationen, wie sicher das Passwort ist und ein Feedback mit einer Warnung und einem Tipp, wie man es noch sicherer machen könnte. \autocite{zxcvbn}
