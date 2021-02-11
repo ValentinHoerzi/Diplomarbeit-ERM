@@ -17,7 +17,7 @@ Twilio wurde 2008 von Jeff Lawson, Evan Cooke und John Wolthuis in Amerika gegr�
 Der Address Validator wurde von Byteplant Software Solutions \& Services entwickelt. Dieses Unternehmen wurde 2003 in Deutschland gegründet. Neben dem Address Validator bieten sie auch einen Email Validator und einen Phone Validator an. Die Adressvalidierung hilft dabei, Informationen über die Zustellbarkeit einer Adresse zu sammeln, Korrekturvorschläge zu präsentieren, falls die Adresse nicht ganz gültig ist und eine einheitliche Adressformatierung nach den nationalen Standards anzubieten. Für eine Überprüfung benötigt man Straße, Stadt, Internationales Länderkürzel und den API-Key. Optional kann man noch mehr, wie beispielsweise Postleitzahl oder die Locale in der man das Ergebnis erhalten möchte, validieren. Als Antwort bekommt man eine Datei im JSON-Format. Aus dieser JSON-Datei ist es möglich, viele Informationen über die Adresse auszulesen. Falls die Adresse gültig ist, bekommt man im Feld Status ein VALID, bei ungültiger Adresse ein INVALID und falls die Überprüfung kein genaues Ergebnis herausgefunden hat, aber eine Adresse gefunden hat, die es sein könnte, ist der Status SUSPECT mit einen Adressvorschlag. Weiteres beinhaltet die Antwort alles von den einzelnen Adressfelder bis hin zu der formatierten Adresse des Landes und den Geografischen Koordinaten. \cite{addressValidator}
 
 \section{Google Translator}
-Die Schnittstelle für den Google Cloud Translator wurde von Google LLC entwickelt. Damit kann man schnell Texte in mehr als 100 Sprachen im eigenen Programm übersetzen lassen. Als Antwort der Übersetzung bekommt man den Titel, den Content und die Abkürzung der Sprache. Nun kann man die Übersetzungen speichern und man braucht nur nach der Spachenabkürzung suchen.
+Die Schnittstelle für den Google Cloud Translator wurde von Google LLC entwickelt. Damit kann man schnell Texte in mehr als 100 Sprachen im eigenen Programm übersetzen lassen. Als Antwort der Übersetzung bekommt man den Titel, den Inhalt und die Abkürzung der Sprache. Nun kann man die Übersetzungen speichern und man braucht nur nach der Spachenabkürzung suchen.
 \cite{googleTranslator}
 
 \section{Auth0}
@@ -25,6 +25,14 @@ Auth0 wurde 2013 gegründet. Der Hauptsitz dieses Unternehmen liegt in Bellevue,
 
 \section{Visual Studio Code}
 Das Frontend dieser Diplomarbeit wurde in Visual Studio Code programmiert. Dieser Quelltexteditor erschien 2015 von Microsoft und arbeitet mit Quelldateien und Ordnern in Workspaces. Es bietet Versionsverwaltung, Autovervollständigung, Debugging und Syntaxhervorhebung. Es unterstützt Programmiersprachen wie Java, C++, C\#, JavaScript, TypeScript, Python und viele mehr. Für Visual Studio Code gibt es Plug-ins, die das programmieren sehr vereinfachen können. \autocite{wikiVisualStudioCode}
+
+\begin{figure}[H]
+	\centerline{
+		\includegraphics[width=0.8\textwidth]{./grafiken/visual_studio_startview.png}
+	}
+	\vskip0pt
+	\caption{Screenshot vom Startbildschirm von Visual Studio Code} \label{fig:visualStudioCodeStartview}
+\end{figure}
 
 \section{Visual Studio 2019}
 %Das Backend dieser Diplomarbeit wurde im Visual Studio programmiert. Die von Microsoft stammende Entwicklungsumgebung ist 1997 erschienen und arbeitet mit Projektdateien. Visual Studio bietet viele Funktionen wie IntelliSense, automatische Syntaxprüfung, Debugger mit Bearbeiten und Fortfahren und vieles mehr. Seit 2005 hat es einen integrierten Webserver. Es unterstützt einige Programmiersprachen, wie C\#, C++, C, Visual Basic .NET, TypeScript und viele mehr. \autocite{wikiVisualStudio}
@@ -66,10 +74,10 @@ Micrsofot Visual Studio 2019 bietet viele unterstützende Features:
 \end{itemize}
 
 \section{Postman}
-Um die APIs (application programming interface) des Backendes der Diplomarbeit zu testen wurde Postman verwendet. Postman bietet die Funktion, Requests an jegliche URL zu senden. Somit besteht die Möglichkeit, die programmierten Schnittstellen mit verschiedenen Daten schnell zu testen. Dieses Tool unterstützt SOAP, GraphQL und REST. Des weiteren ist Automated Testing möglich und es lassen sich Endpoints simulieren. Somit kann man das Verhalten der APIs sehr gut beobachten, was es einem Programmierer leichter macht Fehler zu finden. \autocite{postmanDocs} \\
-Da das Backend dieser Diplomarbeit mit JWT (JSON Web Token) geschützt ist, ist es bei einem Postman-Request diesen Token in den Header hinzuzufügen, um die API zu testen.  \\
+Um die APIs (application programming interface) des Backendes der Diplomarbeit zu testen, wurde Postman verwendet. Postman bietet die Funktion, Http-Requests an jede beliebige URL mit jeder verfügbaren HTTP-Methode zu senden. Somit besteht die Möglichkeit, die programmierten Schnittstellen mit verschiedenen Daten schnell zu testen. Dieses Tool unterstützt SOAP, GraphQL und REST. Des weiteren ist Automated Testing möglich und es lassen sich Endpoints simulieren. Somit kann man das Verhalten der APIs sehr gut beobachten, was es einem Programmierer leichter macht Fehler zu finden. \autocite{postmanDocs} \\
+Da das Backend dieser Diplomarbeit mit JWT (JSON Web Token) geschützt ist, ist es bei einem Postman-Request nötig diesen Token in den Header einzufügen, um die API zu testen.  \\
 Am nachfolgenden Screenshot sieht man einen Request von Postman.
-\begin{figure}[h]
+\begin{figure}[H]
 	\centerline{
 		\includegraphics[width=0.8\textwidth]{./grafiken/postman.png}
 	}
