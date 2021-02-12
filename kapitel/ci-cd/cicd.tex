@@ -63,10 +63,10 @@ Im Allgemeinen werden Pipelines in der Regel automatisch  nach dem Hochladen ein
 Eine typische Pipeline kann aus vier Phasen bestehen, die in der folgenden Reihenfolge ausgeführt werden:\autocite{gitlabPipelines}
 
 \begin{itemize}
-	\item Eine \colorbox{MyLightGrayBackgroundForCode}{\texttt{Build-Stage}}, mit einem \colorbox{MyLightGrayBackgroundForCode}{\texttt{Compile-Job}}.
-	\item Eine \colorbox{MyLightGrayBackgroundForCode}{\texttt{Test-Stage}}, welche mehrere \colorbox{MyLightGrayBackgroundForCode}{\texttt{Test-Jobs}} beinhalten kann.
-	\item Eine \colorbox{MyLightGrayBackgroundForCode}{\texttt{Staging-Stage}}, mit einem \colorbox{MyLightGrayBackgroundForCode}{\texttt{Deploy-to-Stage-Job}}.
-	\item Eine \colorbox{MyLightGrayBackgroundForCode}{\texttt{Production-Stage}}, mit einem \colorbox{MyLightGrayBackgroundForCode}{\texttt{Deploy-to-Production-Job}}.
+	\item Eine \texttt{Build-Stage}, mit einem \texttt{Compile-Job}.
+	\item Eine \texttt{Test-Stage}, welche mehrere \texttt{Test-Jobs} beinhalten kann.
+	\item Eine \texttt{Staging-Stage}, mit einem \texttt{Deploy-to-Stage-Job}.
+	\item Eine \texttt{Production-Stage}, mit einem \texttt{Deploy-to-Production-Job}.
 \end{itemize}
 
 \section{GitLab Runner} \label{sec:lblGitLabRunner}
@@ -104,7 +104,7 @@ Shared Runners werden verwendet, wenn man mehrere Jobs mit ähnlichen Anforderun
 
 Registrierte Runner kann man sogenannte Tags zuweisen. Wenn ein CI/CD Job läuft, kann dieser anhand seiner zugewiesener Tags determinieren, welchen Runner er verwenden soll. Das hat den Vorteil, dass man für beispielsweise einen Job, der ein Ruby Projekt kompilieren soll, seinen Runner nicht umkonfigurieren muss, sondern automatisch der Ruby-Runner verwendet wird.
 
-Man muss dazu lediglich folgendes in seine  \colorbox{MyLightGrayBackgroundForCode}{\texttt{.gitlab-ci.yml}} Datei einbinden:
+Man muss dazu lediglich folgendes in seine \texttt{.gitlab-ci.yml} Datei einbinden:
 
 \begin{figure}[h]
 	\centerline{
@@ -121,16 +121,16 @@ Man muss dazu lediglich folgendes in seine  \colorbox{MyLightGrayBackgroundForCo
 Die Umgestaltung der GitLab Pipeline für das MyPöttinger-Repository ist ein wichtiger Bestandteil der Diplomarbeit. Die neue Pipeline besteht aus drei Stages:
 
 \begin{itemize}
-	\item Der \colorbox{MyLightGrayBackgroundForCode}{\texttt{Build-Stage}}
-	\item Der \colorbox{MyLightGrayBackgroundForCode}{\texttt{Test-Stage}}
-	\item Der \colorbox{MyLightGrayBackgroundForCode}{\texttt{Release-Stage}}
+	\item Der \texttt{Build-Stage}
+	\item Der \texttt{Test-Stage}
+	\item Der \texttt{Release-Stage}
 \end{itemize}
 
 \subsection{Die {\texttt{gitlab-ci.yml}} - Datei }
 
 Die \texttt{gitlab-ci.yml} Datei ist in GitLab hauptverantwortlich für die CI/CD Abläufe. Sie beschreibt die Aufgaben der einzelnen Jobs, definiert in welcher Stage diese auszuführen sind und legt die Reihenfolge der Abarbeitung klar fest. Bevor man sich über die \texttt{gitlab-ci.yml} Datei Gedanken macht, ist es wichtig, auf mehrere Aspekte zu achten. Man muss sich überlegen, welchen Runner [\ref{sec:lblGitLabRunner}] man verwenden will, welchen Executor [\ref{sssec:lblExecutor}] dieser ausführt und in welcher Umgebung alles stattfindet.
 
-Zu Beginn der gitlab-ci.yml Datei muss man definieren, in welcher Umgebung Befehle ausgeführt werden sollen. Für MyPöttinger ist standardmäßig das \texttt{mcr.microsoft.com\\/dotnet/sdk:5.0} Image von Microsoft gewählt, da diese bereits .NET CLI, .NET runtime und ASP.NET Core bereit stellt, welche alle für das Kompilieren, Bauen und Veröffentlichen einer .NET-Applikation benötigt werden.
+Zu Beginn der \texttt{gitlab-ci.yml} Datei muss man definieren, in welcher Umgebung Befehle ausgeführt werden sollen. Für MyPöttinger ist standardmäßig das \texttt{mcr.microsoft.com\\/dotnet/sdk:5.0} Image von Microsoft gewählt, da diese bereits .NET CLI, .NET runtime und ASP.NET Core bereit stellt, welche alle für das Kompilieren, Bauen und Veröffentlichen einer .NET-Applikation benötigt werden.
 
 \begin{lstlisting}[caption={Erste Zeilen der gitlab-ci.yml Datei},captionpos=b, numbers=left, backgroundcolor=\color{black!10}, language=yaml]
 	default:
@@ -181,7 +181,7 @@ language=yaml]
 
 Da die Diplomarbeit aus einem Angular-Frontend (\texttt{src/MyPoettinger.App}) und einem .NET Backend (\texttt{src/MyPoettinger.sln}) besteht, müssen zwei unterschiedliche Projekte in dieser Stage zusammengebaut werden. 
 
-Bei dem \texttt{build\_dotnet} Job wird am Anfang \texttt{dotnet restore} ausgeführt, welcher mithilfe von NuGet die Abhängigkeiten des Projektes wieder herstellt. 
+Nun wird das Listing 6.2 (cite) beschrieben. Bei dem \texttt{build\_dotnet} Job wird am Anfang \texttt{dotnet restore} ausgeführt, welcher mithilfe von NuGet die Abhängigkeiten des Projektes wieder herstellt. 
 
 Der \texttt{dotnet build}-Befehl erstellt das Projekt und die zugehörigen Abhängigkeiten in einen Satz von Binärdateien. Die Binärdateien enthalten den Projektcode in IL-Dateien (Intermediate Language) mit der Erweiterung DLL. Abhängig vom Projekttyp und den Einstellungen können auch andere Dateien enthalten sein.\cite{dotnetBuildDesc} Im Anschluss des Vorgangs wird das Test-Verzeichnis als Artefakt gespeichert, um dieses Anschließen in der Test-Stage zu testen.
 
@@ -267,7 +267,7 @@ Bei dem \texttt{publish\_angular} Job wird wieder das \texttt{trion/ng-cli:10.0.
 
 \begin{figure}[h]
 	\centerline{
-		\includegraphics{./grafiken/build_test_release_successful.JPG}
+		\includegraphics[width=0.8\textwidth]{./grafiken/build_test_release_successful.JPG}
 	}
 	\vskip0pt
 	\caption{Erfolgreicher Durchgang der Pipeline}
