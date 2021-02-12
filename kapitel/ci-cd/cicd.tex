@@ -63,10 +63,10 @@ Im Allgemeinen werden Pipelines in der Regel automatisch  nach dem Hochladen ein
 Eine typische Pipeline kann aus vier Phasen bestehen, die in der folgenden Reihenfolge ausgeführt werden:\autocite{gitlabPipelines}
 
 \begin{itemize}
-	\item Eine \colorbox{lightgray}{\texttt{Build-Stage}}, mit einem \colorbox{lightgray}{\texttt{Compile-Job}}.
-	\item Eine \colorbox{lightgray}{\texttt{Test-Stage}}, welche mehrere \colorbox{lightgray}{\texttt{Test-Jobs}} beinhalten kann.
-	\item Eine \colorbox{lightgray}{\texttt{Staging-Stage}}, mit einem \colorbox{lightgray}{\texttt{Deploy-to-Stage-Job}}.
-	\item Eine \colorbox{lightgray}{\texttt{Production-Stage}}, mit einem \colorbox{lightgray}{\texttt{Deploy-to-Production-Job}}.
+	\item Eine \colorbox{MyLightGrayBackgroundForCode}{\texttt{Build-Stage}}, mit einem \colorbox{MyLightGrayBackgroundForCode}{\texttt{Compile-Job}}.
+	\item Eine \colorbox{MyLightGrayBackgroundForCode}{\texttt{Test-Stage}}, welche mehrere \colorbox{MyLightGrayBackgroundForCode}{\texttt{Test-Jobs}} beinhalten kann.
+	\item Eine \colorbox{MyLightGrayBackgroundForCode}{\texttt{Staging-Stage}}, mit einem \colorbox{MyLightGrayBackgroundForCode}{\texttt{Deploy-to-Stage-Job}}.
+	\item Eine \colorbox{MyLightGrayBackgroundForCode}{\texttt{Production-Stage}}, mit einem \colorbox{MyLightGrayBackgroundForCode}{\texttt{Deploy-to-Production-Job}}.
 \end{itemize}
 
 \section{GitLab Runner} \label{sec:lblGitLabRunner}
@@ -104,7 +104,7 @@ Shared Runners werden verwendet, wenn man mehrere Jobs mit ähnlichen Anforderun
 
 Registrierte Runner kann man sogenannte Tags zuweisen. Wenn ein CI/CD Job läuft, kann dieser anhand seiner zugewiesener Tags determinieren, welchen Runner er verwenden soll. Das hat den Vorteil, dass man für beispielsweise einen Job, der ein Ruby Projekt kompilieren soll, seinen Runner nicht umkonfigurieren muss, sondern automatisch der Ruby-Runner verwendet wird.
 
-Man muss dazu lediglich folgendes in seine  \colorbox{lightgray}{\texttt{.gitlab-ci.yml}} Datei einbinden:
+Man muss dazu lediglich folgendes in seine  \colorbox{MyLightGrayBackgroundForCode}{\texttt{.gitlab-ci.yml}} Datei einbinden:
 
 \begin{figure}[h]
 	\centerline{
@@ -121,18 +121,18 @@ Man muss dazu lediglich folgendes in seine  \colorbox{lightgray}{\texttt{.gitlab
 Die Umgestaltung der GitLab Pipeline für das MyPöttinger-Repository ist ein wichtiger Bestandteil der Diplomarbeit. Die neue Pipeline besteht aus drei Stages:
 
 \begin{itemize}
-	\item Der \colorbox{lightgray}{\texttt{Build-Stage}}
-	\item Der \colorbox{lightgray}{\texttt{Test-Stage}}
-	\item Der \colorbox{lightgray}{\texttt{Release-Stage}}
+	\item Der \colorbox{MyLightGrayBackgroundForCode}{\texttt{Build-Stage}}
+	\item Der \colorbox{MyLightGrayBackgroundForCode}{\texttt{Test-Stage}}
+	\item Der \colorbox{MyLightGrayBackgroundForCode}{\texttt{Release-Stage}}
 \end{itemize}
 
 \subsection{Die {\texttt{gitlab-ci.yml}} - Datei }
 
-Die \texttt{gitlab-ci.yml} Datei ist in GitLab hauptverantwortlich für das CI/CD Geschehen. Sie beschreibt die Aufgaben der einzelnen Jobs, definiert in welcher Stage diese auszuführen sind und legt die Reihenfolge der Abarbeitung klar fest. Bevor man sich über die \texttt{gitlab-ci.yml} Datei Gedanken macht, ist es wichtig, auf mehrere Aspekte zu achten. Man muss sich überlegen, welchen Runner [\ref{sec:lblGitLabRunner}] man verwenden will, welchen Executor [\ref{sssec:lblExecutor}] dieser ausführt und in welcher Umgebung alles stattfindet.
+Die \texttt{gitlab-ci.yml} Datei ist in GitLab hauptverantwortlich für die CI/CD Abläufe. Sie beschreibt die Aufgaben der einzelnen Jobs, definiert in welcher Stage diese auszuführen sind und legt die Reihenfolge der Abarbeitung klar fest. Bevor man sich über die \texttt{gitlab-ci.yml} Datei Gedanken macht, ist es wichtig, auf mehrere Aspekte zu achten. Man muss sich überlegen, welchen Runner [\ref{sec:lblGitLabRunner}] man verwenden will, welchen Executor [\ref{sssec:lblExecutor}] dieser ausführt und in welcher Umgebung alles stattfindet.
 
-Zu Beginn der gitlab-ci.yml Datei muss man definieren, in welcher Umgebung Befehle ausgeführt werden sollen. Für MyPöttinger ist standardmäßig das \texttt{mcr.microsoft.com/dotnet/sdk:5.0} Image von Microsoft gewählt, da diese bereits .NET CLI, .NET runtime und ASP.NET Core bereit stellt, welche alle für das Kompilieren, Bauen und Veröffentlichen einer .NET-Applikation benötigt werden.
+Zu Beginn der gitlab-ci.yml Datei muss man definieren, in welcher Umgebung Befehle ausgeführt werden sollen. Für MyPöttinger ist standardmäßig das \texttt{mcr.microsoft.com\\/dotnet/sdk:5.0} Image von Microsoft gewählt, da diese bereits .NET CLI, .NET runtime und ASP.NET Core bereit stellt, welche alle für das Kompilieren, Bauen und Veröffentlichen einer .NET-Applikation benötigt werden.
 
-\begin{lstlisting}[caption={Erste Zeilen der gitlab-ci.yml Datei},captionpos=b, numbers=left, backgroundcolor=\color{black!10}, language=docker-compose]
+\begin{lstlisting}[caption={Erste Zeilen der gitlab-ci.yml Datei},captionpos=b, numbers=left, backgroundcolor=\color{black!10}, language=yaml]
 	default:
 		image: mcr.microsoft.com/dotnet/sdk:5.0
 	cache:
@@ -155,7 +155,7 @@ Die einzelnen Stages werden mit \texttt{stages:} deklariert. Alle folgenden Jobs
 \subsection{Die Build-Stage}\label{sssec:lblBuildStage}
 
 \begin{lstlisting}[caption={Die Build-Stage der gitlab-ci.yml Datei},captionpos=b, numbers=left, backgroundcolor=\color{black!10},
-language=docker-compose]
+language=yaml]
 	build_dotnet:
 		stage: build
 		script:
@@ -179,20 +179,20 @@ language=docker-compose]
 		- e
 \end{lstlisting}
 
-Da die Diplomarbeit aus einem Angular-Frontend (\texttt{src/MyPoettinger.App}) und einem .NET Backend (\texttt{src/MyPoettinger.sln}) besteht, müssen zwei unterschiedliche Projekte in dieser Stage behandelt werden. 
+Da die Diplomarbeit aus einem Angular-Frontend (\texttt{src/MyPoettinger.App}) und einem .NET Backend (\texttt{src/MyPoettinger.sln}) besteht, müssen zwei unterschiedliche Projekte in dieser Stage zusammengebaut werden. 
 
-Bei dem \texttt{build\_dotnet} Job wird am Anfang \texttt{dotnet restore} ausgeführt, welcher mithilfe von NuGet die Abhängigkeiten des Projektes wieder herstellet. 
+Bei dem \texttt{build\_dotnet} Job wird am Anfang \texttt{dotnet restore} ausgeführt, welcher mithilfe von NuGet die Abhängigkeiten des Projektes wieder herstellt. 
 
 Der \texttt{dotnet build}-Befehl erstellt das Projekt und die zugehörigen Abhängigkeiten in einen Satz von Binärdateien. Die Binärdateien enthalten den Projektcode in IL-Dateien (Intermediate Language) mit der Erweiterung DLL. Abhängig vom Projekttyp und den Einstellungen können auch andere Dateien enthalten sein.\cite{dotnetBuildDesc} Im Anschluss des Vorgangs wird das Test-Verzeichnis als Artefakt gespeichert, um dieses Anschließen in der Test-Stage zu testen.
 
-Durch den Node Package Manager, kurz \texttt{npm}, werden mit den Befehl \texttt{npm install} alle benötigten Pakete für das Angular Projekt heruntergeladen und installiert. Da allerdings im zuvor standardmäßig definierten dotnet-Image kein Node installiert ist, wechseln wir in \texttt{build\_angular} auf das \texttt{trion/ng-cli:10.0.4} Image, da es sich hier um eine sehr kleine Node-Umgebung handelt. Im folgenden Schritt wird mit \texttt{npm audit fix} erörtert, welche Pakete mögliche Sicherheitsrisiken darstellen. Diese werden danach automatisch behoben. 
+Durch den Node Package Manager, kurz \texttt{npm}, werden mit dem Befehl \texttt{npm install} alle benötigten Pakete für das Angular Projekt heruntergeladen und installiert. Da allerdings im zuvor standardmäßig definierten dotnet-Image kein Node installiert ist, wechseln wir in \texttt{build\_angular} auf das \texttt{trion/ng-cli:10.0.4} Image, da es sich hier um eine sehr kleine Node-Umgebung handelt. Im folgenden Schritt wird mit \texttt{npm audit fix} erörtert, welche Pakete mögliche Sicherheitsrisiken darstellen. Diese werden danach automatisch behoben. 
 
 \newpage
 
 \subsection{Die Test-Stage}
 
 \begin{lstlisting}[caption={Die Test-Stage der gitlab-ci.yml Datei},captionpos=b, numbers=left, backgroundcolor=\color{black!10},
-language=docker-compose]
+language=yaml]
 	unit_tests:
 		stage: test
 		script: 
@@ -222,7 +222,7 @@ In der Test-Stage werden die Artefakte, welche bei der Build-Stage [\ref{sssec:l
 
 \subsection{Die Release-Stage}
 
-\begin{lstlisting}[caption={Die Release-Stage der gitlab-ci.yml Datei},captionpos=b, numbers=left, backgroundcolor=\color{black!10}, language=docker-compose]
+\begin{lstlisting}[caption={Die Release-Stage der gitlab-ci.yml Datei},captionpos=b, numbers=left, backgroundcolor=\color{black!10}, language=yaml]
 	publish_dotnet:
 		stage: release
 		script:
@@ -231,8 +231,9 @@ In der Test-Stage werden die Artefakte, welche bei der Build-Stage [\ref{sssec:l
 		  name: DotArtifact
 		  expire_in: 1 hour
 		  paths:
-		  - /builds/it-entwicklung/dotnet/mypoettinger/src
-		    /MyPoettinger.Web/bin/Release/netcoreapp3.1/publish/
+		  - /builds/it-entwicklung/dotnet
+		    /mypoettinger/src/MyPoettinger.Web/bin
+		    /Release/netcoreapp3.1/publish/
 		tags:
 		- e
 		
@@ -250,6 +251,19 @@ In der Test-Stage werden die Artefakte, welche bei der Build-Stage [\ref{sssec:l
 		tags:
 		- e
 \end{lstlisting}
+
+\colorbox{MyLightGrayBackgroundForCode}{\texttt{dotnet publish}} kompiliert die Anwendung, liest ihre Abhängigkeiten, die in der Projektdatei angegeben sind, und veröffentlicht die resultierenden Dateien in einem Verzeichnis. Die Ausgabe umfasst die folgenden Objekte:\cite{dotnetpublish}
+
+\begin{itemize}
+	\item Intermediate Language-Code (IL) in einer Assembly mit einer \textit{DLL}-Erweiterung
+	\item Die Datei \textit{.deps.json}, die alle Abhängigkeiten des Projekts enthält
+	\item Die Datei \textit{.runtimeconfig.json}, die die Shared Runtime, die von der Anwendung erwartet wird, sowie andere Konfigurationsoptionen für die Runtime festlegt (z. B. die Art der Garbage Collection).
+	\item Die Abhängigkeiten der Anwendung, die aus dem NuGet-Cache in den Ausgabeordner kopiert werden.
+\end{itemize}
+
+Die Ausgabe des Befehls dotnet publish steht für die Bereitstellung zur Ausführung auf einem Hostsystem bereit (z.B. ein Server, Computer, Mac oder Laptop). Es ist die einzige offiziell unterstützte Methode zum Vorbereiten der Anwendung für die Bereitstellung. Je nach Art der Bereitstellung, die im Projekt angegeben ist, ist die Shared Runtime von .NET im Hostsystem installiert oder nicht.\cite{dotnetpublish} Die Artefakte dieses Jobs kann man anschließend in einem Deploy-Job verwenden oder manuell von der GitLab Seite herunterladen.
+
+Bei dem \texttt{publish\_angular} Job wird wieder das \texttt{trion/ng-cli:10.0.4} Image verwendet, um auf eine Node-Umgebung zu wechseln. Der Job ladet automatisch die node\_modules aus dem Cache und verwendet diese, um aus der Angular-Applikation mit dem Befehl \colorbox{MyLightGrayBackgroundForCode}{\texttt{ng build --prod -aot=true}}, welcher im Hintergrund das \texttt{webpack build tool} verwendet, reine Javascript-Dateien zu erzeugen, welche wiederum an einen Deploy-Job weitergeleitet werden können oder manuell von der GitLab Seite heruntergeladen werden können, um diese lokal auszuführen. Im Nachfolgenden Screenshot sieht man einen erfolgreich abgeschlossenen Pipeline-Durchgang:
 
 \begin{figure}[h]
 	\centerline{
