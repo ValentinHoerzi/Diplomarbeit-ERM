@@ -97,7 +97,7 @@ Für das Backend der Diplomarbeit wurde das Microsoft .NET Framework .NET Core 3
 C\# wurde von Microsoft entwickelt und 2001 veröffentlicht. Diese plattformunabhängige, objektorientierte Programmiersprache basiert auf Konzepte von den Programmiersprachen Delphi, C, Haskell, C++ und Java.
 C\# wird meist nicht gleich von den Compiler in die Maschinensprache, sondern in die Zwischensprache Common Intermediate Language (CIL) übersetzt. \autocite{wikiCSharp}
 
-\begin{lstlisting}[caption={C\#-Syntaxbeispiel},captionpos=b, numbers=left, backgroundcolor=\color{black!10}, breaklines=true, language={[Sharp]C}]
+\begin{lstlisting}[caption={C\#-Syntaxbeispiel}, language={[Sharp]C}]
 using System;
 namespace HelloWorld
 {
@@ -115,7 +115,7 @@ namespace HelloWorld
 JSON Web Token(JWT) ist ein Access-Token, der auf JSON basiert. Durch JWT kann man verifizierbare Claims austauschen. Mit JWT sind Stateless Sessions möglich, da jede benötigte Information für eine Authentifikation mit dem Token übertragen werden kann. Ein JSON Web Token setzt sich aus dem Header, Payload und der Signatur zusammen. Bei einem Request mit einem Token schreibt man vor dem Token noch "Bearer". \autocite{wikiJWT}
 
 Der Header ist ein JSON-Element. Darin ist gespeichert, welcher Token-Typ es ist und welche Verschlüsselungsmethode angewendet wird. Der Typ ist JWT und als Verschlüsselungsmethoden wird meist HMAC mit SHA-256 oder RSA mit SHA-256 verwendet. \autocite{wikiJWT} \\
-\begin{lstlisting}[caption={JWT-Header Beispiel},captionpos=b, numbers=left, backgroundcolor=\color{black!10}, language=json]
+\begin{lstlisting}[caption={JWT-Header Beispiel}, language=json]
 {
 	"alg": "HS256",
 	"typ": "JWT"
@@ -123,7 +123,7 @@ Der Header ist ein JSON-Element. Darin ist gespeichert, welcher Token-Typ es ist
 \end{lstlisting}
 
 Der Payload ist ebenfalls ein JSON-Element. In diesem JSON sind die Claims beschrieben. Es gibt einige reservierte Claims, die den Aussteller, das Subject oder das Ablaufdatum beschreiben, jedoch kann der Aussteller auch einen Private Claim definieren. \autocite{wikiJWT} \\
-\begin{lstlisting}[caption={JWT-Payload Beispiel},captionpos=b, numbers=left, backgroundcolor=\color{black!10}, language=json]
+\begin{lstlisting}[caption={JWT-Payload Beispiel}, language=json]
 	{
 		"sub": "8135731594",
 		"name": "Max Mustermann",
@@ -174,13 +174,13 @@ TypeScript bietet viele unterstützende Features:
 	\item Enums
 \end{itemize}
 
-\begin{lstlisting}[caption={TypeScript-Beispiel Function},captionpos=b, numbers=left, backgroundcolor=\color{black!10},language=JavaScript]
+\begin{lstlisting}[caption={TypeScript-Beispiel Function}, language=JavaScript]
 public add(a: number, b: number): number {
 	return a + b;
 }
 \end{lstlisting}
 
-\begin{lstlisting}[caption={TypeScript-Beispiel Klasse},captionpos=b, numbers=left, backgroundcolor=\color{black!10},language=JavaScript]
+\begin{lstlisting}[caption={TypeScript-Beispiel Klasse},captionpos=b, language=JavaScript]
 	class Person {
 		private name: string;
 		private age: number;
@@ -197,7 +197,7 @@ public add(a: number, b: number): number {
 		}
 	}
 \end{lstlisting}
-\begin{lstlisting}[caption={TypeScript-Beispiel Generische Programmierung},captionpos=b, numbers=left, backgroundcolor=\color{black!10},language=JavaScript]
+\begin{lstlisting}[caption={TypeScript-Beispiel Generische Programmierung}, language=JavaScript]
 	function doSomething<T>(arg: T): T {
 		return arg;
 	}

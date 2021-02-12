@@ -132,7 +132,7 @@ Die \texttt{gitlab-ci.yml} Datei ist in GitLab hauptverantwortlich für die CI/C
 
 Zu Beginn der \texttt{gitlab-ci.yml} Datei muss man definieren, in welcher Umgebung Befehle ausgeführt werden sollen. Für MyPöttinger ist standardmäßig das \texttt{mcr.microsoft.com\\/dotnet/sdk:5.0} Image von Microsoft gewählt, da diese bereits .NET CLI, .NET runtime und ASP.NET Core bereit stellt, welche alle für das Kompilieren, Bauen und Veröffentlichen einer .NET-Applikation benötigt werden.
 
-\begin{lstlisting}[caption={Erste Zeilen der gitlab-ci.yml Datei},captionpos=b, numbers=left, backgroundcolor=\color{black!10}, language=yaml]
+\begin{lstlisting}[caption={Erste Zeilen der gitlab-ci.yml Datei}, language=yaml, label={lst:lstErsteZeilen}]
 	default:
 		image: mcr.microsoft.com/dotnet/sdk:5.0
 	cache:
@@ -144,7 +144,7 @@ Zu Beginn der \texttt{gitlab-ci.yml} Datei muss man definieren, in welcher Umgeb
 		- release
 \end{lstlisting}
 
-Am Start ist die Definition der standardmäßigen Umgebung, welche mit \texttt{image:} angegeben wird. 
+Jetzt wird das Listing~\ref{lst:lstErsteZeilen} beschrieben. Am Start ist die Definition der standardmäßigen Umgebung, welche mit \texttt{image:} angegeben wird. 
 
 Der \texttt{cache:} Befehl ermöglicht es, Dateien oder Verzeichnisse, welche im Laufe der Pipeline-Jobs im angegebenen Ordner erzeugt wurden, zu speichern, um diese im weiteren Verlauf zu verwenden.
 
@@ -154,8 +154,7 @@ Die einzelnen Stages werden mit \texttt{stages:} deklariert. Alle folgenden Jobs
 
 \subsection{Die Build-Stage}\label{sssec:lblBuildStage}
 
-\begin{lstlisting}[caption={Die Build-Stage der gitlab-ci.yml Datei},captionpos=b, numbers=left, backgroundcolor=\color{black!10},
-language=yaml]
+\begin{lstlisting}[caption={Die Build-Stage der gitlab-ci.yml Datei}, language=yaml, label={lst:lstBuildStage}]
 	build_dotnet:
 		stage: build
 		script:
@@ -191,8 +190,7 @@ Durch den Node Package Manager, kurz \texttt{npm}, werden mit dem Befehl \texttt
 
 \subsection{Die Test-Stage}
 
-\begin{lstlisting}[caption={Die Test-Stage der gitlab-ci.yml Datei},captionpos=b, numbers=left, backgroundcolor=\color{black!10},
-language=yaml]
+\begin{lstlisting}[caption={Die Test-Stage der gitlab-ci.yml Datei}, language=yaml, label={lst:lstTestStage}]
 	unit_tests:
 		stage: test
 		script: 
@@ -222,7 +220,7 @@ In der Test-Stage werden die Artefakte, welche bei der Build-Stage [\ref{sssec:l
 
 \subsection{Die Release-Stage}
 
-\begin{lstlisting}[caption={Die Release-Stage der gitlab-ci.yml Datei},captionpos=b, numbers=left, backgroundcolor=\color{black!10}, language=yaml]
+\begin{lstlisting}[caption={Die Release-Stage der gitlab-ci.yml Datei}, language=yaml, label={lst:lstReleaseStage}]
 	publish_dotnet:
 		stage: release
 		script:
