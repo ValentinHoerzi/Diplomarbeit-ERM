@@ -1,4 +1,6 @@
-\documentclass[12pt,a4paper,oneside,ngerman,draft]{report}
+\documentclass[12pt,a4paper,oneside,ngerman,
+%draft
+]{report}
 
 %Packages
 \usepackage[utf8]{inputenc}
@@ -114,7 +116,6 @@
 \definecolor{string}{rgb}{0.64,0.08,0.08}
 
 \lstdefinelanguage{json}{
-	backgroundcolor=\color{MyLightGrayBackgroundForCode}
 	captionpos=b,
 	numbers=left,
 	%numberstyle=\small,
@@ -130,6 +131,7 @@
 	upquote=true,
 	morestring=[b]",
 	stringstyle=\color{string},
+	backgroundcolor=\color{MyLightGrayBackgroundForCode},
 	literate=
 	*{0}{{{\color{numb}0}}}{1}
 	{1}{{{\color{numb}1}}}{1}
@@ -144,7 +146,7 @@
 	{\{}{{{\color{delim}{\{}}}}{1}
 	{\}}{{{\color{delim}{\}}}}}{1}
 	{[}{{{\color{delim}{[}}}}{1}
-	{]}{{{\color{delim}{]}}}}{1},
+	{]}{{{\color{delim}{]}}}}{1}
 }
 %End of Json listing
 
