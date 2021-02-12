@@ -10,28 +10,19 @@ Dieses Projekt ist für den Kunden entwickelt worden, daher wird hier die Anwend
 	\vskip0pt
 	\caption{Screenshot von Länderwahl} \label{fig:countrySelection}
 \end{figure}
-
-Um auf die Webseite zu gelangen, muss man davor in der Länderwahl sein Land und bei den Ländern, wo es mehrere Landssprachen gibt, auch die Sprache wählen. Aus dem Länder- und Sprachenkürzel setzt sich die Locale zusammen. Für Österreich wäre die Locale daher "de\_AT" und für Deutschland "de\_DE". Diese Locale wird in den Cookies gespeichert und die Webseite richtet sich nach dieser Locale in den Cookies. Es ist auch möglich, im Nachhinein das Land und die Sprache zu ändern, indem man im Header der Webseite auf das Land (hier: Österreich) klickt. Durch diesen Klick gelangt man von überall auf die Länderwahl.
+Um auf die Webseite zu gelangen, ist es Erforderlicht, dass man davor in der Länderwahl sein Land und bei den Ländern, wo es mehrere Landssprachen gibt, auch die Sprache wählt. Aus dem Länder- und Sprachenkürzel setzt sich die Locale zusammen. Für Österreich wäre die Locale daher "de\_AT" und für Deutschland "de\_DE". Diese Locale wird in den Cookies gespeichert und die Webseite richtet sich nach dieser Locale in den Cookies. Es ist auch möglich, im Nachhinein das Land und die Sprache zu ändern, indem man im Header der Webseite auf das Land klickt. Durch diesen Klick gelangt man von überall auf die Länderwahl.
 
 \section{Startseite}
 \subsection{Startseite vor dem Login}
 \begin{figure}[H]
 	\centerline{
-		\includegraphics[width=0.8\textwidth]{./grafiken/erm_home_not_logged_in.png}
+		\includegraphics[width=0.8\textwidth]{./grafiken/erm_home_not_logged_in_1.png}
 	}
 	\vskip0pt
-	\caption{Screenshot von der Startseite, wenn der Benutzer nicht eingeloggt ist} \label{fig:homeNotLoggedIn}
+	\caption{Screenshot von der Startseite nicht eingeloggt} \label{fig:homeNotLoggedIn}
 \end{figure}
 
-%\begin{figure}[H]
-%	\centerline{
-%		\includegraphics[width=0.8\textwidth]{./grafiken/erm_home_not_logged_in_2.png}
-%	}
-%	\vskip0pt
-%	\caption{Zweiter Screenshot von der Startseite nicht eingeloggt} \label{fig:homeNotLoggedIn2}
-%\end{figure}
-
-Nach der Länderwahl gelangt man zu der Startseite. Anfangs ist man noch nicht eingeloggt, daher erscheint das Login-Feld in der Mitte. Am zweiten Screenshot sieht man, dass das Feld "Mein Maschinenpark" etwas heller ist als die anderen Felder, da man den Maschinenpark nur als eingeloggter Benutzer nutzen kann. Die zwei anderen Felder sind auch ohne Registrierung nutzbar.
+Nach der Länderwahl gelangt man zu der Startseite. Anfangs ist man noch nicht eingeloggt, daher ist ein Login-Feld in der Mitte. Am zweiten Screenshot sieht man, dass das Feld "Mein Maschinenpark" etwas heller ist als die anderen Felder, da man den Maschinenpark nur als eingeloggter Benutzer nutzen kann. Die zwei anderen Felder sind auch ohne Registrierung nutzbar.
  
 \subsection{Startseite nach einem erfolgreichen Login}
 \begin{figure}[H]
@@ -83,21 +74,13 @@ Die schnellste Variante ist die Verwendung von der integrierten Standorterkennun
 
 \begin{figure}[H]
 	\centerline{
-		\includegraphics[width=0.8\textwidth]{./grafiken/erm_register_2.png}
+		\includegraphics[width=0.8\textwidth]{./grafiken/erm_register_data.png}
 	}
 	\vskip0pt
 	\caption{Screenshot von der Dateneingabe der Registrierung} \label{fig:register2}
 \end{figure}
 
-\begin{figure}[H]
-	\centerline{
-		\includegraphics[width=0.8\textwidth]{./grafiken/erm_register_3.png}
-	}
-	\vskip0pt
-	\caption{Zweiter Screenshot von der Dateneingabe der Registrierung} \label{fig:register3}
-\end{figure}
-
-Der Benutzer muss angeben, ob er auf dem eigenen landwirtschaftlichen Betrieb arbeitet, auf einem anderen landwirtschaftlichen Betrieb angestellt ist oder dass er auf keinen Betrieb arbeitet. Falls der Benutzer auswählt, dass er auf einen anderen Betrieb angestellt ist, erscheint zusätzlich das Feld für den Namen des Unternehmens.\\
+Um anzugeben, ob der Benutzer auf einem landwirtschaftlichen Betreib arbeitet, besteht die Möglichkeit, dass er auf dem eigenen landwirtschaftlichen Betrieb arbeitet, auf einem anderen landwirtschaftlichen Betrieb angestellt ist oder dass er auf keinen Betrieb arbeitet. Falls der Benutzer auswählt, dass er auf einen anderen Betrieb angestellt ist, erscheint zusätzlich das Feld für den Namen des Unternehmens.\\
 
 Jedes Eingabefeld wird sofort nach Abgabe des Cursorfokus validiert. Falls ein Fehler auftritt wird das Feld rot umrandet und unter dem Feld erscheint eine Fehlermeldung, was falsch ist. Die Eingaben werden im Frontend und im Backend validiert. Im folgenden Screenshot sieht man die Felder mit einigen möglichen Fehlermeldungen.
 
@@ -115,7 +98,7 @@ Um die Registrierung erfolgreich abzuschließen, bekommt man eine Bestätigung p
 
 \begin{figure}[H]
 	\centerline{
-		\includegraphics[width=0.8\textwidth]{./grafiken/erm_register_4.png}
+		\includegraphics[width=0.8\textwidth]{./grafiken/erm_register_final.png}
 	}
 	\vskip0pt
 	\caption{Screenshot von dem letzten Schritt der Registrierung} \label{fig:step3register}
@@ -256,11 +239,8 @@ Bei den technischen Daten findet man nützliche Informationen wie Anbau, Gewicht
 	\vskip0pt
 	\caption{Ausstattung} \label{fig:ausstattung}
 \end{figure}
-
-\subsection{Videos, Prospekte und Betriebsanleitung}
-
-In diesen Kategorien findet man Videos, Prospekte und eine Betriebsanleitung für die Maschine. Diese Videos werden über YouTube abgespielt. Die Prospekte und die Betriebsanleitung sind zum Download verfügbar.
-
+\subsection{Videos, Bilder, Prospekte und Betriebsanleitung}
+In diesen Kategorien findet man Videos, Bilder, Prospekte und eine Betriebsanleitung für die Maschine. Diese Videos werden über YouTube abgespielt. Die Prospekte und die Betriebsanleitung sind zum Download verfügbar. Da nicht von jeder Maschine Bilder oder Videos vorhanden sind, Gibt es dieses Feld auch nicht bei jeder Detailansicht.
 \section{Maschinenpark}
 
 Im Maschinenpark ist eine Auflistung aller gespeicherten Maschinen des Benutzers. Somit hat der Nutzer einen schnellen Zugriff auf nützliche Tipps zur der gespeicherten Maschine, Bedienungsanleitungen, Ersatzteillisten, Wartungsinformationen, sowie alle technischen Details und Unterlagen.
