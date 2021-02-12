@@ -60,6 +60,8 @@
 \lstset{language=sh,basicstyle=\ttfamily}
 \lstset{language=,basicstyle=\ttfamily}
 
+\definecolor{MyLightGrayBackgroundForCode}{RGB}{227,227,227}
+
 % C# listing
 \definecolor{bluekeywords}{rgb}{0,0,1}
 \definecolor{greencomments}{rgb}{0,0.5,0}
@@ -83,6 +85,7 @@
 	commentstyle=\color{greencomments},
 	stringstyle=\color{greencomments},
 	basicstyle=\ttfamily\small,
+	backgroundcolor=\color{MyLightGrayBackgroundForCode}
 }
 % End of C# listing
 
@@ -100,7 +103,8 @@
 	morecomment=[l]//,
 	morecomment=[s]{/**}{*/}, % JavaDoc style comments
 	morestring=[b]',
-	morestring=[b]"
+	morestring=[b]",
+	backgroundcolor=\color{MyLightGrayBackgroundForCode}
 }[keywords, comments, strings]
 %End of TypeScript listing
 
@@ -110,7 +114,7 @@
 \definecolor{string}{rgb}{0.64,0.08,0.08}
 
 \lstdefinelanguage{json}{
-	%backgroundcolor=\color{black!10}
+	backgroundcolor=\color{MyLightGrayBackgroundForCode}
 	captionpos=b,
 	numbers=left,
 	%numberstyle=\small,
@@ -145,19 +149,7 @@
 %End of Json listing
 
 %YAML listing
-\lstdefinelanguage{docker}{
-	keywords={FROM, RUN, COPY, ADD, ENTRYPOINT, CMD,  ENV, ARG, WORKDIR, EXPOSE, LABEL, USER, VOLUME, STOPSIGNAL, ONBUILD, MAINTAINER},
-	keywordstyle=\color{blue}\bfseries,
-	identifierstyle=\color{black},
-	sensitive=false,
-	comment=[l]{\#},
-	commentstyle=\color{purple}\ttfamily,
-	stringstyle=\color{red}\ttfamily,
-	morestring=[b]',
-	morestring=[b]"
-}
-
-\lstdefinelanguage{docker-compose}{
+\lstdefinelanguage{yaml}{
 	keywords={image, stage, script, tags, artifacts, paths, expire_in, rules,name},
 	keywordstyle=\color{blue}\bfseries,
 	identifierstyle=\color{black},
@@ -166,20 +158,8 @@
 	commentstyle=\color{purple}\ttfamily,
 	stringstyle=\color{red}\ttfamily,
 	morestring=[b]',
-	morestring=[b]"
-}
-\lstdefinelanguage{docker-compose-2}{
-	keywords={version, volumes, services},
-	keywordstyle=\color{blue}\bfseries,
-	keywords=[2]{image, environment, ports, container_name, ports, links, build},
-	keywordstyle=[2]\color{olive}\bfseries,
-	identifierstyle=\color{black},
-	sensitive=false,
-	comment=[l]{\#},
-	commentstyle=\color{purple}\ttfamily,
-	stringstyle=\color{red}\ttfamily,
-	morestring=[b]',
-	morestring=[b]"
+	morestring=[b]",
+	backgroundcolor=\color{MyLightGrayBackgroundForCode}
 }
 
 \lstset{basicstyle=\ttfamily,
@@ -394,6 +374,7 @@
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	%%%   LIST OF LISTINGS  %%%%%%%%%%%%%%%%%
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
 	\renewcommand{\lstlistlistingname}{Listingverzeichnis}
 	\lstlistoflistings	
 	\pagebreak
@@ -401,6 +382,7 @@
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	%%%   LIST OF Tables  %%%%%%%%%%%%%%%%%%%
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
 	\renewcommand{\listtablename}{Tabellenverzeichnis}
 	\listoftables	
 	\pagebreak
@@ -408,6 +390,7 @@
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	%%%   APPENDIX  %%%%%%%%%%%%%%%%%%%%%%%%%
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
 	% Kompile-Time with Appendix: 27.24 Sec %
 	\Appendix{
 		\includepdf[pages=-, scale=.70, frame=true, pagecommand={}]{./kapitel/anhang/Pflichtenheft_ERM.pdf}
