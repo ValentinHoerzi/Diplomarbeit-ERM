@@ -1,4 +1,6 @@
-\documentclass[12pt,a4paper,oneside]{report}
+\documentclass[12pt,a4paper,oneside,ngerman,
+%draft
+]{report}
 
 %Packages
 \usepackage[utf8]{inputenc}
@@ -119,7 +121,6 @@
 \definecolor{string}{rgb}{0.64,0.08,0.08}
 
 \lstdefinelanguage{json}{
-	backgroundcolor=\color{MyLightGrayBackgroundForCode}
 	captionpos=b,
 	numbers=left,
 	%numberstyle=\small,
@@ -135,6 +136,7 @@
 	upquote=true,
 	morestring=[b]",
 	stringstyle=\color{string},
+	backgroundcolor=\color{MyLightGrayBackgroundForCode},
 	literate=
 	*{0}{{{\color{numb}0}}}{1}
 	{1}{{{\color{numb}1}}}{1}
@@ -149,13 +151,13 @@
 	{\{}{{{\color{delim}{\{}}}}{1}
 	{\}}{{{\color{delim}{\}}}}}{1}
 	{[}{{{\color{delim}{[}}}}{1}
-	{]}{{{\color{delim}{]}}}}{1},
+	{]}{{{\color{delim}{]}}}}{1}
 }
 %End of Json listing
 
 %YAML listing
 \lstdefinelanguage{yaml}{
-	keywords={image, stage, script, tags, artifacts, paths, expire_in, rules,name},
+	keywords={image, stage, script, tags, artifacts, paths, expire_in, rules,name,cache,services,before_script},
 	keywordstyle=\color{blue}\bfseries,
 	identifierstyle=\color{black},
 	sensitive=false,
