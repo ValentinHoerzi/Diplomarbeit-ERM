@@ -31,6 +31,8 @@
 \usepackage[german,english]{babel}
 \usepackage{pdfpages}
 
+\usepackage[onehalfspacing]{setspace}
+
 
 %Commands
 \newcommand{\ThRealAuthorNameOne}{Valentin Hörzi}
@@ -397,8 +399,12 @@
 	
 	% Kompile-Time with Appendix: 27.24 Sec %
 	\Appendix{
-		\includepdf[pages=-, scale=.70, frame=true, pagecommand={}]{./kapitel/anhang/Pflichtenheft_ERM.pdf}
+		\begin{figure}[!hb]
+			\includepdf[pages={1},  scale=.65, frame=true, pagecommand={}]{./kapitel/anhang/Pflichtenheft_ERM.pdf}
+		\end{figure}
+		\includepdf[pages={2-11},  scale=.65, frame=true, pagecommand={}]{./kapitel/anhang/Pflichtenheft_ERM.pdf}
 	}
+
 	% Kompile-Time without Appendix: 25.12 Sec %
 	
 \end{document}
