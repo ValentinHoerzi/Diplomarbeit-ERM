@@ -1,1 +1,30 @@
-\chapter{Command Query Seperation}
+\chapter{Command-query Separation}
+Das Prinzip der Command-query Separation (CQS) steht für die Trennung von Befehlen und Abfragen. In der klassischen Geschäftlogik-Schicht gibt es mehrere Schnittstellen, die verschiedenste Aufgaben abdecken. Da die Möglichkeit besteht, dass  mit der Zeit immer mehr Anforderungen an das System gestellt werden, werden die Schnittstellen und die darin befindenden Methoden immer mehr und möglicherweise auch die Cross-Cutting Concerns. Mit Cross-Cutting Concerns sind Anforderungen gemeint, die das ganze System betreffen, aber nicht von Anwendungsfall. Das können Transaktionen, Validierungen oder Rechteüberprüfungen sein. In dieser Diplomarbeit wurde bei jeden Aufruf geprüft, ob der Benutzer die berechtigten Rechte hat. Somit wäre ohne CQS in jeder Methode etwas zu ändern. \autocite{cqsSOLIDeArchitektur}\\
+Um das umzusetzen, werden die zwei generische Schnittstellen benötigt, die man in Listing \ref{lst:cqsSchnittstellen} sieht. \texttt{IQuery} steht für Abfragen und \texttt{ICommand}, die für Aktionen steht.
+\begin{lstlisting}[caption={CQS-Schnittstellen},captionpos=b, numbers=left, backgroundcolor=\color{black!10},language={[Sharp]C}, label={lst:cqsSchnittstellen}]
+	public interface IQuery<TResult> { }
+	public interface ICommand { }
+\end{lstlisting}
+Eine Methode aus dem Controller wird nun eine eigene Klasse. Als Eigenschaften dieser neuen Klasse werden die Methodenparameter verwendet. Ein Beispiel aus dieser Diplomarbeit kann man im Listing \ref{lst:getFaqbyid} sehen. Es implementiert dass im Listing \ref{lst:cqsSchnittstellen} vorhandene Interface \texttt{IQuery} mit dem Datentyp FAQDto.
+\begin{lstlisting}[caption={CQS-Query Beispiel},captionpos=b, numbers=left, backgroundcolor=\color{black!10},language={[Sharp]C}, label={lst:getFaqbyid}]
+	public class GetFAQById : IQuery<FAQDto>
+	{
+		public GetFAQById(Guid faqId)
+		{
+			this.FAQId = faqId;
+		}
+		public Guid FAQId { get;}
+	}
+\end{lstlisting}
+Um die gewollte Logik auszuführen, werden zwei weitere generischen Schnittstellen benötigt. Wiederum gitb es eine für Abfragen und eine für Aktionen wie man im Listing \ref{lst:cqsHandler} sehen kann. Diese werden als Handler betitelt. \autocite{cqsSOLIDeArchitektur}
+\begin{lstlisting}[caption={CQS-Query Beispiel},captionpos=b, numbers=left, backgroundcolor=\color{black!10},language={[Sharp]C}, label={lst:cqsHandler}]
+	public interface IQueryHandler<TQuery, TResult>	where TQuery : IQuery<TResult>
+	{
+		Task<TResult> HandleAsync(TQuery query);
+	}
+	
+	public interface ICommandHandler<TCommand> where TCommand : ICommand
+	{
+		Task HandleAsync(TCommand command);
+	}
+\end{lstlisting}
