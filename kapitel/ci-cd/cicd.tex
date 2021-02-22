@@ -15,7 +15,7 @@ Continuous Deployment (das andere „CD“) kann sich auf die automatische Freig
 
 \begin{figure}[h]
 	\centerline{
-		\includegraphics[width=0.8\textwidth]{./grafiken/ci-cd-flow-redhatsource.png}
+		\includegraphics[width=1\textwidth]{./grafiken/ci-cd-flow-redhatsource.png}
 	}
 	\vskip0pt
 	\caption{CI/CD Workflow (Bild wurde entnommen aus \cite{whatIsCICD})}
@@ -57,8 +57,6 @@ Jobs werden von Runner ausgeführt. Mehrere Jobs in der selben Stage werden para
 Wenn \textit{alle} Jobs in einer Stage erfolgreich ausgeführt wurden, geht die Pipeline zur nächsten Stage über.
 Wenn \textit{irgendein} Job in einer Stage fehlschlägt, wird die nächste Stage (normalerweise) nicht ausgeführt und die Pipeline endet vorzeitig.\autocite{gitlabPipelines}
 
-\newpage
-
 Im Allgemeinen werden Pipelines in der Regel automatisch  nach dem Hochladen eines Commits ausgeführt und erfordern nach ihrer Erstellung keinen weiteren manuellen Eingriff.
 Eine typische Pipeline kann aus vier Phasen bestehen, die in der folgenden Reihenfolge ausgeführt werden:\autocite{gitlabPipelines}
 
@@ -79,7 +77,7 @@ GitLab Runner kann auch in einem Docker-Container ausgeführt oder in einem Kube
 
 \begin{figure}[h]
 	\centerline{
-		\includegraphics[width=1.1\textwidth]{./grafiken/gitlab_runner_status.JPG}
+		\includegraphics[width=1\textwidth]{./grafiken/gitlab_runner_status.JPG}
 	}
 	\vskip0pt
 	\caption{GitLab Runner Instanz auf einem lokalen Windows-Rechner}
@@ -108,12 +106,13 @@ Man muss dazu lediglich folgendes in seine \texttt{.gitlab-ci.yml} Datei einbind
 
 \begin{figure}[h]
 	\centerline{
-		\includegraphics{./grafiken/ruby_runner_tag_in_gitlab-ci-yml_file.JPG}
+		\includegraphics[width=1\textwidth]{./grafiken/ruby_runner_tag_in_gitlab-ci-yml_file.JPG}
 	}
 	\vskip0pt
 	\caption{ruby Tag in gitlab-ci.yml Datei (Bild wurde entnommen aus \autocite{gitlabRunner})}
 \end{figure}
 
+\newpage
 
 \section{MyPöttinger GitLab Pipeline}
 
@@ -125,8 +124,6 @@ Die Umgestaltung der GitLab Pipeline für das MyPöttinger-Repository ist ein wi
 	\item Der \texttt{Release-Stage}
 	\item Der \texttt{Image-Stage}
 \end{itemize}
-
-\newpage
 
 \subsection{Die {\texttt{gitlab-ci.yml}} - Datei }
 
@@ -155,8 +152,6 @@ Jetzt wird das Listing~\ref{lst:lstErsteZeilen} beschrieben. Am Start ist die De
 Der \texttt{cache:} Befehl ermöglicht es, Dateien oder Verzeichnisse, welche im Laufe der Pipeline-Jobs im angegebenen Ordner erzeugt wurden, zu speichern, um diese im weiteren Verlauf zu verwenden.
 
 Die einzelnen Stages werden mit \texttt{stages:} deklariert. Alle folgenden Jobs können nun zu einer der aufgelisteten Stages hinzugefügt werden und laufen in dieser Reihenfolge ab.
-
-\newpage
 
 \subsection{Die Build-Stage}\label{sssec:lblBuildStage}
 
@@ -191,8 +186,6 @@ Jetzt wird das Listing~\ref{lst:lstBuildStage} beschrieben. Bei dem \texttt{buil
 Der \texttt{dotnet build}-Befehl erstellt das Projekt und die zugehörigen Abhängigkeiten in einen Satz von Binärdateien. Die Binärdateien enthalten den Projektcode in IL-Dateien (Intermediate Language) mit der Erweiterung DLL. Abhängig vom Projekttyp und den Einstellungen können auch andere Dateien enthalten sein.\cite{dotnetBuildDesc} Im Anschluss des Vorgangs wird das Test-Verzeichnis als Artefakt gespeichert, um dieses Anschließen in der Test-Stage zu testen.
 
 Durch den Node Package Manager, kurz \texttt{npm}, werden mit dem Befehl \texttt{npm install} alle benötigten Pakete für das Angular Projekt heruntergeladen und installiert. Da allerdings im zuvor standardmäßig definierten dotnet-Image kein Node installiert ist, wechseln wir in \texttt{build\_angular} auf das \texttt{trion/ng-cli:10.0.4} Image, da es sich hier um eine sehr kleine Node-Umgebung handelt. Im folgenden Schritt wird mit \texttt{npm audit fix} erörtert, welche Pakete mögliche Sicherheitsrisiken darstellen. Diese werden danach automatisch behoben. 
-
-\newpage
 
 \subsection{Die Test-Stage}
 
