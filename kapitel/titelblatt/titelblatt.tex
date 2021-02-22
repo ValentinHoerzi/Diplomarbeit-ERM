@@ -117,24 +117,21 @@
 	\node at (77,-80)
 		{2020/21};
 	\node at (77,-92)
-		{Sample Project};
+		{End-customer portal: registration and machine park};
 	\node at (77,-109)
 		{\ThPartnerName};
 	\node at (77,-125) [text width=305,align=justify] {
 		\fontsize{12pt}{12pt}
 		\selectfont
 		\par
-		Ziel des Projekts war die Entwicklung einer Plattform mit einer i18n und dynamischen Registrierungsmöglichkeit. Kunden können in Zukunft ihre eigenen Maschinen im Endkundenportal hinzufügen. Auch soll es im Endkundenportal verschiedene Benutzergruppen mit dementsprechenden Rechten geben. Das Portal soll verschiedene Funktionen und Berechtigungen darstellen.
-		%Im Rahmen der Matura besteht die Aufgabe von ERM darin, eine länderspezifische Registrierung mit jeweiliger Validierung für die Endkunden auf der ganzen Welt bereitzustellen und dieser Prozess soll so einfach und schnell wie möglich für den Benutzer sein. Nach der Registrierung soll jeder registrierte Benutzer einen Maschinenpark anlegen können, wo dieser sich seine eigenen Maschinen speichern kann und somit schnell zu näheren Infos zu diesem Gerät, wie zum Beispiel Highlights, Technische Daten oder Betriebsanleitung, gelangt.
-		%\vskip10pt
+		The aim of the project was to develop a platform with an i18n and dynamic registration option. In the future, customers will be able to add their own machines in the end-customer portal. There should also be different user groups with corresponding rights in the end-customer portal. The portal is to display various functions and authorizations.
 		\par
-		Das Backend soll in C\# und das Frontend in TypeScript realisiert werden.
 	};
 	\node at (77,-173) [text width=300,align=justify] {
 		\fontsize{12pt}{12pt}
 		\selectfont
 		\par
-		Das Registrierungsformular wird im Frontend je nach Länder- und Sprachenwahl dynamisch aufgebaut. Die Auswahl, Anordnung und Validierung variiert je nach Land. Bei erfolgreicher Registrierung über Auth0 wird der User im Backend gespeichert und ihm stehen weitere Features zuverfügung. Die Usereingaben werden im Frontend und im Backend validiert um jegliche Fehler zu vermeiden. Die weiteren Aufrufe sind mit JWT-Tokens gesichert.
+		The registration form is built dynamically in the frontend depending on the country and language selection. The selection, arrangement and validation varies depending on the country. Upon successful registration via Auth0, the user is saved in the backend and further features are available to him. The user input is validated in the frontend and in the backend to avoid any errors. The further calls are secured with JWT tokens.
 		\vskip10pt
 		\par
 	};
@@ -142,17 +139,17 @@
 		\fontsize{12pt}{12pt}
 		\selectfont
 		\par
-		Das Ergebnis ist ein Endkundenportal, was den User ermöglich, seine Maschinen zu speichern und immer schnell alle wichtigen Informationen darüber herauszufinden. Weiters hat \ThPartnerName \ eine direkte Endkundenverbindung, die es zuvor nicht gab.
+		The result is an end-customer portal, which allows the user to store his machines and always quickly find out all the important information about them. The registration is country specific. Furthermore, \ThPartnerName \ has a direct end-customer connection, which did not exist before. For this purpose the backend for a FAQ section was created. After answering the questions, they are automatically translated into 15 languages and saved.
 	};
 }
 \IncludeSchoolTemplate{4}{
 	\node at (76,-28)
 		{Informatics};
 	\node at (77,-75){
-		\includegraphics[width=310pt,trim=0pt 0pt 0pt 0pt,clip]{./grafiken/sample_graphic.png}
+		\includegraphics[width=310pt,trim=0pt 0pt 0pt 0pt,clip]{./grafiken/erm_home_logged_in.png}
 	};
-	\node at (77,-166) [text width=305,align=center]
-		{\emph{Screenshot of the program}};
+	\node at (77,-166) [text width=305]
+		{On this screenshot you can see the main page as a logged in user, from where you can reach everything.};
 	\node at (77,-220)
 		{--};
 	\node at (77,-240)
