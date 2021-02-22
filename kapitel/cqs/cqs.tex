@@ -17,7 +17,7 @@ Eine Methode aus dem Controller wird nun eine eigene Klasse. Als Eigenschaften d
 	}
 \end{lstlisting}
 Um die gewollte Logik auszuführen, werden zwei weitere generischen Schnittstellen benötigt. Wiederum gitb es eine für Abfragen und eine für Aktionen wie man im Listing \ref{lst:cqsHandler} sehen kann. Diese werden als Handler betitelt. \autocite{cqsSOLIDeArchitektur}
-\begin{lstlisting}[caption={CQS-Query Beispiel},captionpos=b, numbers=left, backgroundcolor=\color{black!10},language={[Sharp]C}, label={lst:cqsHandler}]
+\begin{lstlisting}[caption={CQS-Handler},captionpos=b, numbers=left, backgroundcolor=\color{black!10},language={[Sharp]C}, label={lst:cqsHandler}]
 	public interface IQueryHandler<TQuery, TResult>	where TQuery : IQuery<TResult>
 	{
 		Task<TResult> HandleAsync(TQuery query);
@@ -26,5 +26,34 @@ Um die gewollte Logik auszuführen, werden zwei weitere generischen Schnittstell
 	public interface ICommandHandler<TCommand> where TCommand : ICommand
 	{
 		Task HandleAsync(TCommand command);
+	}
+\end{lstlisting}
+Den Handler für die im Listing \ref{lst:getFaqbyid} zu sehende Abfrage sieht man im Listing \ref{getFaqByIdHandler}.
+\begin{lstlisting}[caption={CQS-Handler Beispiel},captionpos=b, numbers=left, backgroundcolor=\color{black!10},language={[Sharp]C}, label={getFaqByIdHandler}]
+	internal class GetFAQByIdHandler : IQueryHandler<GetFAQById, FAQDto>
+	{
+		private readonly FAQRepositoryFactory faqRepositoryFactory;
+		private readonly IMapper mapper;
+		
+		public GetFAQByIdHandler(
+		FAQRepositoryFactory faqRepositoryFactory,
+		IMapper mapper)
+		{
+			this.faqRepositoryFactory = faqRepositoryFactory ?? throw new ArgumentNullException(nameof(faqRepositoryFactory));
+			this.mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+		}
+		
+		public async Task<FAQDto> HandleAsync(GetFAQById query)
+		{
+			using(var repository = this.faqRepositoryFactory())
+			{
+				var faq = (await repository.GetAsync(f => f.Id == query.FAQId))
+				.SingleOrDefault()
+				.ThrowIfNotFound(query.FAQId);
+				faq.Fetches++;
+				await repository.UpsertOneAsync(f => f.Id == faq.Id, faq);
+				return this.mapper.Map<FAQDto>(faq);
+			}
+		}
 	}
 \end{lstlisting}
