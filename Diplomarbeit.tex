@@ -54,6 +54,7 @@
 \newcommand{\ThSupervisorEmail}{sickinger@docsced.at}
 
 \renewcaptionname{english}{\figurename}{Abb.}
+\renewcaptionname{english}{\tablename}{Tab.}
 
 
 \addbibresource{citations.bib}
@@ -273,7 +274,8 @@
 % Have list of figures title style be the same as TOC title stile
 \renewcommand{\cftloftitlefont}{\cfttoctitlefont}
 
-
+% list of tables title style same as toc title style
+\renewcommand{\cftlottitlefont}{\cfttoctitlefont}
 
 \newcommand{\SignatureLine}[1]{
 	\vskip15pt
@@ -369,13 +371,15 @@
 	%%%   BIBLIOGRAPHY   %%%%%%%%%%%%%%%%%%%%
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
-	\printbibliography[title={\hspace{\fill}Bibliography}]
+	\printbibliography[title={\hspace{\fill}Literaturverzeichnis}]
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	%%%   BEGLEITPROTOKOLL   %%%%%%%%%%%%%%%%
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
-	\include{./kapitel/begleitprotokoll/begleitprotokoll.tex}
+	\includepdf[pages={1-2}]{./kapitel/anhang/Begleitprotokoll_schoergendorfer_to_show.PDF}
+	%\includepdf[pages={1-2}]{./kapitel/anhang/Begleitprotokoll_hoerzi.PDF}
+	%%%%%%%%%%%%%%%%%%%%%%\include{./kapitel/begleitprotokoll/begleitprotokoll.tex}
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	%%%   LIST OF FIGURES   %%%%%%%%%%%%%%%%%
