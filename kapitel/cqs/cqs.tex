@@ -39,7 +39,7 @@ Den Handler für die im Listing \ref{lst:getFaqbyid} zu sehende Abfrage sieht ma
 		FAQRepositoryFactory faqRepositoryFactory,
 		IMapper mapper)
 		{
-			this.faqRepositoryFactory = faqRepositoryFactory ?? throw new ArgumentNullException(nameof(faqRepositoryFactory));
+			this.faqRepositoryFactory = faqRepositoryFactory ?? throw new ArgumentNullException (nameof(faqRepositoryFactory));
 			this.mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
 		}
 		
@@ -57,3 +57,4 @@ Den Handler für die im Listing \ref{lst:getFaqbyid} zu sehende Abfrage sieht ma
 		}
 	}
 \end{lstlisting}
+Dependency-Injection wird genutzt, um die Queries mit den richtigen Query-Handlers und die Commands mit den richtigen Command-Handlers zusammen zu hängen. \autocite{cqsSOLIDeArchitektur}
