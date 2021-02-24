@@ -13,7 +13,7 @@ Continuous Delivery bedeutet üblicherweise, dass App-Änderungen eines Entwickl
 
 Continuous Deployment (das andere „CD“) kann sich auf die automatische Freigabe von Entwickleränderungen vom Repository zur Produktivphase beziehen, wo sie direkt vom Kunden genutzt werden können. Dieser Vorgang soll der Überlastung von Operations-Teams bei manuellen Prozessen entgegenwirken, die die Anwendungsbereitstellung verlangsamen. Continuous Development baut die Vorteile der Continuous Delivery aus, indem auch noch die nächste Phase der Pipeline automatisiert wird.\autocite{whatIsCICD}
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\centerline{
 		\includegraphics[width=1\textwidth, frame]{./grafiken/ci-cd-flow-redhatsource.png}
 	}
@@ -75,7 +75,7 @@ Man kann die GitLab Runner-Anwendung auf der Infrastruktur installieren, die man
 Es ist auch möglich, GitLab Runner auf verschiedenen unterstützten Betriebssystemen installieren. Andere Betriebssysteme sind ebenfalls in der Lage Runner bereitzustellen, sofern diese eine Go-Binärdatei kompilieren können.
 GitLab Runner kann auch in einem Docker-Container ausgeführt oder in einem Kubernetes-Cluster bereitgestellt werden.\autocite{gitlabRunner}
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\centerline{
 		\includegraphics[width=1\textwidth, frame]{./grafiken/gitlab_runner_status.JPG}
 	}
@@ -104,7 +104,7 @@ Registrierte Runner kann man sogenannte Tags zuweisen. Wenn ein CI/CD Job läuft
 
 Man muss dazu lediglich folgendes in seine \texttt{.gitlab-ci.yml} Datei einbinden:
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\centerline{
 		\includegraphics[width=1\textwidth, frame]{./grafiken/ruby_runner_tag_in_gitlab-ci-yml_file.JPG}
 	}
@@ -318,7 +318,7 @@ Schlussendlich wird im \texttt{containerize\_angular}-Job das Dockerimage erstel
 
 Im Nachfolgenden Screenshot sieht man einen erfolgreich abgeschlossenen Pipeline-Durchgang:
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\centerline{
 		\includegraphics[width=1\textwidth, frame]{./grafiken/build_test_release_successful.JPG}
 	}
