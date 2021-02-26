@@ -33,6 +33,7 @@
 \usepackage{makecell}
 \usepackage[german,english]{babel}
 \usepackage{pdfpages}
+\usepackage{tabularx}
 
 \usepackage[onehalfspacing]{setspace}
 
@@ -310,6 +311,7 @@
 	\include{./kapitel/titelblatt/titelblatt.tex}
 	
 	\clearpage
+	\renewcommand{\contentsname}{Inhaltsverzeichnis}
 	\tableofcontents
 	\newpage
 	\pagenumbering{arabic}
@@ -341,7 +343,7 @@
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	%%%   FAQ-Backend   %%%%%%%%%%%%%%%%%%%%%
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	
+
 	\include{./kapitel/faq/faq.tex}
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -404,6 +406,26 @@
 	
 	\renewcommand{\listtablename}{Tabellenverzeichnis}
 	\listoftables	
+	
+	\begin{table}[H]
+		\centering
+		{\rowcolors{2}{gray!20}{gray!10}
+			\setlength{\arrayrulewidth}{1pt}
+			\begin{tabular}[h]{|l|p{8cm}|p{2.5cm}|p{2.5cm}|}
+				\hline
+				\rowcolor[gray]{.6}	Abkürzung & Bedeutung \\
+				\hline
+				JWT & JSON Web Token\\
+				\hline
+				FAQ & Frequently Asked Questions \\	
+				\hline
+				DI & Dependency Injection \\
+				\hline
+			\end{tabular}
+		}
+		\caption{Meilensteine}
+	\end{table}
+	
 	\pagebreak
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
