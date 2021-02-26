@@ -10,3 +10,4 @@ jobs:
         uses: dante-ev/latex-action@master
         with:
           root_file: Diplomarbeit.tex
+          args: xelatex.exe -synctex=1 -interaction=nonstopmode
