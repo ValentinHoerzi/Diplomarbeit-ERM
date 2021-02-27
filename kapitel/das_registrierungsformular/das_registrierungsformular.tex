@@ -13,6 +13,8 @@ Der wohl komplizierteste Teil dieser Diplomarbeit ist der Aufbau und die korrekt
 	\label{fig:fc}
 \end{figure}
 
+\subsection{\texttt{initiateDynamicComponentConfiguration()}}
+
 Wenn das User-Objekt, welches von der Backend API abgefragt und erfolgreich als globale Objekt variable gespeichert wurde, wird die \texttt{initiateDynamicComponentConfigu\\ration()}-Methode aufgerufen. Aus Performance-Gründen basiert die nächste Überprüfung auf den Wert der aktuellen Lokale. Gleicht dieser den Wert "AT", so wird ein vorgefertigtes Template für ein österreichisches RF, dargestellt im Listing~\ref{lst:template_form_aut}, für die Weiterverwendung benützt. Da davon ausgegangen wird, dass sich vor allem in der Anfangsphase nach der Veröffentlichung hauptsächlich österreichische Kunden ein Konto erstellen, spart dieser Weg enorm viel Zeit, da sofort mit der Erstellung des RF begonnen werden kann.
 
 \begin{lstlisting}[caption={Vordefiniertes Template für das RF},captionpos=b, language=JavaScript,label={lst:template_form_aut}]
@@ -37,7 +39,11 @@ export const AUSTRIAN_PRIVATE_PERSON_FORM_Template = [
 ];
 \end{lstlisting}
 
-Anderenfalls wird als nächster Schritt die \texttt{handleTemplateCall()}-Methode aufgerufen, markiert im Flussdiagramm~\ref{fig:fc} mit [1], welche, basierend auf den Wert der aktuellen Lokale, auf die Shopify API zugreift, um ein \texttt{Country}-Objekt abzurufen. Wurde diese Operation beendet folgt ein Update auf die Labels für den Wrapper der Objekte für das RF. Nach dem das Template geladen wurde, wird über jedes einzelne Element iteriert, markiert im Flussdiagramm~\ref{fig:fc} mit [2], um daraus eine oder mehrere Zeilen zu generieren. Anschließend werden diese in ein 2D Array gespeichert, welches dann der \texttt{generateDynamicView()}-Methode zu Generierung des RF übergeben wird. 
+\subsection{\texttt{handleTemplateCall()}}
+
+Anderenfalls wird als nächster Schritt die \texttt{handleTemplateCall()}-Methode aufgerufen, markiert im Flussdiagramm~\ref{fig:fc} mit [1], welche, basierend auf den Wert der aktuellen Lokale, auf die Shopify API zugreift, um ein \texttt{Country}-Objekt abzurufen. Wurde diese Operation beendet folgt ein Update auf eine Map, welche vorläufig die Labels für die Wrapper-Objekte speichert. Nach dem das Template geladen wurde, wird über jedes einzelne Element iteriert, markiert im Flussdiagramm~\ref{fig:fc} mit [2], um daraus eine oder mehrere Zeilen zu generieren. Anschließend werden diese in ein 2D Array gespeichert, welches dann der \texttt{generateDynamicView()}-Methode zu Generierung des RF übergeben wird. 
+
+\subsection{\texttt{analyzeRow()}}
 
 \begin{lstlisting}[caption={Erstellung des 2D Arrays für den Aufbau des RF},captionpos=b, language=JavaScript,label={lst:analyzeRow}]
 private analyzeRow(row: string[]): RegisterComponent[][] {
@@ -111,7 +117,7 @@ Anschließend wird in Zeile 19 sicher gestellt, dass eine Privatperson keine Aus
 
 Um nun tatsächlich aus dem Template Objekte zu erzeugen, wird ab Zeile 23 über Schlüssel einer Map, beschrieben im Listing~\ref{lst:valueMap}, welche den String eines Templates als \texttt{key} und den korrespondierenden Objekten als \texttt{value} hat, iteriert. 
 
-\begin{lstlisting}[caption={Vordefiniertes Template für das RF},captionpos=b, language=JavaScript,label={lst:valueMap}]
+\begin{lstlisting}[caption={valueMap in der \texttt{analyzeRow()}-Methode},captionpos=b, language=JavaScript,label={lst:valueMap}]
 export class ValueMapper {
 	static COMPONENT_VALUE_MAP: Map<string, Type<any>> = new Map();
 	
@@ -133,10 +139,86 @@ export class ValueMapper {
 }
 \end{lstlisting}
 
+Im ersten Schritt wird, wenn das vom Template angeforderte Feld in der Map existiert, das Wrapper-Objekt erzeugt. 
 
-\section{Die Validierungsmethodik}
+Wenn dieses den Typ \texttt{ZoneComponent} besitzt, handelt es sich um ein RF, welches für ein Land wie Italien oder Amerika bestimmt ist. Um eine erfolgreiche Registrierung in diesen Ländern abzuschließen, muss hier nämlich die zugehörige Provinz (IT) oder der zugehöriger Bundesstaat (US) angegeben werden. Natürlich funktioniert das für jedes Land, welches dieses Kriterium erfüllen muss. Diese Daten werden anschließend aus dem \texttt{Country}-Objekt der Shopify API gelesen und als \texttt{zone}-Property in die \texttt{options} gespeichert. 
 
-\section{Die Komfortfunktionen}
+Im Anschluss wird ebenfalls von diesem Objekt die Telefonnummernvorwahl in die \texttt{options} als \texttt{phoneNumberPrefix}-Property der Wrapper-Klasse gespeichert.
+
+Als letzter Schritt in dieser Methode werden von Zeile 46 bis 48 die Labels, welche vorher in einer Map gespeichert wurden, als \texttt{label}-Property in die \texttt{option} der Wrapper-Objekt gespeichert. 
+
+Nach dem Abschluss wird das Ergebnis an die Schleife der \texttt{initiateDynamicComponent\\Configuration()}-Methode geliefert und als Zwischenergebnis gespeichert. Wenn die Iteration fertig ist, werden die Zwischenergebnisse zusammengefasst und an die nächste Methode übergeben.
+
+\subsection{\texttt{generateDynamicView(data: RegisterComponent[][])}}
+
+\begin{lstlisting}[caption={Die \texttt{generateDynamicView()}-Methode},captionpos=b, language=JavaScript,label={lst:generateDynamicView}]
+generateDynamicView(data: RegisterComponent[][]) {
+for (const element of data) {
+	const factory = this.componentFactoryResolver.
+	resolveComponentFactory(AutoRowComponentGenerator);
+	
+	const ref = this.viewContainerRef.createComponent(factory);
+	(<AutoRowComponentGenerator>ref.instance).data = element;
+	ref.changeDetectorRef.detectChanges();
+}
+this.bindUserDataToViewData();
+}
+\end{lstlisting}
+
+Die \texttt{generateDynamicView()}-Methode iteriert über jedes Array, um eine \texttt{AutoRow\\ComponentGenerator}-Klasse zu erzeugen. Aus jedem Array in dem 2D-Array wird also eine eigene Reihe für das RF erzeugt. Dabei wird die von Angular bereitgestellte \texttt{ComponentFactoryResolver}-Klasse verwendet, um aus einer Klasse einen Component zu erstellen. 
+Jede Reiher, also jeder\texttt{AutoRowComponentGenerator}, wird dann nacheinander in die HTML-Datei durch eine \texttt{ViewContainerRef} eingefügt. Die \texttt{ViewContainerRef} verweist auf ein HTML-Element, wie es das Listing~\ref(lst:html) beschreibt.
+
+\begin{lstlisting}[caption={ViewContainerRef verweist auf \#componentHook},captionpos=b, language=JavaScript,label={lst:html}]
+<form #dynamicForm>
+	<div #componentHook></div>
+</form>
+\end{lstlisting}
+
+Das Array aus Wrapper-Klassen wird anschließend dem erzeugten Component als \texttt{data}-Objekt übergeben. \texttt{detectChanges()} sagt dem Component, dass er die Lifecycle-Hook-Methode \texttt{ngAfterViewInit()} erneut aufrufen muss. Wie gleich erklärt wird, ist diese dafür verantwortlich, dass die übergebenen Daten verarbeitet werden.
+
+Da das Registrierungsformular in der Profilübersicht wieder verwendet wird, ist es wichtig, die Daten, welche vom Benutzer bereits vorhanden sind, in das frisch erstellte RF durch die Methode \texttt{bindUserDataToViewData()} wieder einzubinden.
+
+\subsection{Die \texttt{AutoRowComponentGenerator}-Klasse}
+
+\begin{lstlisting}[caption={Die \texttt{ngAfterViewInit()}-Methode der \texttt{AutoRowComponentGenerator}-Klasse},captionpos=b, language=JavaScript,label={lst:nginARCG}]
+ngAfterViewInit(): void {
+	for (const x of this.data) {
+		const factory = this.componentFactoryResolver
+		.resolveComponentFactory(x.type);
+		
+		const ref = this.viewContainerRef.createComponent(factory);
+		this.checkComponentRef(ref, x);
+		ref.changeDetectorRef.detectChanges();
+	}
+	this.addClasses();
+}
+\end{lstlisting}
+
+Anders als bei der \texttt{generateDynamicView()}-Methode wird nicht über ein 2D-Array iteriert, um ein Array an Daten zu übergeben, sondern über das tatsächliche Array, welches eine Reihe aus Feldern repräsentiert. Diese werden dann nach der Reihe auf die selbe Weise erzeugt. \texttt{checkComponentRef()} bindet die \texttt{options} der Wrapper-Klasse an die erzeugten Components, wie im Listing~\ref{lst:ccr} gezeigt wird.
+
+\begin{lstlisting}[caption={Die \texttt{checkComponentRef()}-Methode der \texttt{AutoRowComponentGenerator}-Klasse},captionpos=b, language=JavaScript,label={lst:ccr}]
+checkComponentRef(ref: ComponentRef<any>, component: RegisterComponent) {
+	if (component.options) {
+		if (component.options.zones) {
+			(ref.instance as ZoneComponent).zones = component.options.zones;
+		}
+		
+		if (component.options.label) {
+			(ref.instance as ComponentValueConfigurator).setLabel(
+			component.options.label
+			);
+		}
+		
+		if (component.options.phonePrefix) {
+			(ref.instance as PhoneComponent).setPhonePrefix(
+			component.options.phonePrefix
+			);
+		}
+	}
+}
+\end{lstlisting}
+
+Abschließend werden noch CSS-Klassen für bestimmte Componente vergeben.
 
 \begin{figure}[H]
 	\centerline{
@@ -145,4 +227,10 @@ export class ValueMapper {
 	\vskip0pt
 	\caption{Visualisierter Datenfluss vom Template bis zum fertigen RF}
 \end{figure}
+
+\section{Die Validierungsmethodik}
+
+\section{Die Komfortfunktionen}
+
+
 
