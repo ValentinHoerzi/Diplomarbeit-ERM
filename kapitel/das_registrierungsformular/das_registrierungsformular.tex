@@ -109,6 +109,30 @@ Die im Listing~\ref{lst:analyzeRow} beschriebene \texttt{analyzeRow()}-Methode n
 
 Anschließend wird in Zeile 19 sicher gestellt, dass eine Privatperson keine Auswahl einer Firma präsentiert wird.
 
+Um nun tatsächlich aus dem Template Objekte zu erzeugen, wird ab Zeile 23 über Schlüssel einer Map, beschrieben im Listing~\ref{lst:valueMap}, welche den String eines Templates als \texttt{key} und den korrespondierenden Objekten als \texttt{value} hat, iteriert. 
+
+\begin{lstlisting}[caption={Vordefiniertes Template für das RF},captionpos=b, language=JavaScript,label={lst:valueMap}]
+export class ValueMapper {
+	static COMPONENT_VALUE_MAP: Map<string, Type<any>> = new Map();
+	
+	static COMPONENT_VALUE_MAPPER(){
+		this.COMPONENT_VALUE_MAP.set('firstname', FirstnameComponent);
+		this.COMPONENT_VALUE_MAP.set('lastname', LastnameComponent);
+		this.COMPONENT_VALUE_MAP.set('company', BusinessNameComponent);
+		this.COMPONENT_VALUE_MAP.set('address1', StreetComponent);
+		this.COMPONENT_VALUE_MAP.set('zip', PostalcodeComponent);
+		this.COMPONENT_VALUE_MAP.set('city', CityComponent);
+		this.COMPONENT_VALUE_MAP.set('phone', PhoneComponent);
+		this.COMPONENT_VALUE_MAP.set('dateOfBirth', DateofbirthComponent);
+		this.COMPONENT_VALUE_MAP.set('gender', GenderComponent);
+		this.COMPONENT_VALUE_MAP.set('zone', ZoneComponent);
+		this.COMPONENT_VALUE_MAP.set('province', ZoneComponent);
+		this.COMPONENT_VALUE_MAP.set('state', ZoneComponent);
+		return ValueMapper.COMPONENT_VALUE_MAP;
+	}
+}
+\end{lstlisting}
+
 
 \section{Die Validierungsmethodik}
 
