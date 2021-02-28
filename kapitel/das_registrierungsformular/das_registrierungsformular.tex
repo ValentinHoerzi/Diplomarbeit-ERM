@@ -1,6 +1,148 @@
 \chapter{Das Registrierungsformular}
-\section{Der Algorithmus dahinter}
+
+Der wohl komplizierteste Teil dieser Diplomarbeit ist der Aufbau und die korrekte Validierung des Registrierungsformulars. Das Ziel ist den Benutzern eine möglichst einfache und schnelle Registrierung, unter Berücksichtigung des derzeitigen Standorts und der dazugehörigen Benutzergruppe, anzubieten. Dafür wurde ein Algorithmus entwickelt, welcher bei der \texttt{ngAfterViewInit} Lifecycle-Hook-Methode im \texttt{UserprofileComponent} seinen Start nimmt.
+
+\section{Der Algorithmus hinter dem dynamischen Aufbau}
+
+\begin{figure}[H]
+	\centerline{
+		\includegraphics[width=1\textwidth, frame]{./grafiken/RF_Flussdiagramm.png}
+	}
+	\vskip0pt
+	\caption{Flussdiagramm des Algorithmus}
+	\label{fig:fc}
+\end{figure}
+
+Wenn das User-Objekt, welches von der Backend API abgefragt und erfolgreich als globale Objekt variable gespeichert wurde, wird die \texttt{initiateDynamicComponentConfigu\\ration()}-Methode aufgerufen. Aus Performance-Gründen basiert die nächste Überprüfung auf den Wert der aktuellen Lokale. Gleicht dieser den Wert "AT", so wird ein vorgefertigtes Template für ein österreichisches RF, dargestellt im Listing~\ref{lst:template_form_aut}, für die Weiterverwendung benützt. Da davon ausgegangen wird, dass sich vor allem in der Anfangsphase nach der Veröffentlichung hauptsächlich österreichische Kunden ein Konto erstellen, spart dieser Weg enorm viel Zeit, da sofort mit der Erstellung des RF begonnen werden kann.
+
+\begin{lstlisting}[caption={Vordefiniertes Template für das RF},captionpos=b, language=JavaScript,label={lst:template_form_aut}]
+export const AUSTRIAN_PRIVATE_PERSON_FORM_Template = [
+	[{ type: GenderComponent }],
+	[
+		{ type: FirstnameComponent, options: { label: "Vorname" } },
+		{ type: LastnameComponent, options: { label: "Nachname" } },
+	],
+	[{ type: StreetComponent, options: { label: "Straße und Hausnummer" } }],
+	[
+		{ type: CityComponent, options: { label: "Stadt" } },
+		{ type: PostalcodeComponent, options: { label: "Postleitzahl" } },
+	],
+	[
+	{
+		type: PhoneComponent,
+		options: { label: "Telefonnummer", phonePrefix: 43 },
+	},
+	{ type: DateofbirthComponent },
+	],
+];
+\end{lstlisting}
+
+Anderenfalls wird als nächster Schritt die \texttt{handleTemplateCall()}-Methode aufgerufen, markiert im Flussdiagramm~\ref{fig:fc} mit [1], welche, basierend auf den Wert der aktuellen Lokale, auf die Shopify API zugreift, um ein \texttt{Country}-Objekt abzurufen. Wurde diese Operation beendet folgt ein Update auf die Labels für den Wrapper der Objekte für das RF. Nach dem das Template geladen wurde, wird über jedes einzelne Element iteriert, markiert im Flussdiagramm~\ref{fig:fc} mit [2], um daraus eine oder mehrere Zeilen zu generieren. Anschließend werden diese in ein 2D Array gespeichert, welches dann der \texttt{generateDynamicView()}-Methode zu Generierung des RF übergeben wird. 
+
+\begin{lstlisting}[caption={Erstellung des 2D Arrays für den Aufbau des RF},captionpos=b, language=JavaScript,label={lst:analyzeRow}]
+private analyzeRow(row: string[]): RegisterComponent[][] {
+	let addGenderC = false;
+	let result: RegisterComponent[][] = [];
+	let componentRow: RegisterComponent[] = [];
+	
+	for (let i = 0; i < row.length; i++) {
+		let rowEl = row[i];
+		
+		if (!addGenderC) {
+			if (rowEl.includes("firstName") || rowEl.includes("lastName")) {
+				let genderComponent: RegisterComponent[] = [
+				{ type: GenderComponent },
+				];
+				result.push(genderComponent);
+				addGenderC = true;
+			}
+		}
+		
+		if (rowEl.includes("company") && this.user.isPrivatePerson) {
+			break;
+		}
+		
+		for (const x of this.valueMap.keys()) {
+			if (rowEl.includes(x)) {
+				let compEl: RegisterComponent = {
+					type: this.valueMap.get(x),
+				};
+				
+				if (
+				compEl.type.prototype ===
+				ZoneComponent.prototype
+				) {
+					compEl.options.zones = this.countryFromService.zones.map(
+					(x) => x.name
+					);
+					this.user.zone = compEl.options.zones[0];
+				}
+				
+				if (
+				compEl.type.prototype ===
+				PhoneComponent.prototype
+				) {
+					compEl.options.phonePrefix = this.countryFromService.phoneNumberPrefix;
+				}
+				
+				if (this.labels.get(x)) {
+					compEl.options.label = this.labels.get(x);
+				}
+				
+				componentRow.push(compEl);
+				if (rowEl.includes("phone")) {
+					let dateofbirthComponent: RegisterComponent = {
+						type: DateofbirthComponent,
+					};
+					componentRow.push(dateofbirthComponent);
+				}
+				break;
+			}
+		}
+	}
+	result.push(componentRow);
+	return result;
+}
+\end{lstlisting}
+
+Die im Listing~\ref{lst:analyzeRow} beschriebene \texttt{analyzeRow()}-Methode nimmt ein Array von Zeichenfolgen als Parameter und gibt ein 2D-Array von \texttt{RegisterComponent}-Wrapper-Objekten zurück. Obwohl nur eine Reihe aus dem Template, also z. B. \texttt{[\{firstName\} \{lastname\}]}, überprüft wird, kann es wie in diesem Fall sein, dass ein Input zusätzlich darüber erzeugt werden muss. So wird in Zeile 9 überprüft, ob der \texttt{GenderComponent} schon hinzugefügt wurde. Trifft das und die Überprüfung, ob in diesem Durchgang der \texttt{FirstnameComponent} und der \texttt{LastnameComponent} erzeugt werden, wird der \texttt{GenderComponent} als erster eingefügt. Dieser ist für die Auswahl der Anrede zuständig. Der selbe Mechanismus kann auch in Zeile 51 gefunden werden, wo es nötig ist, den \texttt{DateofbirthComponent}, welcher für die Eingabe des Geburtstages verantwortlich ist, neben den \texttt{PhoneComponent} zu generieren.
+
+Anschließend wird in Zeile 19 sicher gestellt, dass eine Privatperson keine Auswahl einer Firma präsentiert wird.
+
+Um nun tatsächlich aus dem Template Objekte zu erzeugen, wird ab Zeile 23 über Schlüssel einer Map, beschrieben im Listing~\ref{lst:valueMap}, welche den String eines Templates als \texttt{key} und den korrespondierenden Objekten als \texttt{value} hat, iteriert. 
+
+\begin{lstlisting}[caption={Vordefiniertes Template für das RF},captionpos=b, language=JavaScript,label={lst:valueMap}]
+export class ValueMapper {
+	static COMPONENT_VALUE_MAP: Map<string, Type<any>> = new Map();
+	
+	static COMPONENT_VALUE_MAPPER(){
+		this.COMPONENT_VALUE_MAP.set('firstname', FirstnameComponent);
+		this.COMPONENT_VALUE_MAP.set('lastname', LastnameComponent);
+		this.COMPONENT_VALUE_MAP.set('company', BusinessNameComponent);
+		this.COMPONENT_VALUE_MAP.set('address1', StreetComponent);
+		this.COMPONENT_VALUE_MAP.set('zip', PostalcodeComponent);
+		this.COMPONENT_VALUE_MAP.set('city', CityComponent);
+		this.COMPONENT_VALUE_MAP.set('phone', PhoneComponent);
+		this.COMPONENT_VALUE_MAP.set('dateOfBirth', DateofbirthComponent);
+		this.COMPONENT_VALUE_MAP.set('gender', GenderComponent);
+		this.COMPONENT_VALUE_MAP.set('zone', ZoneComponent);
+		this.COMPONENT_VALUE_MAP.set('province', ZoneComponent);
+		this.COMPONENT_VALUE_MAP.set('state', ZoneComponent);
+		return ValueMapper.COMPONENT_VALUE_MAP;
+	}
+}
+\end{lstlisting}
+
 
 \section{Die Validierungsmethodik}
 
 \section{Die Komfortfunktionen}
+
+\begin{figure}[H]
+	\centerline{
+		\includegraphics[width=1\textwidth, frame]{./grafiken/RF_Datenvisualisierung.png}
+	}
+	\vskip0pt
+	\caption{Visualisierter Datenfluss vom Template bis zum fertigen RF}
+\end{figure}
+
