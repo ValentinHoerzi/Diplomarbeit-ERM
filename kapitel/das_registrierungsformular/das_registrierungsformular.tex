@@ -149,6 +149,14 @@ Als letzter Schritt in dieser Methode werden von Zeile 46 bis 48 die Labels, wel
 
 Nach dem Abschluss wird das Ergebnis an die Schleife der \texttt{initiateDynamicComponent\\Configuration()}-Methode geliefert und als Zwischenergebnis gespeichert. Wenn die Iteration fertig ist, werden die Zwischenergebnisse zusammengefasst und an die nächste Methode übergeben.
 
+\begin{figure}[h]
+	\centerline{
+		\includegraphics[width=1\textwidth, frame]{./grafiken/RF_Visualisierter Ablauf_1.png}
+	}
+	\vskip0pt
+	\caption{Visualisierter Datenfluss vom Template bis zur Erstellung des 2D-Arrays}
+\end{figure}
+
 \subsection{\texttt{generateDynamicView(data: RegisterComponent[][])}}
 
 \begin{lstlisting}[caption={Die \texttt{generateDynamicView()}-Methode},captionpos=b, language=JavaScript,label={lst:generateDynamicView}]
@@ -165,8 +173,8 @@ this.bindUserDataToViewData();
 }
 \end{lstlisting}
 
-Die \texttt{generateDynamicView()}-Methode iteriert über jedes Array, um eine \texttt{AutoRow\\ComponentGenerator}-Klasse zu erzeugen. Aus jedem Array in dem 2D-Array wird also eine eigene Reihe für das RF erzeugt. Dabei wird die von Angular bereitgestellte \texttt{ComponentFactoryResolver}-Klasse verwendet, um aus einer Klasse einen Component zu erstellen. 
-Jede Reiher, also jeder\texttt{AutoRowComponentGenerator}, wird dann nacheinander in die HTML-Datei durch eine \texttt{ViewContainerRef} eingefügt. Die \texttt{ViewContainerRef} verweist auf ein HTML-Element, wie es das Listing~\ref(lst:html) beschreibt.
+Die \texttt{generateDynamicView()}-Methode, markiert im Flussdiagramm~\ref{fig:fc} mit [3], iteriert über jedes Array, um eine \texttt{AutoRowComponentGenerator}-Klasse zu erzeugen. Aus jedem Array in dem 2D-Array wird also eine eigene Reihe für das RF erzeugt. Dabei wird die von Angular bereitgestellte \texttt{ComponentFactoryResolver}-Klasse verwendet, um aus einer Klasse einen Component zu erstellen. 
+Jede Reiher, also jeder \texttt{AutoRowComponentGenerator}, wird dann nacheinander in die HTML-Datei durch eine \texttt{ViewContainerRef} eingefügt. Die \texttt{ViewContainerRef} verweist auf ein HTML-Element, wie es das Listing~\ref{lst:html} beschreibt.
 
 \begin{lstlisting}[caption={ViewContainerRef verweist auf \#componentHook},captionpos=b, language=JavaScript,label={lst:html}]
 <form #dynamicForm>
@@ -196,6 +204,8 @@ ngAfterViewInit(): void {
 
 Anders als bei der \texttt{generateDynamicView()}-Methode wird nicht über ein 2D-Array iteriert, um ein Array an Daten zu übergeben, sondern über das tatsächliche Array, welches eine Reihe aus Feldern repräsentiert. Diese werden dann nach der Reihe auf die selbe Weise erzeugt. \texttt{checkComponentRef()} bindet die \texttt{options} der Wrapper-Klasse an die erzeugten Components, wie im Listing~\ref{lst:ccr} gezeigt wird.
 
+\newpage
+
 \begin{lstlisting}[caption={Die \texttt{checkComponentRef()}-Methode der \texttt{AutoRowComponentGenerator}-Klasse},captionpos=b, language=JavaScript,label={lst:ccr}]
 checkComponentRef(ref: ComponentRef<any>, component: RegisterComponent) {
 	if (component.options) {
@@ -218,14 +228,14 @@ checkComponentRef(ref: ComponentRef<any>, component: RegisterComponent) {
 }
 \end{lstlisting}
 
-Abschließend werden noch CSS-Klassen für bestimmte Componente vergeben.
+Abschließend werden noch CSS-Klassen für bestimmte Komponenten vergeben.
 
 \begin{figure}[H]
 	\centerline{
-		\includegraphics[width=1\textwidth, frame]{./grafiken/RF_Datenvisualisierung.png}
+		\includegraphics[width=1\textwidth, frame]{./grafiken/RF_Visualisierter Ablauf_2.png}
 	}
 	\vskip0pt
-	\caption{Visualisierter Datenfluss vom Template bis zum fertigen RF}
+	\caption{Visualisierter Datenfluss vom 2D-Array bis zum fertigen RF}
 \end{figure}
 
 \section{Die Validierungsmethodik}
