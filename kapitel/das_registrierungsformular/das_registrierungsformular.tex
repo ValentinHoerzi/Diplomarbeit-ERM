@@ -249,7 +249,7 @@ Um auf die Google-API zugriff zu erhalten, wurde ein Google-API-Key erzeugt. Die
 	
 	\item Sicherheit: Der API-Key wird nur dann als \texttt{script}-Element in den HTML-Head geladen, wenn dieser auch zur Verwendung gebraucht wird. Das dient dazu, dass der API-Key nicht sofort bei Hackerattacken oder von Webcrawler ausgelesen werden kann.
 	
-	\item Geschwindigkeit: Je mehr \texttt{script}-Elemente im HTML-Head geladen werden, umso langsamer ist die Website beim Aufruf.
+	\item Geschwindigkeit: Da diese Google-JS-Library keine Tree-Shakable-Library ist, sprich, man muss die komplette Bibliothek an Funktionen importieren, ist das Laden sehr zeitaufwändig. Je mehr \texttt{script}-Elemente im HTML-Head geladen werden, umso langsamer ladet die Website beim Aufruf.
 	
 	\item Preis: Je öfter der API-Key als \texttt{script}-Elemente im HTML-Head geladen wird, umso öfter wird von Google ein Preis für die Benutzung verrechnet.
 \end{itemize}
@@ -275,7 +275,7 @@ ngOnInit() {
 }
 \end{lstlisting}
 
-Der, auf in Zeile 3 verwiesene \texttt{this.param,} ist ein \texttt{@Input('script')}-Element, welches der API-Key übergeben wird. 
+Der, auf in Zeile 3 verwiesene \texttt{this.param,} ist ein \texttt{@Input('script')}-Element, welches der API-Key übergeben wird. Wenn die \texttt{LoadScriptDirective} nicht mehr aktiv ist, wird das \texttt{script}-Element wieder aus dem DOM entfernt.
 
 \subsubsection{Implementierung}
 Die automatischen Adressvervollständigungsvorschläge kommen beim Laden des \texttt{Street-\\Component} zum Einsatz. Wenn der Benutzer im Feld \texttt{Straße und Hausnummer*} anfängt seine Adresse einzutippen, werden ihm automatische Vorschläge, basierend auf dem aktuell ausgewähltem Land, von der API präsentiert. 
@@ -352,4 +352,4 @@ Das interessante daran ist, dass, wenn manuell eine Adresse eines anderen Landes
 
 \subsection{Automatische Telefonnummerprefix Erkennung}
 
-Wie im Kapitel~\ref{ssec:lblAnalyzeRow}[\texttt{analyzeRow()}] bereits erklärt wird, wird die Telefonnummernvorwahl aus dem \texttt{Country}-Objekt der Shopify-API gelesen und in die \texttt{options} als \texttt{phoneNumberPrefix}-Property der Wrapper-Klasse gespeichert.
+Wie im Kapitel~\ref{ssec:lblAnalyzeRow} [\texttt{analyzeRow()}] bereits erklärt wird, wird die Telefonnummernvorwahl aus dem \texttt{Country}-Objekt der Shopify-API gelesen und in die \texttt{options} als \texttt{phoneNumberPrefix}-Property der Wrapper-Klasse gespeichert.
