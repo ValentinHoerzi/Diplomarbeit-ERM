@@ -1,13 +1,13 @@
 \chapter{CI / CD}
 \section{Was ist CI/CD}
 
-Es handelt sich hier um Methode, bei der den Kunden regelmäßig Apps bereitgestellt und alle Phasen der Anwendungsentwicklung automatisiert werden. Die Hauptkonzepte von CI/CD sind Continuous Integration, Continuous Delivery und Continuous Deployment. CI/CD löst die Probleme, welche die Integration von neuem Code für DevOps-Teams verursachen kann.\cite{whatIsCICD}
+Es handelt sich hier um eine Methode, bei der den Kunden regelmäßig Apps bereitgestellt und alle Phasen der Anwendungsentwicklung automatisiert werden. Die Hauptkonzepte von CI/CD sind Continuous Integration, Continuous Delivery und Continuous Deployment. CI/CD löst die Probleme, welche die Integration von neuem Code für DevOps-Teams verursachen kann.\cite{whatIsCICD}
 
 Insbesondere sorgt CI/CD für eine kontinuierliche Automatisierung und Überwachung über den gesamten App-Lifecycle hinweg, von der Integrations- und Test- bis hin zur Bereitstellungs- und Implementierungsphase. Diese zusammenhängenden Praktiken werden oft als „CI/CD-Pipeline“ bezeichnet, und sie werden durch eine agile Zusammenarbeit der DevOps-Teams unterstützt.\autocite{whatIsCICD}
 
 Die Abkürzung CI/CD hat unterschiedliche Bedeutungen. „CI“ bedeutet Continuous Integration, also der Automatisierungsprozess für Entwickler. Bei einer erfolgreichen CI werden regelmäßig neue Codeänderungen für Apps entwickelt, geprüft und in einem gemeinsamen Repository zusammengeführt. Damit soll der Konflikt verhindert werden, den zu viele Branches einer App verursachen können, wenn sie zeitgleich entwickelt werden.\autocite{whatIsCICD}
 
-„CD“ bedeutet Continuous Delivery bzw. Continuous Deployment. Dass sind verwandte Konzepte, die zuweilen synonym verwendet werden. Obwohl es bei beiden Konzepten um die Automatisierung weiterer Phasen der Pipeline geht, werden die Begriffe manchmal unterschiedlich verwendet, um das Ausmaß der Automatisierung zu verdeutlichen.\autocite{whatIsCICD}
+„CD“ bedeutet Continuous Delivery bzw. Continuous Deployment. Das sind verwandte Konzepte, die zuweilen synonym verwendet werden. Obwohl es bei beiden Konzepten um die Automatisierung weiterer Phasen der Pipeline geht, werden die Begriffe manchmal unterschiedlich verwendet, um das Ausmaß der Automatisierung zu verdeutlichen.\autocite{whatIsCICD}
 
 Continuous Delivery bedeutet üblicherweise, dass App-Änderungen eines Entwicklers automatisch auf Bugs getestet und in ein Repository (wie GitHub oder eine Container-Registry) hochgeladen werden, von wo aus sie vom Operations-Team in einer Live-Produktivumgebung bereitgestellt werden können. Dieser Vorgang ist die Antwort auf Transparenz- und Kommunikationsprobleme zwischen Dev- und Business-Teams. Damit soll sichergestellt werden, dass neuer Code mit minimalem Aufwand implementiert werden kann.\autocite{whatIsCICD}
 
@@ -24,7 +24,7 @@ Continuous Deployment (das andere „CD“) kann sich auf die automatische Freig
 
 Manchmal sind mit CI/CD lediglich die zusammenhängenden Praktiken der Continuous Integration und der Continuous Delivery, manchmal aber auch alle drei Konzepte der Continuous Integration, Continuous Delivery und Continuous Deployment gemeint. Noch komplizierter wird das Ganze dadurch, dass mit Continuous Delivery zuweilen auch die Prozesse des Continuous Deployment mitgemeint sind.\autocite{whatIsCICD}
 
-Letztendlich bringen uns diese Details jedoch nicht weiter. Sehen Sie CI/CD einfach als Prozess an, der nicht selten als Pipeline visualisiert wird und der ein hohes Maß an kontinuierlicher Automatisierung und Überwachung bei der Anwendungsentwicklung umfasst. Je nach Fall hängt die Auslegung des Begriffs vom Grad der Automatisierung der CI/CD-Pipeline ab. Viele Unternehmen arbeiten zunächst mit CI und setzen den Prozess später mit der automatischen Bereitstellung und Implementierung fort, z. B. bei cloudnativen Apps.\autocite{whatIsCICD}
+Letztendlich bringen uns diese Details jedoch nicht weiter. Man sollte CI/CD einfach als Prozess ansehen, der nicht selten als Pipeline visualisiert wird und der ein hohes Maß an kontinuierlicher Automatisierung und Überwachung bei der Anwendungsentwicklung umfasst. Je nach Fall hängt die Auslegung des Begriffs vom Grad der Automatisierung der CI/CD-Pipeline ab. Viele Unternehmen arbeiten zunächst mit CI und setzen den Prozess später mit der automatischen Bereitstellung und Implementierung fort, z. B. bei cloudnative Apps.\autocite{whatIsCICD}
 
 \section{Continuous Integration}
 
@@ -49,7 +49,7 @@ In der Praxis bedeutet Continuous Deployment, dass App-Änderungen eines Entwick
 Pipelines sind top-level Komponenten der Continuous Integration, Delivery und Deployment. Pipelines umfassen:\autocite{gitlabPipelines}
 
 \begin{itemize}
-	\item Jobs, welche definieren \textit{was} auszuführen ist. Zum Beispiel gibt es Jobs, welche den Code kompilieren, Packete installieren und testen.
+	\item Jobs, welche definieren \textit{was} auszuführen ist. Zum Beispiel gibt es Jobs, welche den Code kompilieren, Pakete installieren und testen.
 	\item Stages, welche definieren \textit{wann} Jobs auszuführen sind. Beispielsweise ist die Kompile-Stage üblicherweise vor der Test-Stage.
 \end{itemize}
 
@@ -183,7 +183,7 @@ Da die Diplomarbeit aus einem Angular-Frontend (\texttt{src/MyPoettinger.App}) u
 
 Jetzt wird das Listing~\ref{lst:lstBuildStage} beschrieben. Bei dem \texttt{build\_dotnet} Job wird am Anfang \texttt{dotnet restore} ausgeführt, welcher mithilfe von NuGet die Abhängigkeiten des Projektes wieder herstellt. 
 
-Der \texttt{dotnet build}-Befehl erstellt das Projekt und die zugehörigen Abhängigkeiten in einen Satz von Binärdateien. Die Binärdateien enthalten den Projektcode in IL-Dateien (Intermediate Language) mit der Erweiterung DLL. Abhängig vom Projekttyp und den Einstellungen können auch andere Dateien enthalten sein.\cite{dotnetBuildDesc} Im Anschluss des Vorgangs wird das Test-Verzeichnis als Artefakt gespeichert, um dieses Anschließen in der Test-Stage zu testen.
+Der \texttt{dotnet build}-Befehl erstellt das Projekt und die zugehörigen Abhängigkeiten in einen Satz von Binärdateien. Die Binärdateien enthalten den Projektcode in IL-Dateien (Intermediate Language) mit der Erweiterung DLL. Abhängig vom Projekttyp und den Einstellungen können auch andere Dateien enthalten sein.\cite{dotnetBuildDesc} Im Anschluss des Vorgangs wird das Test-Verzeichnis als Artefakt gespeichert, um dieses anschließend in der Test-Stage zu testen.
 
 Durch den Node Package Manager, kurz \texttt{npm}, werden mit dem Befehl \texttt{npm install} alle benötigten Pakete für das Angular Projekt heruntergeladen und installiert. Da allerdings im zuvor standardmäßig definierten dotnet-Image kein Node installiert ist, wechseln wir in \texttt{build\_angular} auf das \texttt{trion/ng-cli:10.0.4} Image, da es sich hier um eine sehr kleine Node-Umgebung handelt. Im folgenden Schritt wird mit \texttt{npm audit fix} erörtert, welche Pakete mögliche Sicherheitsrisiken darstellen. Diese werden danach automatisch behoben. 
 
@@ -310,7 +310,7 @@ Beide Jobs, \texttt{containerize\_dotnet} und \texttt{containerize\_angular}, k�
 
 Um ein Docker-Image der gebündelten DotNet-Applikation zu  erstellen, wird im Job \texttt{containerize\_dotnet}, dargestellt im Listing~\ref{lst:lstImagesStage}, ein temporäres \texttt{Dockerfile} im Hauptverzeichnis der Applikation erstellt. Da die Angular-Jobs durchschnittlich 2 Minuten schneller als die Dotnet-Jobs sind, entstehen hier keine Probleme mit dem \texttt{containerize\_\\angular}-Job. Um das Image tatsächlich zu erstellen wird \textbf{\texttt{kaniko}} verwendet.
 
-Das Kaniko-Executor-Image ist dafür verantwortlich, ein Image aus einem Dockerfile zu erstellen und es in eine Container-Registry zu schieben. Innerhalb des Kaniko-Executor-Image extrahieren wir das Dateisystem des Basisabbilds (das FROM-Abbild im Dockerfile). Anschließend führen wir die Befehle in dem Dockerfile aus und erstellen nach jedem Befehl einen Snapshot des Dateisystems im Userspace. Nach jedem Befehl wird eine Schicht mit geänderten Dateien an das Basis-Image angehängt (falls vorhanden) und die Metadaten des Images werden aktualisiert\cite{kaniko}.kaniko ist nicht von einem Docker-Daemon abhängig und führt jeden Befehl innerhalb eines Dockerfiles vollständig im Userspace aus. Dies ermöglicht die Erstellung von Container-Images in Umgebungen, in denen ein Docker-Daemon nicht einfach oder sicher ausgeführt werden kann, wie z. B. in einem Standard-Kubernetes-Cluster.\cite{kaniko}
+Das Kaniko-Executor-Image ist dafür verantwortlich, ein Image aus einem Dockerfile zu erstellen und es in eine Container-Registry zu schieben. Innerhalb des Kaniko-Executor-Image extrahieren wir das Dateisystem des Basisabbilds (das FROM-Abbild im Dockerfile). Anschließend führen wir die Befehle in dem Dockerfile aus und erstellen nach jedem Befehl einen Snapshot des Dateisystems im Userspace. Nach jedem Befehl wird eine Schicht mit geänderten Dateien an das Basis-Image angehängt (falls vorhanden) und die Metadaten des Images werden aktualisiert\cite{kaniko}. Kaniko ist nicht von einem Docker-Daemon abhängig und führt jeden Befehl innerhalb eines Dockerfiles vollständig im Userspace aus. Dies ermöglicht die Erstellung von Container-Images in Umgebungen, in denen ein Docker-Daemon nicht einfach oder sicher ausgeführt werden kann, wie z. B. in einem Standard-Kubernetes-Cluster.\cite{kaniko}
 
 Das Dockerimage des Jobs holt sich das \texttt{mcr.microsoft.com/dotnet/sdk:5.0}-Image, kopiert die \texttt{publish\_dotnet}-Artefakte in das Hauptverzeichnis des Containers, öffnet den Port 80, um auf diesen von außen zugreifen zu können und führt die .dll-Datei aus.
 
