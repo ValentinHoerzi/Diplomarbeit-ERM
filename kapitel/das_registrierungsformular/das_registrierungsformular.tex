@@ -204,7 +204,7 @@ ngAfterViewInit(): void {
 }
 \end{lstlisting}
 
-Anders als bei der \texttt{generateDynamicView()}-Methode wird nicht über ein 2D-Array iteriert, um ein Array an Daten zu übergeben, sondern über das tatsächliche Array, welches eine Reihe aus Feldern repräsentiert. Diese werden dann nach der Reihe auf die selbe Weise erzeugt. \texttt{checkComponentRef()} bindet die \texttt{options} der Wrapper-Klasse an die erzeugten Components, wie im Listing~\ref{lst:ccr} gezeigt wird.
+Anders als bei der \texttt{generateDynamicView()}-Methode wird nicht über ein 2D-Array iteriert, um ein Array an Daten zu übergeben, sondern über das tatsächliche Array, welches eine Reihe aus Feldern repräsentiert. Diese werden dann nach der Reihe auf die selbe Weise erzeugt. \texttt{checkComponentRef()} bindet die \texttt{options} der Wrapper-Klasse an die erzeugten Components, wie im Listing~\ref{lst:ccr} gezeigt wird. So ist es nun möglich, das RF dynamisch zur Laufzeit zu Erzeugen und in der UI anzuzeigen.
 
 \newpage
 
@@ -243,6 +243,8 @@ Abschließend werden noch CSS-Klassen für bestimmte Komponenten vergeben.
 \section{Die Validierungsmethodik}
 
 \section{Die Komfortfunktionen}
+\subsection{Automatische Adressvervollständigungsvorschläge}
 
+\subsection{Ermittlung des Standorts durch die IP - Use my location}
 
-
+\subsection{Automatische Telefonnummerprefix Erkennung}
