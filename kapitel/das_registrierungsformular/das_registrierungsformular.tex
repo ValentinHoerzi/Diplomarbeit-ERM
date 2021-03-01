@@ -13,11 +13,11 @@ Der wohl komplizierteste Teil dieser Diplomarbeit ist der Aufbau und die korrekt
 	\label{fig:fc}
 \end{figure}
 
-\subsection{\texttt{initiateDynamicComponentConfiguration()}}
+\subsection{\texttt{initiateDynamicComponentConfiguration()}} \label{ssec:lblInitDCC}
 
-Wenn das User-Objekt, welches von der Backend-API abgefragt und erfolgreich als globale Objektvariable gespeichert wurde, wird die \texttt{initiateDynamicComponentConfigu\\ration()}-Methode aufgerufen. Aus Performance-Gründen basiert die nächste Überprüfung auf dem Wert der aktuellen Lokale. Gleicht dieser den Wert "AT", so wird ein vorgefertigtes Template für ein österreichisches RF, dargestellt im Listing~\ref{lst:template_form_aut}, für die Weiterverwendung benützt. Da davon ausgegangen wird, dass sich vor allem in der Anfangsphase nach der Veröffentlichung hauptsächlich österreichische Kunden ein Konto erstellen, spart dieser Weg enorm viel Zeit, da sofort mit der Erstellung des RF begonnen werden kann.
+Wenn das User-Objekt, welches von der Backend-API abgefragt und erfolgreich als globale Objektvariable gespeichert wurde, wird die \texttt{initiateDynamicComponent-\\Configuration()}-Methode aufgerufen. Aus Performance-Gründen basiert die nächste Überprüfung auf dem Wert der aktuellen Lokale. Gleicht dieser den Wert "AT", so wird ein vorgefertigtes Template für ein österreichisches RF, dargestellt im Listing~\ref{lst:template_form_aut}, für die Weiterverwendung benützt. Da davon ausgegangen wird, dass sich vor allem in der Anfangsphase nach der Veröffentlichung hauptsächlich österreichische Kunden ein Konto erstellen, spart dieser Weg enorm viel Zeit, da sofort mit der Erstellung des RF begonnen werden kann.
 
-\begin{lstlisting}[caption={Vordefiniertes Template für das RF},captionpos=b, language=JavaScript,label={lst:template_form_aut}]
+\begin{lstlisting}[caption={Vordefiniertes Template für das RF}, language=JavaScript,label={lst:template_form_aut}]
 export const AUSTRIAN_PRIVATE_PERSON_FORM_Template = [
 	[{ type: GenderComponent }],
 	[
@@ -43,9 +43,9 @@ export const AUSTRIAN_PRIVATE_PERSON_FORM_Template = [
 
 Anderenfalls wird als nächster Schritt die \texttt{handleTemplateCall()}-Methode, markiert im Flussdiagramm~\ref{fig:fc} mit [1], aufgerufen, welche, basierend auf dem Wert der aktuellen Lokale, auf die Shopify-API zugreift, um ein \texttt{Country}-Objekt abzurufen. Wurde diese Operation beendet, folgt ein Update auf eine Map, welche vorläufig die Labels für die Wrapper-Objekte speichert. Nachdem das Template geladen wurde, wird über jedes einzelne Element iteriert, markiert im Flussdiagramm~\ref{fig:fc} mit [2], um daraus eine oder mehrere Zeilen zu generieren. Anschließend werden diese in ein 2D-Array gespeichert, welches dann der \texttt{generateDynamicView()}-Methode zur Generierung des RF übergeben wird.
 
-\subsection{\texttt{analyzeRow()}}
+\subsection{\texttt{analyzeRow()}} \label{ssec:lblAnalyzeRow}
 
-\begin{lstlisting}[caption={Erstellung des 2D-Arrays für den Aufbau des RF},captionpos=b, language=JavaScript,label={lst:analyzeRow}]
+\begin{lstlisting}[caption={Erstellung des 2D-Arrays für den Aufbau des RF}, language=JavaScript,label={lst:analyzeRow}]
 private analyzeRow(row: string[]): RegisterComponent[][] {
 	let addGenderC = false;
 	let result: RegisterComponent[][] = [];
@@ -119,7 +119,7 @@ Anschließend wird in Zeile 19 sicher gestellt, dass eine Privatperson keine Aus
 
 Um nun tatsächlich aus dem Template Objekte zu erzeugen, wird ab Zeile 23 über Schlüssel einer Map, beschrieben im Listing~\ref{lst:valueMap}, welche den String eines Templates als \texttt{key} und den korrespondierenden Component-Objekten als \texttt{value} hat, iteriert. 
 
-\begin{lstlisting}[caption={valueMap in der \texttt{analyzeRow()}-Methode},captionpos=b, language=JavaScript,label={lst:valueMap}]
+\begin{lstlisting}[caption={valueMap in der \texttt{analyzeRow()}-Methode}, language=JavaScript,label={lst:valueMap}]
 export class ValueMapper {
 	static COMPONENT_VALUE_MAP: Map<string, Type<any>> = new Map();
 	
@@ -149,7 +149,7 @@ Im Anschluss wird ebenfalls von diesem Objekt die Telefonnummernvorwahl in die \
 
 Als letzter Schritt in dieser Methode werden von Zeile 46 bis 48 die Labels, welche vorher in einer Map gespeichert wurden, als \texttt{label}-Property in die \texttt{options} der Wrapper-Objekte gespeichert. 
 
-Nach dem Abschluss wird das Ergebnis an die Schleife der \texttt{initiateDynamicComponent\\Configuration()}-Methode geliefert und als Zwischenergebnis gespeichert. Wenn die Iteration fertig ist, werden die Zwischenergebnisse zusammengefasst und an die nächste Methode übergeben.
+Nach dem Abschluss wird das Ergebnis an die Schleife der \texttt{initiateDynamicComponent-\\Configuration()}-Methode geliefert und als Zwischenergebnis gespeichert. Wenn die Iteration fertig ist, werden die Zwischenergebnisse zusammengefasst und an die nächste Methode übergeben.
 
 \begin{figure}[h]
 	\centerline{
@@ -161,7 +161,7 @@ Nach dem Abschluss wird das Ergebnis an die Schleife der \texttt{initiateDynamic
 
 \subsection{\texttt{generateDynamicView(data: RegisterComponent[][])}}
 
-\begin{lstlisting}[caption={Die \texttt{generateDynamicView()}-Methode},captionpos=b, language=JavaScript,label={lst:generateDynamicView}]
+\begin{lstlisting}[caption={Die \texttt{generateDynamicView()}-Methode}, language=JavaScript,label={lst:generateDynamicView}]
 generateDynamicView(data: RegisterComponent[][]) {
 for (const element of data) {
 	const factory = this.componentFactoryResolver.
@@ -176,9 +176,9 @@ this.bindUserDataToViewData();
 \end{lstlisting}
 
 Die \texttt{generateDynamicView()}-Methode, markiert im Flussdiagramm~\ref{fig:fc} mit [3], iteriert über jedes Array, um eine \texttt{AutoRowComponentGenerator}-Klasse zu erzeugen. Aus jedem Array in dem 2D-Array wird also eine eigene Reihe für das RF erzeugt. Dabei wird die von Angular bereitgestellte \texttt{ComponentFactoryResolver}-Klasse verwendet, um aus einer Klasse einen Component zu erstellen. 
-Jede Reiher, also jeder \texttt{AutoRowComponentGen\\erator}, wird dann nacheinander in die HTML-Datei durch eine \texttt{ViewContainerRef} eingefügt. Die \texttt{ViewContainerRef} verweist auf ein HTML-Element, wie es das Listing~\ref{lst:html} beschreibt.
+Jede Reiher, also jeder \texttt{AutoRowComponent-\\Generator}, wird dann nacheinander in die HTML-Datei durch eine \texttt{ViewContainerRef} eingefügt. Die \texttt{ViewContainerRef} verweist auf ein HTML-Element, wie es das Listing~\ref{lst:html} beschreibt.
 
-\begin{lstlisting}[caption={ViewContainerRef verweist auf \#componentHook},captionpos=b, language=JavaScript,label={lst:html}]
+\begin{lstlisting}[caption={ViewContainerRef verweist auf \#componentHook}, language=JavaScript,label={lst:html}]
 <form #dynamicForm>
 	<div #componentHook></div>
 </form>
@@ -190,7 +190,7 @@ Da das RF in der Profilübersicht wieder verwendet wird, ist es wichtig, die Dat
 
 \subsection{Die \texttt{AutoRowComponentGenerator}-Klasse}
 
-\begin{lstlisting}[caption={Die \texttt{ngAfterViewInit()}-Methode der \texttt{AutoRowComponentGenerator}-Klasse},captionpos=b, language=JavaScript,label={lst:nginARCG}]
+\begin{lstlisting}[caption={Die \texttt{ngAfterViewInit()}-Methode der \texttt{AutoRowComponentGenerator}-Klasse}, language=JavaScript,label={lst:nginARCG}]
 ngAfterViewInit(): void {
 	for (const x of this.data) {
 		const factory = this.componentFactoryResolver
@@ -206,9 +206,7 @@ ngAfterViewInit(): void {
 
 Anders als bei der \texttt{generateDynamicView()}-Methode wird nicht über ein 2D-Array iteriert, um ein Array an Daten zu übergeben, sondern über das tatsächliche Array, welches eine Reihe aus Feldern repräsentiert. Diese werden dann nach der Reihe auf die selbe Weise erzeugt. \texttt{checkComponentRef()} bindet die \texttt{options} der Wrapper-Klasse an die erzeugten Components, wie im Listing~\ref{lst:ccr} gezeigt wird. So ist es nun möglich, das RF dynamisch zur Laufzeit zu Erzeugen und in der UI anzuzeigen.
 
-\newpage
-
-\begin{lstlisting}[caption={Die \texttt{checkComponentRef()}-Methode der \texttt{AutoRowComponentGenerator}-Klasse},captionpos=b, language=JavaScript,label={lst:ccr}]
+\begin{lstlisting}[caption={Die \texttt{checkComponentRef()}-Methode der \texttt{AutoRowComponentGenerator}-Klasse}, language=JavaScript,label={lst:ccr}]
 checkComponentRef(ref: ComponentRef<any>, component: RegisterComponent) {
 	if (component.options) {
 		if (component.options.zones) {
@@ -244,7 +242,114 @@ Abschließend werden noch CSS-Klassen für bestimmte Komponenten vergeben.
 
 \section{Die Komfortfunktionen}
 \subsection{Automatische Adressvervollständigungsvorschläge}
+\subsubsection{Der Google-API-Key}
+Um auf die Google-API zugriff zu erhalten, wurde ein Google-API-Key erzeugt. Dieser wird aus folgenden Gründen erst bei der Verwendung im \texttt{AutocompleteComponent} geladen:
+
+\begin{itemize}
+	
+	\item Sicherheit: Der API-Key wird nur dann als \texttt{script}-Element in den HTML-Head geladen, wenn dieser auch zur Verwendung gebraucht wird. Das dient dazu, dass der API-Key nicht sofort bei Hackerattacken oder von Webcrawler ausgelesen werden kann.
+	
+	\item Geschwindigkeit: Je mehr \texttt{script}-Elemente im HTML-Head geladen werden, umso langsamer ist die Website beim Aufruf.
+	
+	\item Preis: Je öfter der API-Key als \texttt{script}-Elemente im HTML-Head geladen wird, umso öfter wird von Google ein Preis für die Benutzung verrechnet.
+\end{itemize}
+
+Der API-Key wird über eine Direktive eines HTML-Elements in den HTML-Head geladen:
+
+\begin{lstlisting}[caption={Die \texttt{ngOnInit()}-Methode der \texttt{LoadScriptDirective}}, language=JavaScript,label={lst:gpac}]
+ngOnInit() {
+	let node = document.createElement('script');
+	node.src = this.param;
+	node.type = 'text/javascript';
+	node.async = false;
+	let keyExists = false;
+	let head = document.getElementsByTagName('head')[0];
+	head.childNodes.forEach(x => {
+		if (x.isEqualNode(node)) {
+			keyExists = true;
+		}
+	});
+	if (!keyExists) {
+		head.appendChild(node);
+	}
+}
+\end{lstlisting}
+
+Der, auf in Zeile 3 verwiesene \texttt{this.param,} ist ein \texttt{@Input('script')}-Element, welches der API-Key übergeben wird. 
+
+\subsubsection{Implementierung}
+Die automatischen Adressvervollständigungsvorschläge kommen beim Laden des \texttt{Street-\\Component} zum Einsatz. Wenn der Benutzer im Feld \texttt{Straße und Hausnummer*} anfängt seine Adresse einzutippen, werden ihm automatische Vorschläge, basierend auf dem aktuell ausgewähltem Land, von der API präsentiert. 
+
+\begin{figure}[H]
+	\centerline{
+		\includegraphics[width=1\textwidth, frame]{./grafiken/open_adress_completion.PNG}
+	}
+	\vskip0pt
+	\caption{Automatisch generierte Adressvervollständigungsvorschläge in Österreich}
+\end{figure}
+
+\begin{figure}[H]
+	\centerline{
+		\includegraphics[width=1\textwidth, frame]{./grafiken/open_adress_completion_de.PNG}
+	}
+	\vskip0pt
+	\caption{Automatisch generierte Adressvervollständigungsvorschläge in Deutschland}
+\end{figure}
+
+Dafür wurde eine Hierarchieebene darunter ein weiterer Komponent, der \texttt{Autocomplete-\\Component} eingebaut, welcher ein HTML-Input-Element mit der Direktive \texttt{\#addresstext} besitzt. Mithilfe des in Angular integriertem \texttt{@ViewChild('..')-Property decorator} ist es nun möglich, eine globales Objekt aus dem HTML-Input-Element zu erzeugen. 
+
+\begin{lstlisting}[caption={Die \texttt{getPlaceAutocomplete()}-Methode der \texttt{AutocompleteComponent}-Klasse}, language=JavaScript,label={lst:gpac}]
+getPlaceAutocomplete() {
+	const autocomplete = new google.maps.places.Autocomplete(
+	this.addresstext.nativeElement,
+	{
+		types: ['address']
+	});
+	
+	google.maps.event.addListener(autocomplete, 'place_changed', () => {
+		const place = autocomplete.getPlace();
+		this.setAddress.emit(place);
+	});
+}
+\end{lstlisting}
+
+Wie im Listing~\ref{lst:gpac} ersichtlich ist, wird das Objekt anschließend dazu verwendet, um ein \texttt{google.maps.places.Autocomplete}-Objekt, welches als Parameter die zu generierenden Vorschläge übergeben wird, zu erzeugen. In diesem Fall wird dem Objekt gesagt, nur Adressvorschläge zu generieren. Auf dieses wird dann ein \texttt{place\_changed}-Event registriert. Wird das Event getriggert, feuert ebenfalls der \texttt{setAddress-\\EventEmitter} und liefert somit die übergebenen Daten an alle registrierten Observer.
+
+\begin{lstlisting}[caption={Die \texttt{addressHasBeenSelected()}-Methode der \texttt{StreetComponent}-Klasse}, language=JavaScript,label={lst:gpac}]
+addressHasBeenSelected(place: google.maps.places.PlaceResult) {
+	let addressDto: AddressDto = {
+		city: "",
+		countryCode: "",
+		postalcode: "",
+		street: "",
+		streetNumber: "",
+	};
+	
+	place.address_components.forEach((x) => {
+		if (x.types.includes("street_number")) {
+			addressDto.streetNumber = x.long_name;
+		} else if (x.types.includes("route")) {
+			addressDto.street = x.long_name;
+		} else if (x.types.includes("locality")) {
+			addressDto.city = x.long_name;
+		} else if (x.types.includes("postal_code")) {
+			addressDto.postalcode = x.long_name;
+		} else if (x.types.includes("country")) {
+			addressDto.countryCode = x.short_name;
+		}
+	});
+	
+	this.handleAddressDto(addressDto);
+}
+\end{lstlisting}
+
+Der \texttt{StreetComponent} hat sich mit der \texttt{addressHasBeenSelected()}-Methode auf dieses Event als Observer registriert. Da das überlieferte Objekt ein Array an Ergebnissen liefert, werden über diese iteriert und die Ergebnisse in ein temporäres Objekt gespeichert. Die \texttt{handleAddressDto()}-Methode aktualisiert jeden Wert in der \texttt{fields}-Map. 
+
+Das interessante daran ist, dass, wenn manuell eine Adresse eines anderen Landes eingegeben wird, ein Event im \texttt{ValidatorService}, auf welches der \texttt{UserprofileComponent} registriert ist, abgefeuert wird. Es wird umgehend die \texttt{onInitViewChange()}-Methode aufgerufen, welche alle Nachfolgenden Elemente des HTML-Form-Elements, zu finden im Listing~\ref{lst:html}, löscht und wieder bei der \texttt{initiateDynamicComponentConfiguration()}-Methode startet. Somit wird ein, für das neue Land angepasste, RF generiert (Kapitel ~\ref{ssec:lblInitDCC}).
+
 
 \subsection{Ermittlung des Standorts durch die IP - Use my location}
 
 \subsection{Automatische Telefonnummerprefix Erkennung}
+
+Wie im Kapitel~\ref{ssec:lblAnalyzeRow}[\texttt{analyzeRow()}] bereits erklärt wird, wird die Telefonnummernvorwahl aus dem \texttt{Country}-Objekt der Shopify-API gelesen und in die \texttt{options} als \texttt{phoneNumberPrefix}-Property der Wrapper-Klasse gespeichert.
