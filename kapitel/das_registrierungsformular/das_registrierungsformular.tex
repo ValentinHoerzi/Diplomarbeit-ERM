@@ -359,7 +359,47 @@ Das interessante daran ist, dass, wenn manuell eine Adresse eines anderen Landes
 
 
 \subsection{Ermittlung des Standorts durch die IP - Use my location}
-
+Diese Methode für die Standorterkennung wird durch einen Klick auf "Use my location" ausgelöst. Bevor jedoch der Standort abgerufen wird, wird der Benutzer nach der Erlaubnis gefragt.\autocite{useMyLocation}\\
+Die Standortermittlung funktioniert mit der Methode \texttt{getCurrentPosition()} des \texttt{navigator.geolocation}-Objektes, die man im Listing \ref{lst:useMyLocation} sieht. Dabei wird eine asynchrone Abfrage gestartet, die die Position abruft. Bei erfolgreichen Abschluss dieser Abfrage, wird die mitgegebene Funktion mit der gefundene Position ausgeführt. Als optionalen zweiten Parameter kann dabei auch eine Funktion mitgegeben werden, die nur bei eintritt eines Fehlers aufgerufen wird. \autocite{useMyLocation}
+\begin{lstlisting}[caption={Die \texttt{onUseMyLocationClicked()}-Methode der \texttt{StreetComponent}-Klasse}, language=JavaScript,label={lst:useMyLocation}]
+	onUseMyLocationClicked() {
+		navigator.geolocation.getCurrentPosition(pos => this.workWithLocation(pos, this));
+	}
+\end{lstlisting}
+Nachdem das Positionsobjekt erfolgreich erhalten wurde, wird die Methode von dem Listing \ref{lst:workWithLocation} aufgerufen. Dabei werden als erstes die Längen- und Breitengrade aus dem Positionsobjekt herausgelesen. Dies geschieht in Zeile zwei und drei des Listings \ref{lst:workWithLocation}. Mittels der Google Maps API werden diese zwei erstellten Variablen in ein LatLng-Objekt umgewandelt.\autocite{latLngObjekt} Den Google Maps Geocoder wird in Zeile 5 dieses LatLng-Objekt und eine Callback-Funktion in die Methode \texttt{geocode()} übergeben. Nach der Überprüfung ob das geocoding erfolgreich war, wird das Ergebnis in ein AddressDto gespeichert. Anschießend darauf wird die Methode \texttt{handleAddressDto()} mit der gespeicherten Adresse aufgerufen, die alle Werte der \texttt{fields}-Map aktualisiert.
+\begin{lstlisting}[caption={Die \texttt{workWithLocation()}-Methode der \texttt{StreetComponent}-Klasse}, language=JavaScript,label={lst:workWithLocation}]
+	private workWithLocation(position, self: this) {
+		const latitude = position.coords.latitude;
+		const longitude = position.coords.longitude;
+		let latlng = new google.maps.LatLng(latitude, longitude);
+		let geocoder = new google.maps.Geocoder();
+		let addressDto: AddressDto = { city: '', countryCode: '', postalcode: '', street: '', streetNumber: '' };
+		geocoder.geocode({ location: latlng }, function (results, status) {
+			if (status === 'OK') {
+				if (results[0]) {
+					results[0].address_components.forEach(x => {
+						if (x.types.includes('street_number')) {
+							addressDto.streetNumber = x.long_name;
+						}
+						else if (x.types.includes('route')) {
+							addressDto.street = x.long_name;
+						}
+						else if (x.types.includes('locality')) {
+							addressDto.city = x.long_name;
+						}
+						else if (x.types.includes('postal_code')) {
+							addressDto.postalcode = x.long_name;
+						}
+						else if (x.types.includes('country')) {
+							addressDto.countryCode = x.short_name;
+						}
+					});
+					self.handleAddressDto(addressDto);
+				}
+			}
+		});
+	}
+\end{lstlisting}
 \subsection{Automatische Telefonnummerprefix Erkennung}
 
 Wie im Kapitel~\ref{ssec:lblAnalyzeRow} [\texttt{analyzeRow()}] bereits erklärt wird, wird die Telefonnummernvorwahl aus dem \texttt{Country}-Objekt der Shopify-API gelesen und in die \texttt{options} als \texttt{phoneNumberPrefix}-Property der Wrapper-Klasse gespeichert.
