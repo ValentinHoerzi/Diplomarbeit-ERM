@@ -240,13 +240,91 @@ Abschließend werden noch CSS-Klassen für bestimmte Komponenten vergeben.
 
 \section{Die Validierungsmethodik}
 
+Für eine effiziente und dynamische Validierung wurde der \texttt{ValidatorService} programmiert. Grundsätzlich implementiert jeder Component, welcher im Registrierungsformular erzeugt wird, das \texttt{ComponentValueConfigurator}-Interface. Dadurch wird gewährleistet, dass der \texttt{ValidatorService} auf die im Listing~\ref{lst:edic} verwiesenen Methoden zugriff erhält.
 
+\begin{lstlisting}[caption={Methoden aus dem \texttt{ComponentValueConfigurator}-Interface}, language=JavaScript,label={lst:edic}]
+export declare interface ComponentValueConfigurator{
+	setLabel(label: string): void;
+	onFocusChange(event: any);
+	validateInput();
+}
+\end{lstlisting}
 
+Wie man erkennen kann, wird die \texttt{setLabel()}-Methode im Listing~\ref{lst:ccr} dazu benötigt, um jeden Component sein Label zu übergeben.
 
+Im \texttt{ValidatorService} wird beim Initialisieren eine Map mit einem \texttt{string} als Key und einem \texttt{Options}-Objekt als Value erstellt. Diese wird über ein \texttt{BehaviorSubject<Map\\<string, Options>>} an alle Observer verteilt.
 
+\begin{lstlisting}[caption={Die \texttt{fields}-Map und ihr Subject}, language=JavaScript]
+	private fields: Map<string, Options> = new Map<string,Options>();
+	private fieldsSub = new BehaviorSubject<Map<string, Options>>(this.fields);
+\end{lstlisting}
 
+Wie im Listing~\ref{lst:opvasta} gezeit wird, beinhaltet das \texttt{Options}-Objekt alle wichtigen Variablen, welche im weiteren Verlauf für die Validierung benötigt werden.
 
+\begin{lstlisting}[caption={Das \texttt{Options}-Objekt und seine abhängigen Objekte}, language=JavaScript,label={lst:opvasta}]
+export interface Options {
+	state: State;
+	validators?: ValidatorManager[];
+	value?: any;
+}
 
+export interface ValidatorManager{
+	validator: (value: any) => boolean;
+	errorMessage: string;
+}
+
+export interface State {
+	isValid: boolean;
+	isTouched: boolean;
+	isPrestine: boolean;
+	isNotRequired?: boolean;
+}
+\end{lstlisting}
+
+\subsection{Validierung am Bespiel des \texttt{FirstnameComponent}}
+
+Wird ein Component erstellt, registriert sich dieser in der \texttt{ngOnInit()}-Lifecycle-Hook-Methode sofort in der \texttt{fields}-Map seine übergebenen Werte werden an alle Observer, unter anderem der \texttt{UserprofileComponent}, verteilt. 
+
+\begin{lstlisting}[caption={Der Konstruktor und die \texttt{ngOnInit()}-Lifecycle-Hook-Methode des \texttt{FirstnameComponent}}, language=JavaScript,label={lst:dkudnlhm}]
+constructor(public validatorService: ValidatorService) {
+	validatorService
+	.getFieldsObservable()
+	.subscribe((x) => (this.fields = x));
+}
+
+ngOnInit(): void {
+	const state = { isValid: false, isTouched: false, isPrestine: true };
+	const validators = [
+	{
+		validator: (value: string) => value != null,
+		errorMessage: "ValidationError.FirstnameUnset",
+	},
+	{
+		validator: (value: string) => value.length >= 2,
+		errorMessage: "ValidationError.FirstnameTooShort",
+	},
+	];
+	
+	this.validatorService.addFields('firstName', {
+		state: state,
+		validators: validators,
+	});
+}
+\end{lstlisting}
+
+Im Konstruktor hängt sich der \texttt{FirstnameComponent} auf das \texttt{fieldsSub - BehaviorSubject} als Observer und erhält somit immer die aktuellsten Daten. Die Daten, welche übergeben wurde kann man wie folgt zusammenfassen:
+
+\begin{itemize}
+	
+	\item state: Der Zustand des aktuellen Eingabefelds:
+		\begin{itemize}
+			\item	isValid: boolean => Eingabefeld wurde erfolgreich validiert.
+			\item	isTouched: boolean => Der Benutzer hat das Eingabefeld bereits besucht.
+			\item	isPrestine: boolean => Der Benutzer hat das Eingabefeld bereits verwendet und Werte verändert.
+			\item	isNotRequired?: boolean => Das Eingabefeld wird nicht für eine erfolgreiche Validierung benötigt (z. B. die Eingabe des Geburtstages).
+		\end{itemize}
+	\item validators: jo hast ah irgendwos anscheinend keine ahnung
+\end{itemize}
 
 
 
