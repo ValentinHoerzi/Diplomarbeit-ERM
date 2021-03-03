@@ -176,7 +176,7 @@ this.bindUserDataToViewData();
 \end{lstlisting}
 
 Die \texttt{generateDynamicView()}-Methode, markiert im Flussdiagramm~\ref{fig:fc} mit [3], iteriert über jedes Array, um eine \texttt{AutoRowComponentGenerator}-Klasse zu erzeugen. Aus jedem Array in dem 2D-Array wird also eine eigene Reihe für das RF erzeugt. Dabei wird die von Angular bereitgestellte \texttt{ComponentFactoryResolver}-Klasse verwendet, um aus einer Klasse einen Component zu erstellen. 
-Jede Reiher, also jeder \texttt{AutoRowComponent-\\Generator}, wird dann nacheinander in die HTML-Datei durch eine \texttt{ViewContainerRef} eingefügt. Die \texttt{ViewContainerRef} verweist auf ein HTML-Element, wie es das Listing~\ref{lst:html} beschreibt.
+Jede Reihe, also jeder \texttt{AutoRowComponent-\\Generator}, wird dann nacheinander in die HTML-Datei durch eine \texttt{ViewContainerRef} eingefügt. Die \texttt{ViewContainerRef} verweist auf ein HTML-Element, wie es das Listing~\ref{lst:html} beschreibt.
 
 \begin{lstlisting}[caption={ViewContainerRef verweist auf \#componentHook}, language=JavaScript,label={lst:html}]
 <form #dynamicForm>
