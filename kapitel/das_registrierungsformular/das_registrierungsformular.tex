@@ -239,6 +239,7 @@ Abschließend werden noch CSS-Klassen für bestimmte Komponenten vergeben.
 \end{figure}
 
 \section{Die Validierungsmethodik}
+\subsection{Allgemeines}
 
 Für eine effiziente und dynamische Validierung wurde der \texttt{ValidatorService} programmiert. Grundsätzlich implementiert jeder Component, welcher im Registrierungsformular erzeugt wird, das \texttt{ComponentValueConfigurator}-Interface. Dadurch wird gewährleistet, dass der \texttt{ValidatorService} auf die im Listing~\ref{lst:edic} verwiesenen Methoden zugriff erhält.
 
@@ -259,7 +260,7 @@ Im \texttt{ValidatorService} wird beim Initialisieren eine Map mit einem \texttt
 	private fieldsSub = new BehaviorSubject<Map<string, Options>>(this.fields);
 \end{lstlisting}
 
-Wie im Listing~\ref{lst:opvasta} gezeit wird, beinhaltet das \texttt{Options}-Objekt alle wichtigen Variablen, welche im weiteren Verlauf für die Validierung benötigt werden.
+Wie im Listing~\ref{lst:opvasta} gezeigt wird, beinhaltet das \texttt{Options}-Objekt alle wichtigen Variablen, welche im weiteren Verlauf für die Validierung benötigt werden.
 
 \begin{lstlisting}[caption={Das \texttt{Options}-Objekt und seine abhängigen Objekte}, language=JavaScript,label={lst:opvasta}]
 export interface Options {
@@ -267,12 +268,10 @@ export interface Options {
 	validators?: ValidatorManager[];
 	value?: any;
 }
-
 export interface ValidatorManager{
 	validator: (value: any) => boolean;
 	errorMessage: string;
 }
-
 export interface State {
 	isValid: boolean;
 	isTouched: boolean;
@@ -281,11 +280,11 @@ export interface State {
 }
 \end{lstlisting}
 
-\subsection{Validierung am Bespiel des \texttt{FirstnameComponent}}
+\subsection{Validierung am Beispiel des \texttt{FirstnameComponent}}
+\subsubsection{Die Initialisierung}
+Wird ein Component erstellt, registriert sich dieser in der \texttt{ngOnInit()}-Lifecycle-Hook-Methode sofort in der \texttt{fields}-Map. Seine übergebenen Werte werden an alle Observer, wie unter anderem der \texttt{UserprofileComponent}, verteilt. 
 
-Wird ein Component erstellt, registriert sich dieser in der \texttt{ngOnInit()}-Lifecycle-Hook-Methode sofort in der \texttt{fields}-Map seine übergebenen Werte werden an alle Observer, unter anderem der \texttt{UserprofileComponent}, verteilt. 
-
-\begin{lstlisting}[caption={Der Konstruktor und die \texttt{ngOnInit()}-Lifecycle-Hook-Methode des \texttt{FirstnameComponent}}, language=JavaScript,label={lst:dkudnlhm}]
+\begin{lstlisting}[caption={Der Konstruktor und die \texttt{ngOnInit()}-Lifecycle-Hook-Methode des \texttt{FirstnameComponent}}, language=JavaScript]
 constructor(public validatorService: ValidatorService) {
 	validatorService
 	.getFieldsObservable()
@@ -312,21 +311,110 @@ ngOnInit(): void {
 }
 \end{lstlisting}
 
-Im Konstruktor hängt sich der \texttt{FirstnameComponent} auf das \texttt{fieldsSub - BehaviorSubject} als Observer und erhält somit immer die aktuellsten Daten. Die Daten, welche übergeben wurde kann man wie folgt zusammenfassen:
+Im Konstruktor hängt sich der \texttt{FirstnameComponent} auf das \texttt{fieldsSub - BehaviorSubject} als Observer und erhält somit immer die aktuellsten Daten. Die Daten, welche übergeben werden, können wie folgt zusammengefasst werden:
 
 \begin{itemize}
 	
-	\item state: Der Zustand des aktuellen Eingabefelds:
+	\item \texttt{state}: Der Zustand des aktuellen Eingabefelds:
 		\begin{itemize}
-			\item	isValid: boolean => Eingabefeld wurde erfolgreich validiert.
-			\item	isTouched: boolean => Der Benutzer hat das Eingabefeld bereits besucht.
-			\item	isPrestine: boolean => Der Benutzer hat das Eingabefeld bereits verwendet und Werte verändert.
-			\item	isNotRequired?: boolean => Das Eingabefeld wird nicht für eine erfolgreiche Validierung benötigt (z. B. die Eingabe des Geburtstages).
+			\item	\texttt{isValid}: boolean => Eingabefeld wurde erfolgreich validiert.
+			\item	\texttt{isTouched}: boolean => Der Benutzer hat das Eingabefeld bereits besucht.
+			\item	\texttt{isPrestine}: boolean => Der Benutzer hat das Eingabefeld bereits verwendet und Werte verändert.
+			\item	\texttt{isNotRequired?}: boolean => Das Eingabefeld wird nicht für eine erfolgreiche Validierung benötigt (z. B. die Eingabe des Geburtstages).
 		\end{itemize}
-	\item validators: jo hast ah irgendwos anscheinend keine ahnung
+	\item \texttt{validators}: Dieses Objekt ist ein Array aus \texttt{ValidatorManager}-Objekten. Einem \texttt{ValidatorManager}-Objekt wird eine Callback-Methode übergeben, welche mit der Aufgabe des Validierens beauftragt ist. Anschließend wird noch ein Key für eine Fehlermeldung mitgegeben, welche angezeigt wird, wenn der Validator fehl schlägt. 
 \end{itemize}
 
+\subsubsection{Die HTML-Datei}
 
+\begin{lstlisting}[caption={Der HTML-Datei des \texttt{FirstnameComponent}}, language=JavaScript]
+<label for="inputFirstname">{{ label }}*</label>
+
+<input id="inputFirstname" name="inputFirstname" type="text" class="form-control" autocomplete="fname" [(ngModel)]="fields.get(key).value" (change)="validatorService.inputChanged(key)" (focus)="onFocusChange($event)" (focusout)="onFocusChange($event)"/>
+
+<small class="text-danger" *ngIf="!fields.get(key).state.isValid && !fields.get(key).state.isPrestine">{{ errorMessage | translate}}</small>
+\end{lstlisting}
+
+Im Prinzip unterscheiden sich die HTML-Dateien der verschiedenen Komponenten kaum und besteht aus folgenden Elementen:
+
+\begin{itemize}
+	\item Das \texttt{input}-Element kümmert sich um die Benutzereingaben. Abhängig davon, welche Aktion der Benutzer ausführt, werden verschiedene Events ausgeführt:
+	
+		\begin{itemize}
+			\item \texttt{[(ngModel)]}: Synchronisiert den Wert der Eingabe mit der verwiesenen Variable. Die Synchronisation erfolgt hierbei auf beiden Wegen. Wird der Wert im Eingabefeld geändert, wird auch der Wert der Variable geändert. Wird aber der Wert der Variable, z. B. durch das manuelle Setzten des Wertes in der \texttt{bindUserDataToViewData()}-Methode, zu finden in Zeile zehn im Listing~\ref{lst:generateDynamicView}, geändert, wird der neue Wert auch so auch auf der Website angezeigt. 
+			
+			\item \texttt{(change)}: Das \texttt{change}-Event wird getriggert, wenn sich der Wert der Variable ändert. Daraufhin wird der Wert \texttt{isPrestine} für dieses Feld auf \texttt{false} gesetzt, da es sich nicht mehr um ein sauberes Eingabefeld handelt.
+			
+			\item \texttt{(focus) / (focusout)}:  Sollte der Benutzer das Eingabefeld betreten oder verlassen, wird der  Wert \texttt{isTouched} auf \texttt{true} gesetzt. Solle es sich um das \texttt{(focusout)}-Event handeln, wird die im Listing~\ref{lst:validateInput} beschriebene \texttt{validate-\\Input()}-Methode aufgerufen.
+		\end{itemize} 
+	
+	\item Das \texttt{small}-Element repräsentiert die anzuzeigende Fehlermeldung. Diese wird nur dann angezeigt, wenn der Wert \texttt{isValid} der verwiesenen Variable \texttt{false} ist und diese auch tatsächlich verändert wurde. 
+\end{itemize}
+
+\subsubsection{Der Validierungsprozess}
+
+Also jedes mal, wenn der Benutzer des Eingabeelement verlässt, wird dieses auch validiert. Wie auch schon bei der HTML-Datei unterscheidet sich diese Methode kaum unter den Komponenten.
+
+\begin{lstlisting}[caption={Die Validierung innerhalb Komponenten}, language=JavaScript,label={lst:validateInput}]
+validateInput() {
+	const validators =  this.fields.get(this.key).validators;
+	const currentVal = this.fields.get(this.key).value;
+	
+	for (let i = 0; i < validators.length; i++) {
+		const validator = validators[i];
+		if (!validator.validator(currentVal)) {
+			
+			this.errorMessage = validator.errorMessage;
+			this.fields.get(this.key).state.isValid = false;
+			this.validatorService.emitFormValidation();
+			return;
+		}
+	}
+	this.fields.get(this.key).state.isValid = true;
+	this.validatorService.emitFormValidation();
+}
+\end{lstlisting}
+
+Ab Zeile sechs wird über jeden Validator iteriert, um anschließend die Callback-Methoden aufzurufen. Glückt jede Überprüfung, wird die \texttt{isValid}-Variable auf \texttt{true} gesetzt. 
+
+Scheitern diese Überprüfungen jedoch, wird die Fehlermeldung aus dem Validator-Objekt gelesen und in eine globale Variable gespeichert. Da nun die Werte der Variablen \texttt{isValid} und \texttt{isPrestine} jeweils dem Wert \texttt{false} entsprechen, wird die Fehlermeldung angezeigt. 
+
+In beiden Fällen wird die im \texttt{ValidatorService} implementierte \texttt{emitFormValidation()}-Methode, beschrieben im Listing~\ref{lst:emitFormValidation}, aufgerufen.
+
+\begin{lstlisting}[caption={Die Validierung aller Komponenten im \texttt{ValidatorService}}, language=JavaScript,label={lst:emitFormValidation}]
+emitFormValidation() {
+	if (this.fields.values) {
+		for (const option of this.fields.values()) {
+			if (!option.state.isValid) {
+				if (!option.state.isNotRequired) {
+					this.formIsValid = false;
+					this.formIsValidSub.next(this.formIsValid);
+					return;
+				}
+			}
+		}
+		this.formIsValid = true;
+		this.formIsValidSub.next(this.formIsValid);
+	} else {
+		this.formIsValid = false;
+		this.formIsValidSub.next(this.formIsValid);
+	}
+}
+\end{lstlisting}
+
+Diese Methode iteriert über alle \texttt{Options}-Objekte der \texttt{fields}-Map. Entspricht der Wert der Variable \texttt{isValid} bei allen Objekten \texttt{true}, so wird das Boolean-Objekt \texttt{formIsValid} durch ein Subjekt an alle Observer verschickt.
+
+Der \texttt{UserprofileComponent} benützt diese Variable um, wie im Listing~\ref{lst:btn} gezeigt wird, den Button, welcher beim Drücken alle Werte der \texttt{fields}-Map ausliest, in das aktuelle Benutzerobjekt speichert und dieses zum Backend schickt, basierend auf dem Wert der Variable zu de- oder aktivieren.
+
+\begin{lstlisting}[caption={Der Button im \texttt{UserprofileComponent}, welcher de- oder aktiviert wird}, language=JavaScript,label={lst:btn}]
+<button 
+	[disabled]="!formIsValid" 
+	(click)="onBtnClick()" 
+	type="submit"
+	class="btn btn-poettinger"
+	>{{buttonLabel}}
+</button>
+\end{lstlisting}
 
 \section{Die Komfortfunktionen}
 \subsection{Automatische Adressvervollständigungsvorschläge}
@@ -438,9 +526,9 @@ Das interessante daran ist, dass, wenn manuell eine Adresse eines anderen Landes
 
 \subsection{Ermittlung des Standorts durch die IP - Use my location}
 
-Die Funktion für die automatische Standorterkennung wird durch einen Klick auf "Use my location" ausgelöst. Um auf den tatsächlichen Standort des Benutzers zugriff zu erhalten, muss dieser jedoch davor um seine Erlaubnis gefragt.\autocite{useMyLocation}\\
+Die Funktion für die automatische Standorterkennung wird durch einen Klick auf "Use my location" ausgelöst. Um auf den tatsächlichen Standort des Benutzers zugriff zu erhalten, muss dieser jedoch davor um seine Erlaubnis gefragt.\autocite{useMyLocation}
 
-Die Standortermittlung funktioniert mit der \texttt{getCurrentPosition()}-Methode des \\ \texttt{navigator.geolocation}-Objektes, welche im Listing \ref{lst:useMyLocation} zu finden ist. Dabei wird eine asynchrone Abfrage gestartet, welche die Position abruft. Bei erfolgreichem Abschluss dieser Abfrage, wird die mitgegebene Funktion mit der gefundene Position ausgeführt. Als optionalen zweiten Parameter kann dabei auch eine Funktion mitgegeben werden, die nur bei Auftreten eines Fehlers aufgerufen wird. \autocite{useMyLocation}
+Die Standortermittlung funktioniert mit der \texttt{getCurrentPosition()}-Methode des \texttt{navigator.geolocation}-Objektes, welche im Listing \ref{lst:useMyLocation} zu finden ist. Dabei wird eine asynchrone Abfrage gestartet, welche die Position abruft. Bei erfolgreichem Abschluss dieser Abfrage, wird die mitgegebene Funktion mit der gefundene Position ausgeführt. Als optionalen zweiten Parameter kann dabei auch eine Funktion mitgegeben werden, die nur bei Auftreten eines Fehlers aufgerufen wird. \autocite{useMyLocation}
 
 \begin{lstlisting}[caption={Die \texttt{onUseMyLocationClicked()}-Methode der \texttt{StreetComponent}-Klasse}, language=JavaScript,label={lst:useMyLocation}]
 onUseMyLocationClicked() {
