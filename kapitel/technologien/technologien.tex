@@ -219,6 +219,9 @@ Der Dienst "Place Autocomplete" ist ein Webdienst, der als Antwort auf eine HTTP
 
 Der Dienst "Place Autocomplete" kann ganze Wörter und Teilstrings abgleichen und so Ortsnamen, Adressen und Pluscodes auflösen. Anwendungen können daher Abfragen senden, während der Benutzer tippt, um on-the-fly Ortsvorhersagen zu erhalten.Die zurückgegebenen Vorhersagen sollen dem Benutzer bei der Auswahl des gewünschten Ortes helfen. Sie können eine Abfrage für Ortsdetails senden, um weitere Informationen über jeden der zurückgegebenen Orte zu erhalten.\cite{googlePlacesAPI}
 
+\section{Shopify}
+Das Node-Package "@shopify/address" liefert für die Länder die verpflichtenden Felder und falls vorhanden die Staaten oder Provinzen für eine gültige Adresse durch die Methode \texttt{getCountry(countryCode)}. Dadurch ist es möglich, dass an das jeweilig ausgewählte Land, die Pflichtfelder angepasst werden. Durch die Methode \texttt{getOrderedFields(countryCode)} erhält man die richtige Reihenfolge eines Formulars für das Land. Das Resultat dieser Abfrage ist eine zweidimensionales Array, woraus man den Inhalt der einzelnen Zeilen herauslesen kann. Der Parameter "countryCode" steht für die internationale Länderabkürzung, in Falle Österreich wäre dieser "AT". \autocite{shopifyNPM}
+
 \section{Twilio} \label{sec:twilio}
 Twilio wurde 2008 von Jeff Lawson, Evan Cooke und John Wolthuis in Amerika gegründet. Es betreibt eine Cloud-Kommunikationsplattform als Platform as a Service. Mit den von Twilio zur Verfügung gestellten Dienst, können Entwickler Programmierschnittstellen zum ausführen und empfangen von Anrufen, senden von SMS, verifizieren von Telefonnummern sowie für andere Kommunikationsfunktionen nutzen. In unseren Implementationen half Twilio bei der Verifizierung der von den Benutzer angegebenen Telefonnummern. \cite{twilioWebsite}
 
