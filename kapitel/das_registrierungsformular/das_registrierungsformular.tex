@@ -1,6 +1,6 @@
 \chapter{Das Registrierungsformular}
 
-Der wohl komplizierteste Teil dieser Diplomarbeit ist der Aufbau und die korrekte Validierung des Registrierungsformulars. Das Ziel ist den Benutzern eine möglichst einfache und schnelle Registrierung, unter Berücksichtigung des derzeitigen Standorts und der dazugehörigen Benutzergruppe, anzubieten. Dafür wurde ein Algorithmus entwickelt, welcher bei der \texttt{ngAfterViewInit()}-Lifecycle-Hook-Methode im \texttt{UserprofileComponent} seinen Start nimmt.
+Der wohl komplizierteste Teil dieser Diplomarbeit ist der Aufbau und die korrekte Validierung des Registrierungsformulars. Das Ziel ist den Benutzern eine möglichst einfache und schnelle Registrierung, unter Berücksichtigung des derzeitigen Standorts und der dazugehörigen Benutzergruppe, anzubieten. Dafür wurde ein Algorithmus entwickelt, welcher bei der \texttt{ngAfterViewInit()}-Lifecycle-Hook-Methode im \texttt{UserprofileCompo-\\nent} seinen Start nimmt.
 
 \section{Der Algorithmus hinter dem dynamischen Aufbau}
 
@@ -15,7 +15,7 @@ Der wohl komplizierteste Teil dieser Diplomarbeit ist der Aufbau und die korrekt
 
 \subsection{\texttt{initiateDynamicComponentConfiguration()}} \label{ssec:lblInitDCC}
 
-Wenn das User-Objekt, welches von der Backend-API abgefragt und erfolgreich als globale Objektvariable gespeichert wurde, wird die \texttt{initiateDynamicComponent-\\Configuration()}-Methode aufgerufen. Aus Performance-Gründen basiert die nächste Überprüfung auf dem Wert der aktuellen Lokale. Gleicht dieser den Wert "AT", so wird ein vorgefertigtes Template für ein österreichisches RF, dargestellt im Listing~\ref{lst:template_form_aut}, für die Weiterverwendung benützt. Da davon ausgegangen wird, dass sich vor allem in der Anfangsphase nach der Veröffentlichung hauptsächlich österreichische Kunden ein Konto erstellen, spart dieser Weg enorm viel Zeit, da sofort mit der Erstellung des RF begonnen werden kann.
+Wenn das User-Objekt, welches von der Backend-API abgefragt und erfolgreich als globale Objektvariable gespeichert wurde, wird die \texttt{initiateDynamicComponentConfigu-\\ration()}-Methode aufgerufen. Aus Performance-Gründen basiert die nächste Überprüfung auf dem Wert der aktuellen Lokale. Gleicht dieser den Wert "AT", so wird ein vorgefertigtes Template für ein österreichisches RF, dargestellt im Listing~\ref{lst:template_form_aut}, für die Weiterverwendung benützt. Da davon ausgegangen wird, dass sich vor allem in der Anfangsphase nach der Veröffentlichung hauptsächlich österreichische Kunden ein Konto erstellen, spart dieser Weg enorm viel Zeit, da sofort mit der Erstellung des RF begonnen werden kann.
 
 \begin{lstlisting}[caption={Vordefiniertes Template für das RF}, language=JavaScript,label={lst:template_form_aut}]
 export const AUSTRIAN_PRIVATE_PERSON_FORM_Template = [
@@ -88,7 +88,8 @@ private analyzeRow(row: string[]): RegisterComponent[][] {
 				compEl.type.prototype ===
 				PhoneComponent.prototype
 				) {
-					compEl.options.phonePrefix = this.countryFromService.phoneNumberPrefix;
+					compEl.options.phonePrefix = this.countryFromService
+						.phoneNumberPrefix;
 				}
 				
 				if (this.labels.get(x)) {
@@ -415,6 +416,18 @@ Der \texttt{UserprofileComponent} benützt diese Variable um, wie im Listing~\re
 	>{{buttonLabel}}
 </button>
 \end{lstlisting}
+
+\begin{figure}[H]
+	\centering
+	\subfloat[][]{
+		\includegraphics[width=0.3\textwidth]{./grafiken/rf_unvalid_button.PNG}
+	}
+	\qquad
+	\subfloat[][]{
+		\includegraphics[width=0.3\textwidth]{./grafiken/rf_valid_button.PNG}
+	}
+	\caption{(a): Deaktivierter Button im RF, (b): Aktivierter Button im RF}%
+\end{figure}
 
 \section{Die Komfortfunktionen}
 \subsection{Automatische Adressvervollständigungsvorschläge}
