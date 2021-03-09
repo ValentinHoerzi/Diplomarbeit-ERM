@@ -50,8 +50,7 @@ Weiters bietet Angular:
 \section{TypeScript}
 TypeScript wurde von Microsoft entwickelt und 2012 veröffentlicht. Diese Programmiersprache basiert auf den ECMAScript6-Standard. Der TypeScript-Compiler kompliliert den Code in plain-JavaScript, deshalb ist jeder JavaScript-Code auch ein gültiger TypeScript-Code. Somit sind Bibliotheken wie jQuery oder Angular 1 auch in TypeScript verwendbar. \autocite{wikiTypeScript} \\
 
-TypeScript bietet viele unterstützende Features:
-
+Laut \autocite{wikiTypeScript} bietet TypeScript viele unterstützende Features:
 \begin{itemize}
 	\item Klassen
 	\item Module
@@ -68,14 +67,14 @@ TypeScript bietet viele unterstützende Features:
 	\item Methodensignatur
 	\item Enums
 \end{itemize}
-
-\begin{lstlisting}[caption={TypeScript-Beispiel Function}, language=JavaScript]
+Im Listing \ref{lst:typeFunction} sieht man eine TypeScript-Funktion, die die beiden mitgegebenen Parameter zusammenaddiert und zurückgibt.
+\begin{lstlisting}[caption={TypeScript-Beispiel Function}, language=JavaScript, label={lst:typeFunction}]
 	public add(a: number, b: number): number {
 		return a + b;
 	}
 \end{lstlisting}
-
-\begin{lstlisting}[caption={TypeScript-Beispiel Klasse},captionpos=b, language=JavaScript]
+Im Listing \ref{lst:typeClass} sieht man die Klasse \texttt{Person}, die im Konstruktor die Variablen \texttt{name}, \texttt{age} und \texttt{salary} übernimmt und in die privaten Variablen speichert. Die in dieser Klasse beinhaltete Methode \texttt{toString()} gibt einen String aus diesen drei Variablen zurück.
+\begin{lstlisting}[caption={TypeScript-Beispiel Klasse},captionpos=b, language=JavaScript, label={lst:typeClass}]
 	class Person {
 		private name: string;
 		private age: number;
@@ -92,7 +91,8 @@ TypeScript bietet viele unterstützende Features:
 		}
 	}
 \end{lstlisting}
-\begin{lstlisting}[caption={TypeScript-Beispiel Generische Programmierung}, language=JavaScript]
+Im Listing \ref{lst:typeGeneric} zeigt ein Syntaxbeispiel für eine generische Methode. Das \texttt{T} kann jeglichen Datentyp annehmen.
+\begin{lstlisting}[caption={TypeScript-Beispiel Generische Programmierung}, language=JavaScript, label={lst:typeGeneric}]
 	function doSomething<T>(arg: T): T {
 		return arg;
 	}
@@ -149,7 +149,7 @@ Laut \autocite{wikiVisualStudio} bietet Microsoft Visual Studio 2019 viele unter
 	\item WYSIWYG-Editoren zur Benutzeroberflächenentwicklung
 \end{itemize}
 \section{Git Versionsverwaltung}
-Git wurde 2005 veröffentlicht. Diese Software dient zur verteilten Versionsverwaltung von Dateien. Wichtige Bestandteile von Git sind die Erstellung neuer Entwicklungszweige, den sogenannten Branches und das Zusammenführen von zwei Zweigen. Da es keinen zentralen Server gibt, besitzt jeder Benutzer das gesamte Repository als Kopie lokal. Dadurch benötigt man für fast alle Aktionen keinen Internetzugriff. Mit den Hash-Wert eines Commites wird die History eines Projektes gespeichert. Durch diese Speicherung ist die History gesichert, da es nicht möglich ist, einen Commit zu verändern, der dann den selben Hash-Wert hat. \autocite{wikiGit}
+Git wurde 2005 veröffentlicht. Diese Software dient zur verteilten Versionsverwaltung von Dateien. Wichtiger Bestandteil von Git ist die Erstellung neuer Entwicklungszweige, den sogenannten Branches und das Zusammenführen von zwei Zweigen. Da es keinen zentralen Server gibt, besitzt jeder Benutzer das gesamte Repository als Kopie lokal. Dadurch benötigt man für fast alle Aktionen keinen Internetzugriff. Der Hash-Wert eines Commites beruht auf die History eines Projektes, somit wird also diese auch mitgespeichert. Folglich kann die History im Nachhinein nicht verändert werden, ohne dass der Hash-Wert modifiziert wird. \autocite{wikiGit}
 
 \subsection{GitHub}
 Für das Diplomarbeitsdokument wurde GitHub verwendet. GitHub wurde 2008 veröffentlicht und gehört seit 2018 zu Microsoft. Es dient zur Versionsverwaltung von Projekten. Diese Open-Source-Software ermöglicht ein leichtes Branching, Merging und Commiting für alle Entwickler. \autocite{wikiGitHub}
@@ -173,9 +173,9 @@ Für das Projekt der Diplomarbeit wurde GitLab verwendet. Die Versionsverwaltung
 	\caption{UI von GitLab}
 \end{figure}
 \section{Postman}
-Um die APIs (application programming interface) des Backendes der Diplomarbeit zu testen, wurde Postman verwendet. Postman bietet die Funktion, Http-Requests an jede beliebige URL mit jeder verfügbaren HTTP-Methode zu senden. Somit besteht die Möglichkeit, die programmierten Schnittstellen mit verschiedenen Daten schnell zu testen. Dieses Tool unterstützt SOAP, GraphQL und REST. Des weiteren ist Automated Testing möglich und es lassen sich Endpoints simulieren. Somit kann man das Verhalten der APIs sehr gut beobachten, was es einem Programmierer leichter macht Fehler zu finden. \autocite{postmanDocs} \\
+Um die APIs des Backendes der Diplomarbeit zu testen, wurde Postman verwendet. Postman bietet die Funktion, Http-Requests an jede beliebige URL mit jeder verfügbaren HTTP-Methode zu senden. Somit besteht die Möglichkeit, die programmierten Schnittstellen mit verschiedenen Daten schnell zu testen. Dieses Tool unterstützt SOAP, GraphQL und REST. Des weiteren ist Automated Testing möglich und es lassen sich Endpoints simulieren. Somit kann man das Verhalten der APIs sehr gut beobachten, was es einem Programmierer leichter macht Fehler zu finden. \autocite{postmanDocs} \\
 Da das Backend dieser Diplomarbeit mit JWT (JSON Web Token) geschützt ist, ist es bei einem Postman-Request nötig diesen Token in den Header einzufügen, um die API zu testen.  \\
-Am nachfolgenden Screenshot sieht man einen Request von Postman.
+Abbildung \ref{fig:postman} zeigt einen Request von Postman.
 \begin{figure}[H]
 	\centerline{
 		\includegraphics[width=1\textwidth, frame]{./grafiken/postman.png}
@@ -186,7 +186,7 @@ Am nachfolgenden Screenshot sieht man einen Request von Postman.
 
 
 \section{JSON Web Token}
-JSON Web Token(JWT) ist ein Access-Token, der auf JSON basiert. Durch JWT kann man verifizierbare Claims austauschen. Mit JWT sind Stateless Sessions möglich, da jede benötigte Information für eine Authentifikation mit dem Token übertragen werden kann. Ein JSON Web Token setzt sich aus dem Header, Payload und der Signatur zusammen. Bei einem Request mit einem Token schreibt man vor dem Token noch "Bearer". \autocite{wikiJWT}
+JSON Web Token(JWT) ist ein Access-Token, der auf JSON basiert. Durch JWT kann man verifizierbare Claims austauschen. In Claims werden zusätzliche Daten gespeichert, die in den Payload kommen. Mit JWT sind Stateless Sessions möglich, da jede benötigte Information für eine Authentifikation mit dem Token übertragen werden kann. Ein JSON Web Token setzt sich aus dem Header, Payload und der Signatur zusammen. Bei einem Request mit einem Token schreibt man vor dem Token noch "Bearer". \autocite{wikiJWT}
 
 Der Header ist ein JSON-Element. Darin ist gespeichert, welcher Token-Typ es ist und welche Verschlüsselungsmethode angewendet wird. Der Typ ist JWT und als Verschlüsselungsmethoden wird meist HMAC mit SHA-256 oder RSA mit SHA-256 verwendet. \autocite{wikiJWT} \\
 \begin{lstlisting}[caption={JWT-Header Beispiel}, language=json]
