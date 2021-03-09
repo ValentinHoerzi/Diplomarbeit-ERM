@@ -4,7 +4,7 @@ Das Prinzip der Command-query Separation (CQS) steht für die Trennung von Befeh
 Abfragen sollten in diesem Fall idempotent sein. Das bedeutet, dass wenn die selbe Abfrage öfters nacheinander ausgeführt wird, jedes mal dasselbe Ergebnis zurück kommen sollte. Somit sollen Abfragen nur Ergebnisse liefern und keine Daten verändern.
 Befehle sind nur zur Datenveränderung vorhanden und sind daher nicht für Datenabfragen da. Befehle sind daher nicht idempotent, da jeder Aufruf Datensets verändert.
 \section{Umsetzung}
-Um das umzusetzen, werden die zwei generische Schnittstellen benötigt, die man in Listing \ref{lst:cqsSchnittstellen} sieht. \texttt{IQuery} steht für Abfragen und \texttt{ICommand}, die für Befehlen steht.
+Um das umzusetzen, werden die zwei generische Schnittstellen benötigt, die man in Listing \ref{lst:cqsSchnittstellen} sieht. \texttt{IQuery} steht für Abfragen und \texttt{ICommand} für Befehle.
 \begin{lstlisting}[caption={CQS-Schnittstellen},captionpos=b, numbers=left, backgroundcolor=\color{black!10},language={[Sharp]C}, label={lst:cqsSchnittstellen}]
 	public interface IQuery<TResult> { }
 	public interface ICommand { }
