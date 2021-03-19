@@ -18,7 +18,7 @@ Für das Backend der Diplomarbeit wurde das Microsoft .NET Framework .NET Core 3
 
 \subsection{C\#}
 C\# wurde von Microsoft entwickelt und 2001 veröffentlicht. Diese plattformunabhängige, objektorientierte Programmiersprache basiert auf Konzepten von den Programmiersprachen Delphi, C, Haskell, C++ und Java.
-C\# wird meist nicht gleich von den Compiler in die Maschinensprache, sondern in die Zwischensprache Common Intermediate Language (CIL) übersetzt. Im Listing \ref{lst:cSharpSyntax} sieht man ein Syntaxbeispiel con C\#. Die Methode \texttt{Main} in der Klasse \texttt{Program} schreibt beim Aufruf "Hello World!" auf die Konsole. \autocite{wikiCSharp}
+C\# wird meist nicht gleich von den Compiler in die Maschinensprache, sondern in die Zwischensprache Common Intermediate Language (CIL) übersetzt. Im Listing \ref{lst:cSharpSyntax} sieht man ein Syntaxbeispiel von C\#. Die Methode \texttt{Main} in der Klasse \texttt{Program} schreibt bei Aufruf "Hello World!" auf die Konsole. \autocite{wikiCSharp}
 
 \begin{lstlisting}[caption={C\#-Syntaxbeispiel}, language={[Sharp]C},label={lst:cSharpSyntax}]
 	using System;
@@ -35,7 +35,7 @@ C\# wird meist nicht gleich von den Compiler in die Maschinensprache, sondern in
 \end{lstlisting}
 \section{Angular}
 Das Frontend dieser Diplomarbeit wurde mit den Webapplikationsframework Angular geschrieben. Angular ist ein Open-Source-Software, basiert auf TypeScript und wird von einer Online-Community und Google LLC entwickelt.\\
-Das Architekturkonzept von Angular ist eine Hierarchie von Komponenten. Durch Module wird Code schneller und Funktionalitäten können ausgelagert werden. TypeScript wird als Entwicklungssprache empfohlen, da diese Generics, statische Typisierung und klassenbasierte objektorientierte Programmierung ermöglicht. \autocite{wikiAngular}
+Das Architekturkonzept von Angular ist eine Hierarchie von Komponenten. Durch Module wird der Code schneller und die Funktionalitäten können ausgelagert werden. TypeScript wird als Entwicklungssprache empfohlen, da diese Generics, statische Typisierung und klassenbasierte objektorientierte Programmierung ermöglicht. \autocite{wikiAngular}
 Weiters bietet Angular:
 
 \begin{itemize}
@@ -67,13 +67,13 @@ Laut \autocite{wikiTypeScript} bietet TypeScript viele unterstützende Features:
 	\item Methodensignatur
 	\item Enums
 \end{itemize}
-Im Listing \ref{lst:typeFunction} sieht man eine TypeScript-Funktion, die die beiden mitgegebenen Parameter zusammenaddiert und zurückgibt.
+Im Listing \ref{lst:typeFunction} sieht man eine TypeScript-Funktion, die die beiden mitgegebenen Parameter addiert und zurückgibt.
 \begin{lstlisting}[caption={TypeScript-Beispiel Function}, language=JavaScript, label={lst:typeFunction}]
 	public add(a: number, b: number): number {
 		return a + b;
 	}
 \end{lstlisting}
-Im Listing \ref{lst:typeClass} sieht man die Klasse \texttt{Person}, die im Konstruktor die Variablen \texttt{name}, \texttt{age} und \texttt{salary} übernimmt und in die privaten Variablen speichert. Die in dieser Klasse beinhaltete Methode \texttt{toString()} gibt einen String aus diesen drei Variablen zurück.
+Im Listing \ref{lst:typeClass} sieht man die Klasse \texttt{Person}, welche im Konstruktor die Variablen \texttt{name}, \texttt{age} und \texttt{salary} übernimmt und in die privaten Variablen speichert. Die in dieser Klasse beinhaltete Methode \texttt{toString()} gibt einen String aus diesen drei Variablen zurück.
 \begin{lstlisting}[caption={TypeScript-Beispiel Klasse},captionpos=b, language=JavaScript, label={lst:typeClass}]
 	class Person {
 		private name: string;
@@ -91,7 +91,7 @@ Im Listing \ref{lst:typeClass} sieht man die Klasse \texttt{Person}, die im Kons
 		}
 	}
 \end{lstlisting}
-Im Listing \ref{lst:typeGeneric} zeigt ein Syntaxbeispiel für eine generische Methode. Das \texttt{T} kann jeglichen Datentyp annehmen.
+Das Listing \ref{lst:typeGeneric} zeigt ein Syntaxbeispiel für eine generische Methode. Das \texttt{T} kann jeglichen Datentyp annehmen.
 \begin{lstlisting}[caption={TypeScript-Beispiel Generische Programmierung}, language=JavaScript, label={lst:typeGeneric}]
 	function doSomething<T>(arg: T): T {
 		return arg;
@@ -99,7 +99,7 @@ Im Listing \ref{lst:typeGeneric} zeigt ein Syntaxbeispiel für eine generische M
 \end{lstlisting}
 
 \section{Visual Studio Code}
-Das Frontend dieser Diplomarbeit wurde in Visual Studio Code programmiert. Dieser Quelltexteditor erschien 2015 von Microsoft und arbeitet mit Quelldateien und Ordnern in Workspaces. Es bietet Versionsverwaltung, Autovervollständigung, Debugging und Syntaxhervorhebung. Es unterstützt Programmiersprachen wie Java, C++, C\#, JavaScript, TypeScript, Python und viele mehr. Für Visual Studio Code gibt es Plug-ins, die das programmieren sehr vereinfachen können. \autocite{wikiVisualStudioCode}
+Das Frontend dieser Diplomarbeit wurde in Visual Studio Code programmiert. Dieser Quelltexteditor erschien 2015 von Microsoft und arbeitet mit Quelldateien und Ordnern in Workspaces. Es bietet Versionsverwaltung, Autovervollständigung, Debugging und Syntaxhervorhebung. Es unterstützt Programmiersprachen wie Java, C++, C\#, JavaScript, TypeScript, Python und viele mehr. Für Visual Studio Code gibt es Plug-ins, welche das Programmieren sehr vereinfachen können. \autocite{wikiVisualStudioCode}
 
 \begin{figure}[H]
 	\centerline{
@@ -114,8 +114,8 @@ Das Frontend dieser Diplomarbeit wurde in Visual Studio Code programmiert. Diese
 
 Für das Backend der Diplomarbeit wurde Microsoft Visual Studio gewählt. Diese IDE (Integrated Development Environment) unterstützt den Programmierer durch eine ausgereifte Entwicklungsumgebung mit vielen Features.\\
 
-Am nachfolgenden Screenshot sieht man den Startbildschirm von Microsoft Visual Studio 2019
-\begin{figure}[h]
+In Abbildung \ref{fig:visualStudioCodeStartview} sieht man den Startbildschirm von Microsoft Visual Studio 2019
+\begin{figure}[H]
 	\centerline{
 		\includegraphics[width=1\textwidth, frame]{./grafiken/visual_studio_startview.png}
 	}
@@ -149,7 +149,7 @@ Laut \autocite{wikiVisualStudio} bietet Microsoft Visual Studio 2019 viele unter
 	\item WYSIWYG-Editoren zur Benutzeroberflächenentwicklung
 \end{itemize}
 \section{Git Versionsverwaltung}
-Git wurde 2005 veröffentlicht. Diese Software dient zur verteilten Versionsverwaltung von Dateien. Wichtiger Bestandteil von Git ist die Erstellung neuer Entwicklungszweige, den sogenannten Branches und das Zusammenführen von zwei Zweigen. Da es keinen zentralen Server gibt, besitzt jeder Benutzer das gesamte Repository als Kopie lokal. Dadurch benötigt man für fast alle Aktionen keinen Internetzugriff. Der Hash-Wert eines Commites beruht auf die History eines Projektes, somit wird also diese auch mitgespeichert. Folglich kann die History im Nachhinein nicht verändert werden, ohne dass der Hash-Wert modifiziert wird. \autocite{wikiGit}
+Git wurde 2005 veröffentlicht. Diese Software dient zur verteilten Versionsverwaltung von Dateien. Wichtiger Bestandteil von Git ist die Erstellung neuer Entwicklungszweige, den sogenannten Branches und das Zusammenführen von zwei Zweigen. Da es keinen zentralen Server gibt, besitzt jeder Benutzer das gesamte Repository als lokale Kopie. Dadurch benötigt man für fast alle Aktionen keinen Internetzugriff. Der Hash-Wert eines Commites beruht auf die History eines Projektes, somit wird also diese auch mitgespeichert. Folglich kann die History im Nachhinein nicht verändert werden, ohne dass der Hash-Wert modifiziert wird. \autocite{wikiGit}
 
 \subsection{GitHub}
 Für das Diplomarbeitsdokument wurde GitHub verwendet. GitHub wurde 2008 veröffentlicht und gehört seit 2018 zu Microsoft. Es dient zur Versionsverwaltung von Projekten. Diese Open-Source-Software ermöglicht ein leichtes Branching, Merging und Commiting für alle Entwickler. \autocite{wikiGitHub}
@@ -163,7 +163,7 @@ Für das Diplomarbeitsdokument wurde GitHub verwendet. GitHub wurde 2008 veröff
 \end{figure}
 
 \subsection{GitLab}
-Für das Projekt der Diplomarbeit wurde GitLab verwendet. Die Versionsverwaltung basiert auf Git und ist eine Webanwendung. Weitere Features von GitLab ist ein Issue-Tracking-System mit einem Kanban-Board, ein Continuous Integration und Continuous Delivery System, eine Projekt-Wiki, eine Container-Registry und eine Multi-Cluster-Verwaltung. GitLab ist eine Open-Source-Software und wird als Software as a Service angeboten. \autocite{wikiGitLab}
+Für das Projekt der Diplomarbeit wurde GitLab verwendet. Die Versionsverwaltung basiert auf Git und ist eine Webanwendung. Weitere Features von GitLab ist ein Issue-Tracking-System mit einem Kanban-Board, ein Continuous Integration und Continuous Delivery System, eine Projekt-Wiki, eine Container-Registry und eine Multi-Cluster-Verwaltung. GitLab ist eine Open-Source-Software und wird als Software-as-a-Service angeboten. \autocite{wikiGitLab}
 
 \begin{figure}[H]
 	\centerline{
@@ -173,7 +173,7 @@ Für das Projekt der Diplomarbeit wurde GitLab verwendet. Die Versionsverwaltung
 	\caption{UI von GitLab}
 \end{figure}
 \section{Postman}
-Um die APIs des Backendes der Diplomarbeit zu testen, wurde Postman verwendet. Postman bietet die Funktion, Http-Requests an jede beliebige URL mit jeder verfügbaren HTTP-Methode zu senden. Somit besteht die Möglichkeit, die programmierten Schnittstellen mit verschiedenen Daten schnell zu testen. Dieses Tool unterstützt SOAP, GraphQL und REST. Des weiteren ist Automated Testing möglich und es lassen sich Endpoints simulieren. Somit kann man das Verhalten der APIs sehr gut beobachten, was es einem Programmierer leichter macht Fehler zu finden. \autocite{postmanDocs} \\
+Um die APIs des Backendes der Diplomarbeit zu testen, wurde Postman verwendet. Postman bietet die Funktion Http-Requests an eine beliebige URL mit jeder verfügbaren HTTP-Methode zu senden. Somit besteht die Möglichkeit, die programmierten Schnittstellen mit verschiedenen Daten schnell zu testen. Dieses Tool unterstützt SOAP, GraphQL und REST. Des weiteren ist Automated Testing möglich und es lassen sich Endpoints simulieren. Somit kann man das Verhalten der APIs sehr gut beobachten, was es einem Programmierer leichter macht Fehler zu finden. \autocite{postmanDocs} \\
 Da das Backend dieser Diplomarbeit mit JWT (JSON Web Token) geschützt ist, ist es bei einem Postman-Request nötig diesen Token in den Header einzufügen, um die API zu testen.  \\
 Abbildung \ref{fig:postman} zeigt einen Request von Postman.
 \begin{figure}[H]
@@ -217,16 +217,16 @@ Der Nachfolgende Token setzt sich aus den zwei Beispielen zusammen:\\
 
 Der Dienst "Place Autocomplete" ist ein Webdienst, der als Antwort auf eine HTTP-Anfrage Ortsvorhersagen zurückgibt. Die Anfrage gibt einen textuellen Suchstring und optionale geografische Grenzen an. Der Dienst kann verwendet werden, um eine Autovervollständigungsfunktion für textbasierte geografische Suchen bereitzustellen, indem Orte wie Unternehmen, Adressen und Points of Interest zurückgegeben werden, während ein Benutzer sie eingibt.\cite{googlePlacesAPI}
 
-Der Dienst "Place Autocomplete" kann ganze Wörter und Teilstrings abgleichen und so Ortsnamen, Adressen und Pluscodes auflösen. Anwendungen können daher Abfragen senden, während der Benutzer tippt, um on-the-fly Ortsvorhersagen zu erhalten.Die zurückgegebenen Vorhersagen sollen dem Benutzer bei der Auswahl des gewünschten Ortes helfen. Sie können eine Abfrage für Ortsdetails senden, um weitere Informationen über jeden der zurückgegebenen Orte zu erhalten.\cite{googlePlacesAPI}
+Der Dienst "Place Autocomplete" kann ganze Wörter und Teilstrings abgleichen und so Ortsnamen, Adressen und Pluscodes auflösen. Anwendungen können daher Abfragen senden, während der Benutzer tippt, um on-the-fly Ortsvorhersagen zu erhalten. Die zurückgegebenen Vorhersagen sollen dem Benutzer bei der Auswahl des gewünschten Ortes helfen. Sie können eine Abfrage für Ortsdetails senden, um weitere Informationen über jeden der zurückgegebenen Orte zu erhalten.\cite{googlePlacesAPI}
 
 \section{Shopify}
 Das Node-Package "@shopify/address" liefert für die Länder die verpflichtenden Felder und falls vorhanden die Staaten oder Provinzen für eine gültige Adresse durch die Methode \texttt{getCountry(countryCode)}. Dadurch ist es möglich, dass an das jeweilig ausgewählte Land, die Pflichtfelder angepasst werden. Durch die Methode \texttt{getOrderedFie lds(countryCode)} erhält man die richtige Reihenfolge eines Formulars für das Land. Das Resultat dieser Abfrage ist eine zweidimensionales Array, woraus man den Inhalt der einzelnen Zeilen herauslesen kann. Der Parameter "countryCode" steht für die internationale Länderabkürzung, im Falle Österreich wäre dieser "AT". \autocite{shopifyNPM}
 
 \section{Twilio} \label{sec:twilio}
-Twilio wurde 2008 von Jeff Lawson, Evan Cooke und John Wolthuis in Amerika gegründet. Dieses Unternehmen betreibt eine Cloud-Kommunikationsplattform als Platform as a Service. Mit den von Twilio zur Verfügung gestellten Dienst, können Entwickler Programmierschnittstellen zum ausführen und empfangen von Anrufen, senden von SMS, verifizieren von Telefonnummern sowie für andere Kommunikationsfunktionen nutzen. In unseren Implementationen half Twilio bei der Verifizierung der von den Benutzer angegebenen Telefonnummern. \cite{twilioWebsite}
+Twilio wurde 2008 von Jeff Lawson, Evan Cooke und John Wolthuis in Amerika gegründet. Dieses Unternehmen betreibt eine Cloud-Kommunikationsplattform als Platform-as-a-Service. Mit den von Twilio zur Verfügung gestellten Dienst, können Entwickler Programmierschnittstellen zum ausführen und empfangen von Anrufen, senden von SMS, verifizieren von Telefonnummern sowie für andere Kommunikationsfunktionen nutzen. In unseren Implementationen half Twilio bei der Verifizierung der von den Benutzer angegebenen Telefonnummern. \cite{twilioWebsite}
 
 \section{Address Validator}
-Der Address Validator wurde von Byteplant Software Solutions \& Services entwickelt. Dieses Unternehmen wurde 2003 in Deutschland gegründet. Neben dem Address Validator bieten sie auch einen Email Validator und einen Phone Validator an. Die Adressvalidierung hilft dabei, Informationen über die Zustellbarkeit einer Adresse zu sammeln, Korrekturvorschläge zu präsentieren, falls die Adresse nicht ganz gültig ist und eine einheitliche Adressformatierung nach den nationalen Standards anzubieten. Für eine Überprüfung benötigt man Straße, Stadt, Internationales Länderkürzel und den API-Key. Optional kann man noch mehr, wie beispielsweise Postleitzahl oder die Locale in der man das Ergebnis erhalten möchte, validieren. Als Antwort bekommt man eine Datei im JSON-Format. Aus dieser JSON-Datei ist es möglich, viele Informationen über die Adresse auszulesen. Falls die Adresse gültig ist, bekommt man im Feld Status ein VALID, bei ungültiger Adresse ein INVALID und falls die Überprüfung kein genaues Ergebnis herausgefunden hat, aber eine Adresse gefunden hat, die es sein könnte, ist der Status SUSPECT mit einen Adressvorschlag. Weiteres beinhaltet die Antwort alles von den einzelnen Adressfelder bis hin zu der formatierten Adresse des Landes und den Geografischen Koordinaten. \cite{addressValidator}
+Der Address Validator wurde von Byteplant Software Solutions \& Services entwickelt. Dieses Unternehmen wurde 2003 in Deutschland gegründet. Neben dem Address Validator bieten sie auch einen Email Validator und einen Phone Validator an. Die Adressvalidierung hilft dabei, Informationen über die Zustellbarkeit einer Adresse zu sammeln, Korrekturvorschläge zu präsentieren, falls die Adresse nicht ganz gültig ist und es bietet eine einheitliche Adressformatierung nach den nationalen Standards. Für eine Überprüfung benötigt man Straße, Stadt, Internationales Länderkürzel und den API-Key. Optional kann man noch mehr, wie beispielsweise Postleitzahl oder die Locale in der man das Ergebnis erhalten möchte, validieren. Als Antwort bekommt man eine Datei im JSON-Format. Aus dieser JSON-Datei ist es möglich, viele Informationen über die Adresse auszulesen. Falls die Adresse gültig ist, bekommt man im Feld Status ein VALID, bei ungültiger Adresse ein INVALID und falls die Überprüfung kein genaues Ergebnis herausgefunden hat, aber eine Adresse gefunden hat, die es sein könnte, ist der Status SUSPECT mit einen Adressvorschlag. Weiteres beinhaltet die Antwort alles von den einzelnen Adressfelder bis hin zu der formatierten Adresse des Landes und den Geografischen Koordinaten. \cite{addressValidator}
 
 \section{Google Translator}
 Die Schnittstelle für den Google Cloud Translator wurde von Google LLC entwickelt. Damit kann man schnell Texte in mehr als 100 Sprachen im eigenen Programm übersetzen lassen. Als Antwort der Übersetzung bekommt man den Titel, den Inhalt und die Abkürzung der Sprache. Nun kann man die Übersetzungen speichern und man braucht nur nach der Spachenabkürzung suchen.

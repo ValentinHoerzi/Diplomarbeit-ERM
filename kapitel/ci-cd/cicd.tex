@@ -71,8 +71,8 @@ Eine typische Pipeline kann aus vier Phasen bestehen, die in der folgenden Reihe
 \subsection{Registrierung}
 
 GitLab Runner ist eine Anwendung, die mit GitLab CI/CD arbeitet, um Aufträge in einer Pipeline auszuführen.
-Man kann die GitLab Runner-Anwendung auf der Infrastruktur installieren, die man besitzen oder verwalten. In diesem Fall sollte man GitLab Runner auf einem Rechner installieren, der von dem Rechner getrennt ist, der die GitLab-Instanz hostet. GitLab Runner ist Open-Source und in Go geschrieben. Er kann als einzelne Binärdatei ausgeführt werden, wobei es keine sprachspezifischen Anforderungen benötigt.
-Es ist auch möglich, GitLab Runner auf verschiedenen unterstützten Betriebssystemen installieren. Andere Betriebssysteme sind ebenfalls in der Lage Runner bereitzustellen, sofern diese eine Go-Binärdatei kompilieren können.
+Man kann die GitLab Runner-Anwendung auf der Infrastruktur installieren, besitzen oder verwalten. In diesem Fall sollte man GitLab Runner auf einem Rechner installieren, der von dem Rechner getrennt ist, der die GitLab-Instanz hostet. GitLab Runner ist Open-Source und in Go geschrieben. Er kann als einzelne Binärdatei ausgeführt werden, wobei es keine sprachspezifischen Anforderungen benötigt.
+Es ist auch möglich, GitLab Runner auf verschiedenen unterstützten Betriebssystemen zu installieren. Andere Betriebssysteme sind ebenfalls in der Lage Runner bereitzustellen, sofern diese eine Go-Binärdatei kompilieren können.
 GitLab Runner kann auch in einem Docker-Container ausgeführt oder in einem Kubernetes-Cluster bereitgestellt werden.\autocite{gitlabRunner}
 
 \begin{figure}[H]
@@ -104,7 +104,7 @@ Registrierte Runner kann man sogenannte Tags zuweisen. Wenn ein CI/CD Job läuft
 
 Man muss dazu lediglich folgendes in seine \texttt{.gitlab-ci.yml} Datei einbinden:
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\centerline{
 		\includegraphics[width=1\textwidth, frame]{./grafiken/ruby_runner_tag_in_gitlab-ci-yml_file.JPG}
 	}
@@ -306,7 +306,7 @@ Bei dem \texttt{publish\_angular} Job im Listing~\ref{lst:lstReleaseStage} wird 
 
 Beide Jobs, \texttt{containerize\_dotnet} und \texttt{containerize\_angular}, kümmern sich um den Abschluss der Continous Delivery. Ziel ist es, die Software in zwei unabhängige Docker-Images zu bündeln, um diese anschließen in die Container-Registry von GitLab zu pushen.
 
-Um ein Docker-Image der gebündelten DotNet-Applikation zu  erstellen, wird im Job \texttt{containerize\_dotnet}, dargestellt im Listing~\ref{lst:lstImagesStage}, ein temporäres \texttt{Dockerfile} im Hauptverzeichnis der Applikation erstellt. Da die Angular-Jobs durchschnittlich 2 Minuten schneller als die Dotnet-Jobs sind, entstehen hier keine Probleme mit dem \texttt{containerize\_\\angular}-Job. Um das Image tatsächlich zu erstellen wird \textbf{\texttt{kaniko}} verwendet.
+Um ein Docker-Image der gebündelten DotNet-Applikation zu  erstellen, wird im Job \texttt{containerize\_dotnet}, dargestellt im Listing~\ref{lst:lstImagesStage}, ein temporäres \texttt{Dockerfile} im Hauptverzeichnis der Applikation erstellt. Da die Angular-Jobs durchschnittlich 2 Minuten schneller sind als die Dotnet-Jobs, entstehen hier keine Probleme mit dem \texttt{containerize\_\\angular}-Job. Um das Image tatsächlich zu erstellen wird \textbf{\texttt{kaniko}} verwendet.
 
 Das Kaniko-Executor-Image ist dafür verantwortlich, ein Image aus einem Dockerfile zu erstellen und es in eine Container-Registry zu schieben. Innerhalb des Kaniko-Executor-Image extrahieren wir das Dateisystem des Basisabbilds (das FROM-Abbild im Dockerfile). Anschließend führen wir die Befehle in dem Dockerfile aus und erstellen nach jedem Befehl einen Snapshot des Dateisystems im Userspace. Nach jedem Befehl wird eine Schicht mit geänderten Dateien an das Basis-Image angehängt (falls vorhanden) und die Metadaten des Images werden aktualisiert\cite{kaniko}. Kaniko ist nicht von einem Docker-Daemon abhängig und führt jeden Befehl innerhalb eines Dockerfiles vollständig im Userspace aus. Dies ermöglicht die Erstellung von Container-Images in Umgebungen, in denen ein Docker-Daemon nicht einfach oder sicher ausgeführt werden kann, wie z. B. in einem Standard-Kubernetes-Cluster.\cite{kaniko}
 

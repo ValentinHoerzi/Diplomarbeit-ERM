@@ -535,7 +535,7 @@ addressHasBeenSelected(place: google.maps.places.PlaceResult) {
 
 Der \texttt{StreetComponent} hat sich mit der \texttt{addressHasBeenSelected()}-Methode auf dieses Event als Observer registriert. Da das überlieferte Objekt ein Array an Ergebnissen liefert, werden über diese iteriert und die Ergebnisse in ein temporäres Objekt gespeichert. Die \texttt{handleAddressDto()}-Methode aktualisiert jeden Wert in der \texttt{fields}-Map. 
 
-Das interessante daran ist, dass, wenn manuell eine Adresse eines anderen Landes eingegeben wird, ein Event im \texttt{ValidatorService}, auf welches der \texttt{UserprofileComponent} registriert ist, abgefeuert wird. Es wird umgehend die \texttt{onInitViewChange()}-Methode aufgerufen, welche alle Nachfolgenden Elemente des HTML-Form-Elements, zu finden im Listing~\ref{lst:html}, löscht und wieder bei der \texttt{initiateDynamicComponentConfiguration()}-Methode startet. Somit wird ein, für das neue Land angepasste, RF generiert (Kapitel ~\ref{ssec:lblInitDCC}).
+Das interessante daran ist, wenn manuell eine Adresse eines anderen Landes eingegeben wird, ein Event im \texttt{ValidatorService}, auf welches der \texttt{UserprofileComponent} registriert ist, abgefeuert wird. Es wird umgehend die \texttt{onInitViewChange()}-Methode aufgerufen, welche alle Nachfolgenden Elemente des HTML-Form-Elements, zu finden im Listing~\ref{lst:html}, löscht und wieder bei der \texttt{initiateDynamicComponentConfiguration()}-Methode startet. Somit wird ein, für das neue Land angepasste, RF generiert (Kapitel ~\ref{ssec:lblInitDCC}).
 
 
 \subsection{Ermittlung des Standorts durch die IP - Use my location}
