@@ -1,16 +1,14 @@
 \chapter{Beschreibung aus Anwendersicht} \label{anwendersicht}
-
-Dieses Projekt ist für den Kunden entwickelt worden, daher wird hier die Anwendersicht beschrieben.
-
+Dieses Projekt wurde für den Kunden entwickelt, daher wird im Folgenden die Anwendersicht beschrieben.
 \section{Länderwahl}
 \begin{figure}[H]
 	\centerline{
 		\includegraphics[width=1\textwidth, frame]{./grafiken/erm_country_selection.png}
 	}
 	\vskip0pt
-	\caption{Screenshot von Länderwahl} \label{fig:countrySelection}
+	\caption{Screenshot der Länderwahl} \label{fig:countrySelection}
 \end{figure}
-Um auf die Webseite zu gelangen, ist es Erforderlicht, dass man davor in der Länderwahl, wie in Abbildung \ref{fig:countrySelection} sein Land und bei den Ländern, wo es mehrere Landssprachen gibt, auch die Sprache wählt. Aus dem Länder- und Sprachenkürzel setzt sich die Locale zusammen. Für Österreich wäre die Locale daher "de\_AT" und für Deutschland "de\_DE". Diese Locale wird in den Cookies gespeichert und die Webseite richtet sich nach dieser Locale in den Cookies. Es ist auch möglich, im Nachhinein das Land und die Sprache zu ändern, indem man im Header der Webseite auf das Land klickt. Durch diesen Klick gelangt man von überall auf die Länderwahl.
+Um auf die Webseite zu gelangen, ist es erforderlich, dass man davor in der Länderwahl, wie in Abbildung \ref{fig:countrySelection} gezeigt wird, sein Land wählt und bei den Ländern, in denen es mehrere Landessprachen gibt, auch die Sprache wählt. Aus dem Länder- und Sprachenkürzel setzt sich die Locale zusammen. Für Österreich wäre die Locale daher "de\_AT" und für Deutschland "de\_DE". Diese Locale wird in den Cookies gespeichert und die Webseite richtet sich nach dieser Locale in den Cookies. Es ist auch möglich, im Nachhinein das Land und die Sprache zu ändern, indem man im Header der Webseite auf das Land klickt. Durch diesen Klick gelangt man von überall auf die Länderwahl.
 
 \section{Startseite}
 \subsection{Startseite vor dem Login}
@@ -22,7 +20,7 @@ Um auf die Webseite zu gelangen, ist es Erforderlicht, dass man davor in der Lä
 	\caption{Screenshot von der Startseite nicht eingeloggt} \label{fig:homeNotLoggedIn}
 \end{figure}
 
-Nach der Länderwahl gelangt man zu der Startseite. Anfangs ist man noch nicht eingeloggt, daher ist ein Login-Feld in der Mitte, wie man in Abbildung \ref{fig:homeNotLoggedIn} sehen kann. Da sieht man auch, dass das Feld "Mein Maschinenpark" etwas heller ist als die anderen Felder, da man den Maschinenpark nur als eingeloggter Benutzer nutzen kann. Die zwei anderen Felder sind auch ohne Registrierung nutzbar.
+Nach der Länderwahl gelangt man auf die Startseite. Anfangs ist man noch nicht eingeloggt, daher ist ein Login-Feld in der Mitte, wie man in Abbildung \ref{fig:homeNotLoggedIn} sehen kann. Dort sieht man auch, dass das Feld "Mein Maschinenpark" etwas heller ist als die anderen Felder, da man den Maschinenpark nur als eingeloggter Benutzer verwenden kann. Die beiden anderen Felder sind auch ohne Registrierung nutzbar.
  
 \subsection{Startseite nach einem erfolgreichen Login}
 \begin{figure}[H]
@@ -33,11 +31,11 @@ Nach der Länderwahl gelangt man zu der Startseite. Anfangs ist man noch nicht e
 	\caption{Screenshot von der Startseite eingeloggt} \label{fig:homeLoggedIn}
 \end{figure}
 
-Nach einem erfolgreichen Login ist das Feld "Mein Maschinenpark" aktiv. Als eingeloggter Benutzer hat man nun Zugriff auf den Maschinenpark. Das erkennt man, da das Feld in Abbildung \ref{fig:homeLoggedIn} den selben Grauton hat, als die beiden anderen Felder. 
+Nach einem erfolgreichen Login ist das Feld "Mein Maschinenpark" aktiv. Als eingeloggter Benutzer hat man nun Zugriff auf den Maschinenpark. Das erkennt man daran, dass das Feld in Abbildung \ref{fig:homeLoggedIn} den selben Grauton hat, wie die beiden anderen Felder. 
 
 \section{Registrierungsseite}
 
-Falls man noch nicht registriert ist und man auf der Startseite auf "Registrieren" drückt, wird man zur Registrierungsseite weitergeleitet. Den ersten Teil dieser Seite sieht man in Abbildung \ref{fig:register}
+Falls man noch nicht registriert ist und man auf der Startseite auf "Registrieren" drückt, wird man zur Registrierungsseite weitergeleitet. Den ersten Teil dieser Seite sieht man in Abbildung \ref{fig:register}.
 
 \subsection{Registrierung}
 \begin{figure}[H]
@@ -48,7 +46,7 @@ Falls man noch nicht registriert ist und man auf der Startseite auf "Registriere
 	\caption{Screenshot von der Registrierungsseite} \label{fig:register}
 \end{figure}
 
-Während der Passworteingabe bekommt man Feedback, wie sicher das ausgewählte Passwort ist und was noch fehlt, um den Passwortanforderungen zu entsprechen. Die Passwortanforderungen, die man in Abbildung \ref{fig:pwHints} sieht, entsprechen den Voraussetzungen von Auth0, da die Registrierung über Auth0 läuft. Der Balken unter dem Passwortfeld, wie in Abbildung \ref{fig:pwSec} gibt die Sicherheit des Passwortes an. Das Passwort wird mit gängigen Namen und Nachnamen aus Amerika, beliebte englische Wörter und Muster wie Datumsangaben, Wiederholungen und Tastaturmuster verglichen um die Stärke angeben zu können.
+Während der Passworteingabe bekommt man Feedback, wie sicher das ausgewählte Passwort ist und ob noch Komponenten fehlen, um den Passwortanforderungen zu entsprechen. Die Passwortanforderungen, die man in Abbildung \ref{fig:pwHints} sieht, entsprechen den Voraussetzungen von Auth0, da die Registrierung über Auth0 läuft. Der Balken unter dem Passwortfeld, wie in Abbildung \ref{fig:pwSec} sichtbar, gibt die Sicherheit des Passwortes an. Das Passwort wird mit gängigen Namen und Nachnamen aus Amerika, beliebten englischen Wörtern und Mustern wie Datumsangaben, Wiederholungen und Tastaturmustern verglichen, um die Stärke angeben zu können.
 
 \begin{figure}[H]
 	\centerline{
@@ -65,11 +63,11 @@ Während der Passworteingabe bekommt man Feedback, wie sicher das ausgewählte P
 
 \subsection{Weitere Daten für die Registrierung}
 
-In diesem Schritt der Registrierung füllt man persönliche Daten aus. Das Land und die Sprache werden von der am Beginn ausgewählten Locale übernommen. Diese kann man aber auch hier noch ändern. Wenn das Land oder die Sprache geändert wird, wird dieses Formular neu generiert und die Felder werden nach den Standard des Landes erzeugt. Das bedeutet, dass die Reihenfolge der angezeigten Felder von dem ausgewählten Land abhängt, da in gewissen Ländern der Nachname vor dem Vornamen in einem Formular steht oder es in bestimmten Ländern Staaten oder Provinzen dazu kommen. Die Feldbeschreibung wird auch nach der ausgewählten Sprache geändert. Weiters wird auch die Validierung der Felder angepasst, denn zum Beispiel die Postleitzahl in den verschiedenen Länder variiert (4-stellig in Österreich, 5-stellig in Deutschland). \\
+In diesem Schritt der Registrierung füllt man persönliche Daten aus. Das Land und die Sprache werden von der am Beginn ausgewählten Locale übernommen. Diese kann man aber auch hier noch ändern. Wenn das Land oder die Sprache geändert wird, wird dieses Formular neu generiert und die Felder werden nach dem Standard des Landes erzeugt. Das bedeutet, dass die Reihenfolge der angezeigten Felder von dem ausgewählten Land abhängt, da in gewissen Ländern in einem Formular der Nachname vor dem Vornamen steht oder in bestimmten Ländern Staaten oder Provinzen dazu kommen. Die Feldbeschreibung wird auch nach der ausgewählten Sprache geändert. Weiters wird auch die Validierung der Felder angepasst, da zum Beispiel die Postleitzahl in den verschiedenen Länder variiert (4-stellig in Österreich, 5-stellig in Deutschland). \\
 Für die Adresseingabe in der Abbildung \ref{fig:register2} hat der Benutzer 3 Möglichkeiten:\\
-Es besteht die Möglichkeit, jedes Adressfeld selber auszufüllen. Somit sind die Felder Straße und Hausnummer, Ort, Postleitzahl und bei gewissen Ländern die Provinzen oder Staaten auszufüllen.\\
-Eine etwas schnellere Variante ist die Verwendung von dem integrierten Typeaheads. Bei der Eingabe des Feldes Straße und Hausnummer erscheinen Adresseingabevorschläge darunter. Wenn man auf die gewünschte Adresse klickt, werden die Felder Ort, Postleitzahl und falls vorhanden die Provinz oder der Staat automatisch ausgefüllt. Alle angezeigten Vorschläge sind in den ausgewählten Land. Somit wird verhindert, dass der Benutzer eine Adresse eingibt, die sich nicht in dem gewählten Land befindet.\\
-Die schnellste Variante ist die Verwendung von der integrierten Standorterkennung. Dafür drückt man den "Use my location" über dem Adressfeld. Dadurch wird der Standort bestmöglich erkannt und alle vorhandenen Adressfelder werden automatisch ausgefüllt. Falls der Standort nicht ganz richtig erkannt wurde, kann man es danach noch bearbeiten. Die Standorterkennung ändert auch das ausgewählte Land, falls diese nicht übereinstimmen.
+Es besteht die Möglichkeit, jedes Adressfeld selbst auszufüllen. Somit sind die Felder Straße und Hausnummer, Ort, Postleitzahl und bei gewissen Ländern außerdem die Provinzen oder Staaten auszufüllen.\\
+Eine etwas schnellere Variante ist die Verwendung von dem integrierten Typeaheads. Bei der Eingabe in das Feld Straße und Hausnummer erscheinen Adresseingabevorschläge darunter. Wenn man auf die gewünschte Adresse klickt, werden die Felder Ort, Postleitzahl und falls vorhanden, die Provinz oder der Staat automatisch ausgefüllt. Alle angezeigten Vorschläge sind in dem ausgewählten Land. Somit wird verhindert, dass der Benutzer eine Adresse eingibt, die sich nicht in dem gewählten Land befindet.\\
+Die schnellste Variante ist die Verwendung von der integrierten Standorterkennung. Dafür drückt man "Use my location" über dem Adressfeld. Dadurch wird der Standort bestmöglich erfasst und alle vorhandenen Adressfelder werden automatisch ausgefüllt. Falls der Standort nicht ganz richtig erkannt wurde, kann man diesen anschließend noch bearbeiten. Die Standorterkennung ändert auch das ausgewählte Land, falls dieses nicht übereinstimmt.
 \begin{figure}[H]
 	\centerline{
 		\includegraphics[width=1\textwidth, frame]{./grafiken/erm_register_data.png}
@@ -78,8 +76,8 @@ Die schnellste Variante ist die Verwendung von der integrierten Standorterkennun
 	\caption{Screenshot von der Dateneingabe der Registrierung} \label{fig:register2}
 \end{figure}
 
-Um anzugeben, ob der Benutzer auf einem landwirtschaftlichen Betrieb arbeitet, besteht die Möglichkeit auszuwählen, dass er auf dem eigenen landwirtschaftlichen Betrieb arbeitet, auf einem anderen landwirtschaftlichen Betrieb angestellt ist oder, dass er auf keinem Betrieb arbeitet. Falls der Benutzer auswählt, dass er auf einen anderen Betrieb angestellt ist, erscheint zusätzlich das Feld für den Namen des Unternehmens.\\
-Jedes Eingabefeld wird sofort nach Abgabe des Cursorfokus validiert. Falls ein Fehler auftritt wird das Feld rot umrandet und unter dem Feld erscheint eine Fehlermeldung, was falsch ist. Die Eingaben werden im Frontend und im Backend validiert. In der Abbildung \ref{fig:eingabeError} sieht man die Felder mit einigen möglichen Fehlermeldungen. Bei einer korrekten Eingabe, verschwindet der rote Rahmen um das jeweilige Feld wieder.
+Um anzugeben, ob der Benutzer auf einem landwirtschaftlichen Betrieb arbeitet, besteht die Möglichkeit auszuwählen, dass er auf dem eigenen landwirtschaftlichen Betrieb arbeitet, auf einem anderen landwirtschaftlichen Betrieb angestellt ist oder, dass er auf keinem Betrieb arbeitet. Falls der Benutzer auswählt, dass er auf einem anderen Betrieb angestellt ist, erscheint zusätzlich das Feld für den Namen des Unternehmens.\\
+Jedes Eingabefeld wird sofort nach Abgabe des Cursorfokus validiert. Falls ein Fehler auftritt, wird das Feld rot umrandet und unter dem Feld erscheint eine Fehlermeldung, die angibt was falsch ist. Die Eingaben werden im Frontend und im Backend validiert. In der Abbildung \ref{fig:eingabeError} sieht man die Felder mit einigen möglichen Fehlermeldungen. Bei einer korrekten Eingabe verschwindet der rote Rahmen um das jeweilige Feld wieder.
 \begin{figure}[H]
 	\centerline{
 		\includegraphics[width=1\textwidth, frame]{./grafiken/dateneingabe_Errors.PNG}
@@ -89,16 +87,16 @@ Jedes Eingabefeld wird sofort nach Abgabe des Cursorfokus validiert. Falls ein F
 \end{figure}
 
 \subsection{Letzter Schritt der Registrierung}
-Um die Registrierung erfolgreich abzuschließen, bekommt man eine Bestätigung per E-Mail zugesendet. Darin befindet sich ein Aktivierungslink. Den letzte Schritt der Registrierung sieht man in der Abbildung \ref{fig:step3register}. Hier wird man nur mehr gebeten, den Link in der E-Mail zu klicken. Nach der Aktivierung ist die Webseite ohne Einschränkungen nutzbar.
+Um die Registrierung erfolgreich abzuschließen, bekommt der User eine Bestätigung per E-Mail zugesendet. Darin befindet sich ein Aktivierungslink. Der letzte Schritt der Registrierung wird in der Abbildung \ref{fig:step3register} angezeigt. Hier wird man nur mehr gebeten, den Link in der E-Mail zu klicken. Nach der Aktivierung ist die Webseite ohne Einschränkungen nutzbar.
 \begin{figure}[H]
 	\centerline{
 		\includegraphics[width=1\textwidth, frame]{./grafiken/erm_register_final.png}
 	}
 	\vskip0pt
-	\caption{Screenshot von dem letzten Schritt der Registrierung} \label{fig:step3register}
+	\caption{Screenshot vom letzten Schritt der Registrierung} \label{fig:step3register}
 \end{figure}
 
-Nach der Bestätigung in der E-Mail wird man zurück auf die Startseite geleitet und es erscheint ein Pop-Up, wie man in Abbildung \ref{fig:popup} sieht.
+Nach der Bestätigung in der E-Mail wird man zurück auf die Startseite geleitet und es erscheint ein Pop-Up, wie die Abbildung \ref{fig:popup} zeigt.
 
 \begin{figure}[H]
 	\centerline{
@@ -110,7 +108,7 @@ Nach der Bestätigung in der E-Mail wird man zurück auf die Startseite geleitet
 
 \section{Profilübersicht}
 
-Auf die Profilübersicht gelangt man, wenn man in dem Bestätigungs-Pop-Up auf "Profil bearbeiten" klickt oder man klickt auf den eigenen Namen rechts oben und danach auf "Mein Profil". Die Profilübersicht sieht man in Abbildung \ref{fig:profil}.
+Auf die Profilübersicht gelangt man, wenn man in dem Bestätigungs-Pop-Up auf "Profil bearbeiten" klickt oder auf den eigenen Namen rechts oben und direkt danach auf "Mein Profil". Die Profilübersicht sieht man in Abbildung \ref{fig:profil}.
 
 \begin{figure}[H]
 	\centerline{
@@ -124,7 +122,7 @@ In der Profilübersicht kann man all seine persönlichen Daten einsehen und dies
 
 \subsection{Persönliche/Betriebliche Daten}
 
-Nach der Registrierung ist es möglich, hier noch weiter persönliche und betriebliche Daten einzutragen. Falls der Benutzer ausgewählt hat, dass er auf dem eigenen oder einem anderen landwirtschaftlichen Betrieb arbeitet, erweitern sich die Daten um einige Felder für den Betrieb. Bei einem Klick auf "Persönliche/Betriebliche Daten" klappt sich ein Datenformular auf, dass man in Abbildung \ref{fig:profilData} sehen kann.
+Nach der Registrierung ist es möglich, hier noch weiter persönliche und betriebliche Daten einzutragen. Falls der Benutzer ausgewählt hat, dass er auf dem eigenen oder einem anderen landwirtschaftlichen Betrieb arbeitet, erweitern sich die Dateneingabefelder um einige Felder für den Betrieb. Bei einem Klick auf "Persönliche/Betriebliche Daten" klappt sich ein Datenformular auf, dass man in Abbildung \ref{fig:profilData} sehen kann.
 
 \begin{figure}[H]
 	\centerline{
@@ -134,11 +132,11 @@ Nach der Registrierung ist es möglich, hier noch weiter persönliche und betrie
 	\caption{Persönliche/Betriebliche Daten} \label{fig:profilData}
 \end{figure}
 
-Bei den Daten über den Betrieb wird gefragt, wie der Benutzer auf den Betrieb angestellt ist. Weiters ist auszufüllen, um welche Art von landwirtschaftlichen Betrieb es sich handelt. Die Betriebsfläche ist in Hektar und die Ackerfläche in Prozent anzugeben und für die Bewirtschaftungsform stehen Konventionell und Biologisch zur Auswahl. Danach wählt man noch die Betriebsform und die Anzahl der jeweiligen Tiere.
+Bei den Daten über den Betrieb wird gefragt, wie der Benutzer auf dem Betrieb angestellt ist. Weiters ist auszufüllen, um welche Art von landwirtschaftlichem Betrieb es sich handelt. Die Betriebsfläche ist in Hektar und die Ackerfläche in Prozent anzugeben und für die Bewirtschaftungsform stehen "Konventionell" und "Biologisch" zur Auswahl. Danach wählt man noch die Betriebsform und die Anzahl der jeweiligen Tiere.
 
 \subsection{Newsletter}
 
-Die Firma Pöttinger bietet Newsletter in verschiedenen Sprachen für die Kunden an. Es besteht die Möglichkeit sich von diesen Newsletter jederzeit an- oder abzumelden. Das geschieht mit einem Klick auf den jeweiligen Knopf unter der gewünschten Sprache. Falls ein Newsletter abonniert ist, sieht man darunter, seit wann man diesen Newsletter erhält.
+Die Firma Pöttinger bietet Newsletter in verschiedenen Sprachen für die Kunden an. Es besteht die Möglichkeit, sich von diesem Newsletter jederzeit an- oder abzumelden. Das geschieht mit einem Klick auf den jeweiligen Knopf unter der gewünschten Sprache. Falls ein Newsletter abonniert ist, sieht man darunter, seit wann man diesen Newsletter erhält.
 
 \begin{figure}[H]
 	\centerline{
@@ -150,7 +148,7 @@ Die Firma Pöttinger bietet Newsletter in verschiedenen Sprachen für die Kunden
 
 \section{Produktpalette}
 
-Mit der Produktpalette erhält man eine Vielzahl an Informationen zu den Landmaschinen der Firma Pöttinger. Um die gewünschte Maschine zu finden, gibt es verschiedene Möglichkeiten. Eine Möglichkeit ist, die Maschine in der Produktpalette zu suchen. Dafür klickt man auf "Suche in der Produktpalette" und danach öffnet sich ein Baumstruktur, in der man von oben nach unten in den Kategorien suchen kann. Am Beginn stehen Grünland und Ackerbau zur Auswahl. Öffnet man Grünland, erscheinen die Unterkategorien dieser Kategorie. Es gibt bis zu fünf Ebenen, bis man zu den einzelnen Maschinen gelangt. Diese Suche in der Baumstruktur kann man mit einer Eingabe in der Stichwortsuche über dem Baum noch einschränken. Wenn das eingegebene Stichwort in einer Ebene und darunter nicht vorkommt, sieht man diese Ebene auch nicht mehr. In Abbildung \ref{fig:produktpalette} sieht man die geschlossene Produktpalette. In der Abbildung \ref{fig:produktpaletteOffen} sieht man ein Beispiel für Produktpalette mit offenen Unterebenen und in Abbildung \ref{fig:produktpaletteMitStichwort} sieht man den Unterschied, wenn man die offene Produktpalette mit einer Stichworteingabe verbindet.
+Mit der Produktpalette erhält man eine Vielzahl an Informationen zu den Landmaschinen der Firma Pöttinger. Um die gewünschte Maschine zu finden, gibt es verschiedene Möglichkeiten. Eine Möglichkeit ist, die Maschine in der Produktpalette zu suchen. Dafür klickt man auf "Suche in der Produktpalette" und danach öffnet sich eine Baumstruktur, in der man von oben nach unten in den Kategorien suchen kann. Am Beginn stehen Grünland und Ackerbau zur Auswahl. Öffnet man Grünland, erscheinen die Unterkategorien dieser Art. Es gibt bis zu fünf Ebenen, bis man zu den einzelnen Maschinen gelangt. Diese Suche in der Baumstruktur kann man mit einer Eingabe in der Stichwortsuche über dem Baum noch einschränken. Wenn das eingegebene Stichwort in einer Ebene und darunter nicht vorkommt, ist diese Ebene auch nicht mehr sichtbar. In Abbildung \ref{fig:produktpalette} sieht man die geschlossene Produktpalette. In der Abbildung \ref{fig:produktpaletteOffen} sieht man ein Beispiel für Produktpalette mit geöffneten Unterebenen und die Abbildung \ref{fig:produktpaletteMitStichwort} zeigt den Unterschied, wenn man die offene Produktpalette mit einer Stichworteingabe verbindet.
 
 \begin{figure}[H]
 	\centerline{
@@ -176,11 +174,11 @@ Mit der Produktpalette erhält man eine Vielzahl an Informationen zu den Landmas
 	\caption{Offene Produktpalette mit Stichwortsuche} \label{fig:produktpaletteMitStichwort}
 \end{figure}
 
-Eine andere Möglichkeit ist noch die Suche mit einer gültigen Maschinennummer. Gibt man diese Nummer ein, gelangt man direkt zur Produktübersicht.
+Eine andere Möglichkeit ist außerdem die Suche mit einer gültigen Maschinennummer. Wird diese Nummer eingegeben, gelangt man direkt zur Produktübersicht.
 
 \section{Produktübersicht}
 
-Hat man sich eine Maschine in der Produktpalette, direkt mit der Maschinennummer oder eine in Maschinenpark gespeicherte Maschine gesucht, gelangt man auf die Produktübersicht, die man in Abbildung \ref{fig:produktübersicht} sehen kann. Hier findet man jegliche nützliche Information der ausgewählten Maschine. Die angezeigten Informationen variieren je nach Maschine und Verfügbarkeit.
+Wurde eine Maschine in der Produktpalette, direkt mit der Maschinennummer oder eine im Maschinenpark gespeicherte Maschine gesucht, gelangt man auf die Produktübersicht, die man in Abbildung \ref{fig:produktübersicht} erkennen kann. Hier findet man jegliche nützliche Informationen über die ausgewählte Maschine. Die angezeigten Informationen variieren je nach Maschine und Verfügbarkeit.
 
 \begin{figure}[H]
 	\centerline{
@@ -192,7 +190,7 @@ Hat man sich eine Maschine in der Produktpalette, direkt mit der Maschinennummer
 
 \subsection{Highlights}
 
-Bei den Highlights des Produktes werden wissenswerte Informationen in Form eines Bildes mit einer Überschrift aufgelistet. Das sieht man in Abbildung \ref{fig:highlight}.
+Bei den Highlights des Produktes werden wissenswerte Informationen in Form eines Bildes mit einer Überschrift aufgelistet. Das zeigt die Abbildung \ref{fig:highlight}.
 \begin{figure}[H]
 	\centerline{
 		\includegraphics[width=1\textwidth, frame]{./grafiken/erm_detailansicht_highlights.PNG}
@@ -200,7 +198,7 @@ Bei den Highlights des Produktes werden wissenswerte Informationen in Form eines
 	\vskip0pt
 	\caption{Highlights} \label{fig:highlight}
 \end{figure}
- Wird nun ein Highlight ausgewählt, gelangt man zu einer genaueren Beschreibung der jeweiligen Besonderheit. So einen Artikel sieht man in Abbildung \ref{fig:highlightbeschreibung}.
+ Wird nun ein Highlight ausgewählt, gelangt man zu einer genaueren Beschreibung der jeweiligen Besonderheit. Einen dieser Artikel sieht man in Abbildung \ref{fig:highlightbeschreibung}.
 \begin{figure}[H]
 	\centerline{
 		\includegraphics[width=1\textwidth, frame]{./grafiken/erm_detailansicht_highlights_beschreibung.PNG}
@@ -211,7 +209,7 @@ Bei den Highlights des Produktes werden wissenswerte Informationen in Form eines
 
 \subsection{Ausstattung}
 
-Bei der Ausstattung findet man die verbauten Teile. Wie in Abbildung \ref{fig:ausstattung} sieht man diese Teile mit der jeweiligen Materialnummer und einer Bezeichnung aufgelistet. Darunter sieht man noch optionale Ausrüstungen, die mit dieser Maschine kompatibel sind.
+Bei der Ausstattung findet man die verbauten Teile. Wie in Abbildung \ref{fig:ausstattung} sieht man diese Teile mit der jeweiligen Materialnummer und einer Bezeichnung aufgelistet. Darunter sind noch optionale Ausrüstungen aufgelistet, die mit dieser Maschine kompatibel sind.
 
 \begin{figure}[H]
 	\centerline{
@@ -233,10 +231,10 @@ Bei den technischen Daten in Abbildung \ref{fig:technischeDaten} findet man nüt
 	\caption{Ausstattung} \label{fig:technischeDaten}
 \end{figure}
 \subsection{Videos, Bilder, Prospekte und Betriebsanleitung}
-In diesen Kategorien findet man Videos, Bilder, Prospekte und eine Betriebsanleitung für die Maschine. Diese Videos werden über YouTube abgespielt. Die Prospekte und die Betriebsanleitung sind zum Download verfügbar. Da nicht von jeder Maschine Bilder oder Videos vorhanden sind, gibt es dieses Feld auch nicht bei jeder Detailansicht.
+In diesen Kategorien findet man Videos, Bilder, Prospekte und eine Betriebsanleitung für die Maschine. Diese Videos werden mit YouTube abgespielt. Die Prospekte und die Betriebsanleitung sind zum Download verfügbar. Da nicht von jeder Maschine Bilder oder Videos vorhanden sind, gibt es dieses Feld auch nicht bei jeder Detailansicht.
 \section{Maschinenpark}
 
-In Abbildung \ref{fig:maschinenpark} sieht man den Maschinenpark, in dem eine Auflistung aller gespeicherten Maschinen des Benutzers ist. Somit hat der Nutzer einen schnellen Zugriff auf nützliche Tipps zur der gespeicherten Maschine, Bedienungsanleitungen, Ersatzteillisten, Wartungsinformationen, sowie alle technischen Details und Unterlagen.
+In Abbildung \ref{fig:maschinenpark} sieht man den Maschinenpark, in dem eine Auflistung aller gespeicherten Maschinen des Benutzers gezeigt wird. Somit hat der Nutzer einen schnellen Zugriff auf nützliche Tipps zur der gespeicherten Maschine, sowie zu Bedienungsanleitungen, Ersatzteillisten, Wartungsinformationen und allen technischen Details und Unterlagen.
 
 \begin{figure}[H]
 	\centerline{
@@ -246,7 +244,7 @@ In Abbildung \ref{fig:maschinenpark} sieht man den Maschinenpark, in dem eine Au
 	\caption{Maschinenpark} \label{fig:maschinenpark}
 \end{figure}
 
-Navigiert man über den Maschinenpark zu der gespeicherten Maschine, ändert sich die Detailansicht, wie in Abbildung \ref{fig:savedMaschine}, etwas. Hinzugekommen ist ein Bild der Maschine und es bietet die Möglichkeit, diese Maschine einen individuellen Namen zu vergeben.
+Navigiert man über den Maschinenpark zu der gespeicherten Maschine, ändert sich die Detailansicht, wie in Abbildung \ref{fig:savedMaschine} ersichtlich, etwas. Hinzu kommt ein Bild der Maschine und es wird die Möglichkeit geboten, dieser Maschine einen individuellen Namen zu geben.
 
 \begin{figure}[H]
 	\centerline{
