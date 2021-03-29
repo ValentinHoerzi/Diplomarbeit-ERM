@@ -10,6 +10,9 @@ Um dies umzusetzen, werden die zwei generische Schnittstellen benötigt, die man
 	public interface ICommand { }
 \end{lstlisting}
 Eine Methode aus dem Controller wird nun eine eigene Klasse. Als Eigenschaften dieser neuen Klasse werden die Methodenparameter verwendet. Ein Beispiel aus dieser Diplomarbeit kann man im Listing \ref{lst:getFaqbyid} sehen. Es implementiert das im Listing \ref{lst:cqsSchnittstellen} vorhandene Interface \texttt{IQuery} mit dem Datentyp FAQDto.
+
+\newpage
+
 \begin{lstlisting}[caption={CQS-Query Beispiel},captionpos=b, numbers=left, backgroundcolor=\color{black!10},language={[Sharp]C}, label={lst:getFaqbyid}]
 	public class GetFAQById : IQuery<FAQDto>
 	{
@@ -63,6 +66,9 @@ Den Handler für die im Listing \ref{lst:getFaqbyid} zu sehende Abfrage sieht ma
 \end{lstlisting}
 In der Methode HandleAsync im Listing \ref{getFaqByIdHandler} wird die geforderte FAQ geholt, bei dieser danach die Anzahl der Abfragen um eins erhöht und wieder gespeichert. Danach wird diese FAQ als FAQDto zurückgegeben.\\
 Dependency Injection wird genutzt, um die Queries mit den richtigen Query-Handlers und die Commands mit den richtigen Command-Handlers zusammenzuhängen. \autocite{cqsSOLIDeArchitektur}
+
+\newpage
+
 \section{Dependency Injection}
 In der objektorientierten Programmierung gilt DI (Dependency Injection) als Entwurfsmuster. Dabei werden die Abhängigkeit von den Objekten erst zur Laufzeit geregelt. Falls bei der Initialisierung eines Objektes ein anderes Objekt gebraucht wird, ist das an einem zentralen Ort hinterlegt. Dadurch wird die Verantwortlichkeit für die Abhängigkeiten der Klassen zentral gesammelt.\autocite{wikiDI}\\
 Durch DI hat man einige Vorteile. Einer davon, ist die Flexibilität, die der Client dadurch erhält, somit kann dieser auf alles reagieren, was die Schnittstelle bietet. Weiters können die Konfigurationsdetails in Konfigurationsdateien verlegt werden. Dadurch benötigt es nach einer Neukonfiguration keine Neukompilierung. Indem das gesamte Implementierungswissen ausgelagert wird, ist die Wartbarkeit, Testbarkeit und die Wiederverwendbarkeit gefördert. Es ist möglich, dass gleichzeitig zwei Klassen von unterschiedlichen Entwicklern programmiert werden, die voneinander abhängig sind, da sie nur die Schnittstellen dafür kennen müssen.\autocite{wikiDI}\\
