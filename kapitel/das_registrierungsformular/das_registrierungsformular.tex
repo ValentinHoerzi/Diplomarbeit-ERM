@@ -6,7 +6,7 @@ Der wohl komplizierteste Teil dieser Diplomarbeit ist der Aufbau und die korrekt
 
 \begin{figure}[H]
 	\centerline{
-		\includegraphics[width=1\textwidth, frame]{./grafiken/RF_Flussdiagramm.png}
+		\includegraphics[width=1\textwidth, frame]{./grafiken/RF_Flussdiagramm_2.png}
 	}
 	\vskip0pt
 	\caption{Flussdiagramm des Algorithmus}
@@ -15,7 +15,7 @@ Der wohl komplizierteste Teil dieser Diplomarbeit ist der Aufbau und die korrekt
 
 \subsection{\texttt{initiateDynamicComponentConfiguration()}} \label{ssec:lblInitDCC}
 
-Wenn das User-Objekt, welches von der Backend-API abgefragt und erfolgreich als globale Objektvariable gespeichert wurde, wird die \texttt{initiateDynamicComponentConfigu-\\ration()}-Methode aufgerufen. Aus Performance-Gründen basiert die nächste Überprüfung auf dem Wert der aktuellen Lokale. Gleicht dieser den Wert "AT", so wird ein vorgefertigtes Template für ein österreichisches RF, dargestellt im Listing~\ref{lst:template_form_aut}, für die Weiterverwendung benützt. Da davon ausgegangen wird, dass sich vor allem in der Anfangsphase nach der Veröffentlichung hauptsächlich österreichische Kunden ein Konto erstellen, spart dieser Weg enorm viel Zeit, da sofort mit der Erstellung des RF begonnen werden kann.
+Wenn das User-Objekt, welches von der Backend-API abgefragt wird, erfolgreich als globale Objektvariable gespeichert wurde, wird die \texttt{initiateDynamicComponentConfigu-\\ration()}-Methode aufgerufen. Aus Performance-Gründen basiert die nächste Überprüfung auf dem Wert der aktuellen Lokale. Gleicht dieser den Wert "AT", so wird ein vorgefertigtes Template für ein österreichisches RF, dargestellt im Listing~\ref{lst:template_form_aut}, für die Weiterverwendung benützt. Da davon ausgegangen wird, dass sich vor allem in der Anfangsphase nach der Veröffentlichung hauptsächlich österreichische Kunden ein Konto erstellen, spart dieser Weg enorm viel Zeit, da sofort mit der Erstellung des RF begonnen werden kann.
 
 \begin{lstlisting}[caption={Vordefiniertes Template für das RF}, language=JavaScript,label={lst:template_form_aut}]
 export const AUSTRIAN_PRIVATE_PERSON_FORM_Template = [
@@ -41,7 +41,7 @@ export const AUSTRIAN_PRIVATE_PERSON_FORM_Template = [
 
 \subsection{\texttt{handleTemplateCall()}}
 
-Anderenfalls wird als nächster Schritt die \texttt{handleTemplateCall()}-Methode, markiert im Flussdiagramm~\ref{fig:fc} mit [1], aufgerufen, welche, basierend auf dem Wert der aktuellen Lokale, auf die Shopify-API zugreift, um ein \texttt{Country}-Objekt abzurufen. Wurde diese Operation beendet, folgt ein Update auf eine Map, welche vorläufig die Labels für die Wrapper-Objekte speichert. Nachdem das Template geladen wurde, wird über jedes einzelne Element iteriert, markiert im Flussdiagramm~\ref{fig:fc} mit [2], um daraus eine oder mehrere Zeilen zu generieren. Anschließend werden diese in ein 2D-Array gespeichert, welches dann der \texttt{generateDynamicView()}-Methode zur Generierung des RF übergeben wird.
+Anderenfalls wird als nächster Schritt die \texttt{handleTemplateCall()}-Methode, markiert im Flussdiagramm~\ref{fig:fc} mit Nr. 1, aufgerufen, welche, basierend auf dem Wert der aktuellen Lokale, auf die Shopify-API zugreift, um ein \texttt{Country}-Objekt abzurufen. Wurde diese Operation beendet, folgt ein Update auf eine Map, welche vorläufig die Labels für die Wrapper-Objekte speichert. Nachdem das Template geladen wurde, wird über jedes einzelne Element iteriert, markiert im Flussdiagramm~\ref{fig:fc} mit Nr. 2, um daraus eine oder mehrere Zeilen zu generieren. Anschließend werden diese in ein 2D-Array gespeichert, welches dann der \texttt{generateDynamicView()}-Methode zur Generierung des RF übergeben wird.
 
 \subsection{\texttt{analyzeRow()}} \label{ssec:lblAnalyzeRow}
 
@@ -176,7 +176,7 @@ this.bindUserDataToViewData();
 }
 \end{lstlisting}
 
-Die \texttt{generateDynamicView()}-Methode, markiert im Flussdiagramm~\ref{fig:fc} mit [3], iteriert über jedes Array, um eine \texttt{AutoRowComponentGenerator}-Klasse zu erzeugen. Aus jedem Array in dem 2D-Array wird also eine eigene Reihe für das RF erzeugt. Dabei wird die von Angular bereitgestellte \texttt{ComponentFactoryResolver}-Klasse verwendet, um aus einer Klasse einen Component zu erstellen. 
+Die \texttt{generateDynamicView()}-Methode, markiert im Flussdiagramm~\ref{fig:fc} mit Nr. 3, iteriert über jedes Array, um eine \texttt{AutoRowComponentGenerator}-Klasse zu erzeugen. Aus jedem Array in dem 2D-Array wird also eine eigene Reihe für das RF erzeugt. Dabei wird die von Angular bereitgestellte \texttt{ComponentFactoryResolver}-Klasse verwendet, um aus einer Klasse einen Component zu erstellen. 
 Jede Reihe, also jeder \texttt{AutoRowComponent-\\Generator}, wird dann nacheinander in die HTML-Datei durch eine \texttt{ViewContainerRef} eingefügt. Die \texttt{ViewContainerRef} verweist auf ein HTML-Element, wie es das Listing~\ref{lst:html} beschreibt.
 
 \begin{lstlisting}[caption={ViewContainerRef verweist auf \#componentHook}, language=JavaScript,label={lst:html}]
@@ -389,7 +389,8 @@ emitFormValidation() {
 			if (!option.state.isValid) {
 				if (!option.state.isNotRequired) {
 					this.formIsValid = false;
-					this.formIsValidSub.next(this.formIsValid);
+					this.formIsValidSub
+					 .next(this.formIsValid);
 					return;
 				}
 			}
@@ -431,7 +432,11 @@ Der \texttt{UserprofileComponent} benützt diese Variable um, wie im Listing~\re
 
 \section{Die Komfortfunktionen}
 Die Komfortfunktionen wurden implementiert, um es den Benutzern so einfach wie möglich zu machen und ohne viel Aufwand alle Daten eingeben zu können.
+
 \subsection{Automatische Adressvervollständigungsvorschläge}
+
+Wird im Kapitel \ref{sec:weitereDatenfuer} näher erklärt.
+
 \subsubsection{Der Google-API-Key}
 Um auf die Google-API zugriff zu erhalten, wurde ein Google-API-Key erzeugt. Dieser wird aus folgenden Gründen erst bei der Verwendung im \texttt{AutocompleteComponent} geladen:
 
@@ -542,7 +547,7 @@ Das interessante daran ist, wenn manuell eine Adresse eines anderen Landes einge
 
 Die Funktion für die automatische Standorterkennung wird durch einen Klick auf "Use my location" ausgelöst. Um auf den tatsächlichen Standort des Benutzers zugriff zu erhalten, muss dieser jedoch davor um seine Erlaubnis gefragt.\autocite{useMyLocation}
 
-Die Standortermittlung funktioniert mit der \texttt{getCurrentPosition()}-Methode des \texttt{navigator.geolocation}-Objektes, welche im Listing \ref{lst:useMyLocation} zu finden ist. Dabei wird eine asynchrone Abfrage gestartet, welche die Position abruft. Bei erfolgreichem Abschluss dieser Abfrage, wird die mitgegebene Funktion mit der gefundene Position ausgeführt. Als optionalen zweiten Parameter kann dabei auch eine Funktion mitgegeben werden, die nur bei Auftreten eines Fehlers aufgerufen wird. \autocite{useMyLocation}
+Die Standortermittlung funktioniert mit der \texttt{getCurrentPosition()}-Methode des \\ \texttt{navigator.geolocation}-Objektes, welche im Listing \ref{lst:useMyLocation} zu finden ist. Dabei wird eine asynchrone Abfrage gestartet, welche die Position abruft. Bei erfolgreichem Abschluss dieser Abfrage, wird die mitgegebene Funktion mit der gefundene Position ausgeführt. Als optionalen zweiten Parameter kann dabei auch eine Funktion mitgegeben werden, die nur bei Auftreten eines Fehlers aufgerufen wird. \autocite{useMyLocation}
 
 \begin{lstlisting}[caption={Die \texttt{onUseMyLocationClicked()}-Methode der \texttt{StreetComponent}-Klasse}, language=JavaScript,label={lst:useMyLocation}]
 onUseMyLocationClicked() {
@@ -588,4 +593,4 @@ private workWithLocation(position, self: this) {
 
 \subsection{Automatische Telefonnummerprefix Erkennung}
 
-Wie im Kapitel~\ref{ssec:lblAnalyzeRow} [\texttt{analyzeRow()}] bereits erklärt wird, wird die Telefonnummernvorwahl aus dem \texttt{Country}-Objekt der Shopify-API gelesen und in die \texttt{options} als \texttt{phoneNumberPrefix}-Property der Wrapper-Klasse gespeichert.
+Wie im Kapitel~\ref{ssec:lblAnalyzeRow} bereits erklärt wird, wird die Telefonnummernvorwahl aus dem \texttt{Country}-Objekt der Shopify-API gelesen und in die \texttt{options} als \texttt{phoneNumberPrefix}-Property der Wrapper-Klasse gespeichert.
