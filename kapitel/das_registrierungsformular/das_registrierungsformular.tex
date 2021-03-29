@@ -239,6 +239,8 @@ Abschließend werden noch CSS-Klassen für bestimmte Komponenten vergeben.
 	\caption{Visualisierter Datenfluss vom 2D-Array bis zum fertigen RF}
 \end{figure}
 
+\newpage
+
 \section{Die Validierungsmethodik}
 \subsection{Allgemeines}
 
@@ -280,7 +282,6 @@ export interface State {
 	isNotRequired?: boolean;
 }
 \end{lstlisting}
-
 \subsection{Validierung am Beispiel des \texttt{FirstnameComponent}}
 \subsubsection{Die Initialisierung}
 Wird ein Component erstellt, registriert sich dieser in der \texttt{ngOnInit()}-Lifecycle-Hook-Methode sofort in der \texttt{fields}-Map. Seine übergebenen Werte werden an alle Observer, wie unter anderem der \texttt{UserprofileComponent}, verteilt. 
@@ -291,20 +292,16 @@ constructor(public validatorService: ValidatorService) {
 	.getFieldsObservable()
 	.subscribe((x) => (this.fields = x));
 }
-
 ngOnInit(): void {
 	const state = { isValid: false, isTouched: false, isPrestine: true };
-	const validators = [
-	{
+	const validators = [{
 		validator: (value: string) => value != null,
 		errorMessage: "ValidationError.FirstnameUnset",
 	},
 	{
 		validator: (value: string) => value.length >= 2,
 		errorMessage: "ValidationError.FirstnameTooShort",
-	},
-	];
-	
+	}];
 	this.validatorService.addFields('firstName', {
 		state: state,
 		validators: validators,
@@ -335,6 +332,8 @@ Im Konstruktor hängt sich der \texttt{FirstnameComponent} auf das \texttt{field
 
 <small class="text-danger" *ngIf="!fields.get(key).state.isValid && !fields.get(key).state.isPrestine">{{ errorMessage | translate}}</small>
 \end{lstlisting}
+
+\newpage
 
 Im Prinzip unterscheiden sich die HTML-Dateien der verschiedenen Komponenten kaum und besteht aus folgenden Elementen:
 
@@ -378,9 +377,7 @@ validateInput() {
 
 Ab Zeile sechs wird über jeden Validator iteriert, um anschließend die Callback-Methoden aufzurufen. Glückt jede Überprüfung, wird die \texttt{isValid}-Variable auf \texttt{true} gesetzt. 
 
-Scheitern diese Überprüfungen jedoch, wird die Fehlermeldung aus dem Validator-Objekt gelesen und in eine globale Variable gespeichert. Da nun die Werte der Variablen \texttt{isValid} und \texttt{isPrestine} jeweils dem Wert \texttt{false} entsprechen, wird die Fehlermeldung angezeigt. 
-
-In beiden Fällen wird die im \texttt{ValidatorService} implementierte \texttt{emitFormValidation()}-Methode, beschrieben im Listing~\ref{lst:emitFormValidation}, aufgerufen.
+Scheitern diese Überprüfungen jedoch, wird die Fehlermeldung aus dem Validator-Objekt gelesen und in eine globale Variable gespeichert. Da nun die Werte der Variablen \texttt{isValid} und \texttt{isPrestine} jeweils dem Wert \texttt{false} entsprechen, wird die Fehlermeldung angezeigt. In beiden Fällen wird die im \texttt{ValidatorService} implementierte \texttt{emitForm-\\Validation()}-Methode, beschrieben im Listing~\ref{lst:emitFormValidation}, aufgerufen.
 
 \begin{lstlisting}[caption={Die Validierung aller Komponenten im \texttt{ValidatorService}}, language=JavaScript,label={lst:emitFormValidation}]
 emitFormValidation() {
