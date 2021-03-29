@@ -9,6 +9,8 @@ BibTeX erstellt in \LaTeX-Dokumenten Literaturangaben und -Verzeichnisse. Dafür
 \section{TeXstudio}
 Die \LaTeX-Dokumente dieser Diplomarbeit wurden mit TeXstudio erstellt. Dieser Editor ist plattformunabhängig, stößt die Kompilierung an und zeigt Dokumente an. Es besitzt eine Autocomplete-Funktion für \LaTeX-Befehle, Echtzeit-Syntaxkontrolle und -Rechtschreibüberprüfung. Weiteres besteht die Möglichkeit, dass Unicode-kodierte Dateien verarbeitet werden. \autocite{wikiTexstudio}
 
+\newpage
+
 \section{.NET Core 3.1 und C\#}
 Für das Backend der Diplomarbeit wurde das Microsoft .NET Framework .NET Core 3.1 verwendet. Die Anwendungen wurden mit der objektorientierten Programmiersprache C\#  erstellt. \autocite{wikiDotnet}
 
@@ -49,7 +51,6 @@ Weiters bietet Angular:
 
 \section{TypeScript}
 TypeScript wurde von Microsoft entwickelt und 2012 veröffentlicht. Diese Programmiersprache basiert auf den ECMAScript6-Standard. Der TypeScript-Compiler kompliliert den Code in plain-JavaScript, deshalb ist jeder JavaScript-Code auch ein gültiger TypeScript-Code. Somit sind Bibliotheken wie jQuery oder Angular 1 auch in TypeScript verwendbar. \autocite{wikiTypeScript} \\
-
 Laut \autocite{wikiTypeScript} bietet TypeScript viele unterstützende Features:
 \begin{itemize}
 	\item Klassen
@@ -85,7 +86,6 @@ Im Listing \ref{lst:typeClass} sieht man die Klasse \texttt{Person}, welche im K
 			this.age = age;
 			this.salary = salary;
 		}
-		
 		toString(): string {
 			return `${this.name} (${this.age}): (${this.salary})`;
 		}
@@ -218,6 +218,8 @@ Der Nachfolgende Token setzt sich aus den zwei Beispielen zusammen:\\
 Der Dienst "Place Autocomplete" ist ein Webdienst, der als Antwort auf eine HTTP-Anfrage Ortsvorhersagen zurückgibt. Die Anfrage gibt einen textuellen Suchstring und optionale geografische Grenzen an. Der Dienst kann verwendet werden, um eine Autovervollständigungsfunktion für textbasierte geografische Suchen bereitzustellen, indem Orte wie Unternehmen, Adressen und Points of Interest zurückgegeben werden, während ein Benutzer Suchbegriffe eingibt.\cite{googlePlacesAPI}
 
 Der Dienst "Place Autocomplete" kann ganze Wörter und Teilstrings abgleichen und so Ortsnamen, Adressen und Pluscodes auflösen. Anwendungen können daher Abfragen senden, während der Benutzer tippt, um on-the-fly Ortsvorhersagen zu erhalten. Die zurückgegebenen Vorhersagen sollen dem Benutzer bei der Auswahl des gewünschten Ortes helfen. Sie können eine Abfrage für Ortsdetails senden, um weitere Informationen über jeden der zurückgegebenen Orte zu erhalten.\cite{googlePlacesAPI}
+
+\newpage
 
 \section{Shopify}
 Das Node-Package "@shopify/address" liefert für die Länder die verpflichtenden Felder und falls vorhanden die Staaten oder Provinzen für eine gültige Adresse durch die Methode \texttt{getCountry(countryCode)}. Dadurch ist es möglich, dass an das jeweilige ausgewählte Land, die Pflichtfelder angepasst werden. Durch die Methode \texttt{getOrderedFie lds(countryCode)} erhält man die richtige Reihenfolge eines Formulars für das Land. Das Resultat dieser Abfrage ist ein zweidimensionales Array, woraus man den Inhalt der einzelnen Zeilen herauslesen kann. Der Parameter "countryCode" steht für die internationale Länderabkürzung, für Österreich wäre dieser "AT". \autocite{shopifyNPM}
