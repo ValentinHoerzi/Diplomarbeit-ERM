@@ -10,7 +10,7 @@ Die Abkürzung CI/CD hat unterschiedliche Bedeutungen. „CI“ bedeutet Continu
 „CD“ bedeutet Continuous Delivery bzw. Continuous Deployment. Das sind verwandte Konzepte, die zuweilen synonym verwendet werden. Obwohl es bei beiden Konzepten um die Automatisierung weiterer Phasen der Pipeline geht, werden die Begriffe manchmal unterschiedlich verwendet, um das Ausmaß der Automatisierung zu verdeutlichen.\autocite{whatIsCICD}
 
 Continuous Delivery bedeutet üblicherweise, dass App-Änderungen eines Entwicklers automatisch auf Bugs getestet und in ein Repository (wie GitHub oder eine Container-Registry) hochgeladen werden, von wo aus sie vom Operations-Team in einer Live-Produktivumgebung bereitgestellt werden können. Dieser Vorgang ist die Antwort auf Transparenz- und Kommunikationsprobleme zwischen Dev- und Business-Teams. Damit soll sichergestellt werden, dass neuer Code mit minimalem Aufwand implementiert werden kann.\autocite{whatIsCICD}
-
+\newpage
 Continuous Deployment (das andere „CD“) kann sich auf die automatische Freigabe von Entwickleränderungen vom Repository zur Produktivphase beziehen, wo sie direkt vom Kunden genutzt werden können. Dieser Vorgang soll der Überlastung von Operations-Teams bei manuellen Prozessen entgegenwirken, die die Anwendungsbereitstellung verlangsamen. Continuous Development baut die Vorteile der Continuous Delivery aus, indem auch noch die nächste Phase der Pipeline automatisiert wird.\autocite{whatIsCICD}
 
 \begin{figure}[H]
@@ -26,8 +26,8 @@ Manchmal sind mit CI/CD lediglich die zusammenhängenden Praktiken der Continuou
 
 \section{Continuous Integration}
 
-Bei der modernen Anwendungsentwicklung arbeiten mehrere Entwickler an unterschiedlichen Features der gleichen App. Die gleichzeitige Zusammenführung aller Quellcode-Branches an einem Tag (auch bekannt als „Merge Day“) kann einen hohen Arbeits- und Zeitaufwand bedeuten. Der Grund dafür ist, dass Anwendungsänderungen von getrennt arbeitenden Entwicklern miteinander in Konflikt treten können, wenn sie zeitgleich durchgeführt werden. Dieses Problem kann sich verschlimmern, wenn jeder Entwickler seine eigene lokale Integrated Development Environment (IDE) definiert, statt im Team eine gemeinsame cloudbasierte IDE zu erstellen.\autocite{whatIsCICD}
-
+Bei der modernen Anwendungsentwicklung arbeiten mehrere Entwickler an unterschiedlichen Features der gleichen App. Die gleichzeitige Zusammenführung aller Quellcode-Branches an einem Tag (auch bekannt als „Merge Day“) kann einen hohen Arbeits- und Zeitaufwand bedeuten. Der Grund dafür ist, dass Anwendungsänderungen von getrennt arbeitenden Entwicklern miteinander in Konflikt treten können, wenn sie zeitgleich durchgeführt werden. Dieses Problem kann sich verschlimmern, wenn jeder Entwickler seine eigene lokale IDE definiert, statt im Team eine gemeinsame cloudbasierte IDE zu erstellen.\autocite{whatIsCICD}
+\newpage
 Mithilfe der CI können Entwickler ihre Codeänderungen in einem gemeinsamen „Branch“ der Anwendung viel häufiger zusammenführen, manchmal sogar täglich. Sobald die Änderungen eines Entwicklers zusammengeführt werden, werden sie in automatischen App-Builds und unterschiedlichen Stufen von Automatisierungsprüfungen (normalerweise Einheits- und Integrationstests) validiert. So wird sichergestellt, dass die Funktionsfähigkeit nicht beeinträchtigt wurde. Dabei müssen alle Klassen und Funktionen bis hin zu den verschiedenen Modulen der App getestet werden. Wenn die automatische Prüfung Konflikte zwischen aktuellem und neuem Code erkennt, lassen sich diese mithilfe von CI schneller und häufiger beheben.\autocite{whatIsCICD}
 
 \section{Continuous Delivery}
@@ -64,7 +64,7 @@ Eine typische Pipeline kann aus vier Phasen bestehen, die in der folgenden Reihe
 	\item Eine \texttt{Staging-Stage}, mit einem \texttt{Deploy-to-Stage-Job}.
 	\item Eine \texttt{Production-Stage}, mit einem \texttt{Deploy-to-Production-Job}.
 \end{itemize}
-
+\newpage
 \section{GitLab Runner} \label{sec:lblGitLabRunner}
 \subsection{Registrierung}
 
@@ -81,8 +81,6 @@ GitLab Runner kann auch in einem Docker-Container ausgeführt oder in einem Kube
 	\caption{GitLab Runner Instanz auf einem lokalen Windows-Rechner}
 \end{figure}
 
-\newpage
-
 \subsection{Executors} \label{sssec:lblExecutor}
 
 Wenn Sie einen Runner registrieren, müssen Sie einen Executor auswählen. Ein Executor bestimmt die Umgebung, in der jeder Job läuft.\autocite{gitlabRunner}
@@ -91,7 +89,7 @@ Wenn man zum Beispiel will, dass ein CI/CD-Auftrag PowerShell-Befehle ausführt,
 Wenn man möchte, dass ein CI/CD-Job Befehle in einem benutzerdefinierten Docker-Container ausgeführt wird, muss man GitLab Runner auf einem Linux-Server installieren und einen Runner registrieren, der den Docker-Executor verwendet.
 Dies sind nur einige der möglichen Konfigurationen. Man könnte GitLab Runner auch auf einer virtuellen Maschine installieren und eine andere virtuelle Maschine als Executor verwenden lassen.
 Wenn man GitLab Runner in einem Docker-Container installieren und den Docker-Executor für die Ausführung der Jobs auswählen, wird dies manchmal als "Docker-in-Docker"-Konfiguration bezeichnet.\autocite{gitlabRunner}
-
+\newpage
 \subsection{Shared Runners}
 
 Shared Runners sind für jedes Projekt in einer GitLab-Instanz verfügbar.
@@ -112,8 +110,6 @@ Man muss dazu lediglich folgendes in seine \texttt{.gitlab-ci.yml} Datei einbind
 	\caption{ruby Tag in gitlab-ci.yml Datei (Bild wurde entnommen aus \autocite{gitlabRunner})}
 \end{figure}
 
-\newpage
-
 \section{MyPöttinger GitLab Pipeline}
 
 Die Umgestaltung der GitLab Pipeline für das MyPöttinger-Repository ist ein wichtiger Bestandteil der Diplomarbeit. Die neue Pipeline besteht aus drei Stages:
@@ -124,9 +120,8 @@ Die Umgestaltung der GitLab Pipeline für das MyPöttinger-Repository ist ein wi
 	\item Der \texttt{Release-Stage}
 	\item Der \texttt{Image-Stage}
 \end{itemize}
-
+\newpage
 \subsection{Die {\texttt{gitlab-ci.yml}} - Datei }
-
 Die \texttt{gitlab-ci.yml} Datei ist in GitLab hauptverantwortlich für die CI/CD Abläufe. Sie beschreibt die Aufgaben der einzelnen Jobs, definiert in welcher Stage diese auszuführen sind und legt die Reihenfolge der Abarbeitung klar fest. Bevor man sich über die \texttt{gitlab-ci.yml} Datei Gedanken macht, ist es wichtig, auf mehrere Aspekte zu achten. Man muss sich überlegen, welchen Runner man verwenden will, welchen Executor dieser ausführt und in welcher Umgebung alles stattfindet.
 
 Zu Beginn der \texttt{gitlab-ci.yml} Datei muss man definieren, in welcher Umgebung Befehle ausgeführt werden sollen. Für MyPöttinger ist standardmäßig das \texttt{mcr.microsoft.com\\/dotnet/sdk:5.0} Image von Microsoft gewählt, da diese bereits .NET CLI, .NET runtime und ASP.NET Core bereit stellt, welche alle für das Kompilieren, Bauen und Veröffentlichen einer .NET-Applikation benötigt werden.
@@ -182,7 +177,7 @@ Die einzelnen Stages werden mit \texttt{stages:} deklariert. Alle folgenden Jobs
 Da die Diplomarbeit aus einem Angular-Frontend (\texttt{src/MyPoettinger.App}) und einem .NET Backend (\texttt{src/MyPoettinger.sln}) besteht, müssen zwei unterschiedliche Projekte in dieser Stage zusammengebaut werden. 
 
 Jetzt wird das Listing~\ref{lst:lstBuildStage} beschrieben. Bei dem \texttt{build\_dotnet} Job wird am Anfang \texttt{dotnet restore} ausgeführt, welcher mithilfe von NuGet, dem Package-Manager für DotNET-Applikationen, die Abhängigkeiten des Projektes wieder herstellt. 
-
+\newpage
 Der \texttt{dotnet build}-Befehl erstellt das Projekt und die zugehörigen Abhängigkeiten in einen Satz von Binärdateien. Die Binärdateien enthalten den Projektcode in IL-Dateien (Intermediate Language) mit der Erweiterung DLL. Abhängig vom Projekttyp und den Einstellungen können auch andere Dateien enthalten sein.\cite{dotnetBuildDesc} Im Anschluss des Vorgangs wird das Test-Verzeichnis als Artefakt gespeichert, um dieses anschließend in der Test-Stage zu testen.
 
 Durch den Node Package Manager, kurz \texttt{npm}, werden mit dem Befehl \texttt{npm install} alle benötigten Pakete für das Angular Projekt heruntergeladen und installiert. Da allerdings im zuvor standardmäßig definierten dotnet-Image kein Node installiert ist, wechseln wir in \texttt{build\_angular} auf das \texttt{trion/ng-cli:10.0.4} Image, da es sich hier um eine sehr kleine Node-Umgebung handelt. Im folgenden Schritt wird mit \texttt{npm audit fix} erörtert, welche Pakete mögliche Sicherheitsrisiken darstellen. Diese werden danach automatisch behoben. 
@@ -313,7 +308,7 @@ Um ein Docker-Image der gebündelten DotNet-Applikation zu  erstellen, wird im J
 Das Kaniko-Executor-Image ist dafür verantwortlich, ein Image aus einem Dockerfile zu erstellen und es in eine Container-Registry zu schieben. Innerhalb des Kaniko-Executor-Image extrahieren wir das Dateisystem des Basisabbilds (das FROM-Abbild im Dockerfile). Anschließend führen wir die Befehle in dem Dockerfile aus und erstellen nach jedem Befehl einen Snapshot des Dateisystems im Userspace. Nach jedem Befehl wird eine Schicht mit geänderten Dateien an das Basis-Image angehängt (falls vorhanden) und die Metadaten des Images werden aktualisiert\cite{kaniko}. Kaniko ist nicht von einem Docker-Daemon abhängig und führt jeden Befehl innerhalb eines Dockerfiles vollständig im Userspace aus. Dies ermöglicht die Erstellung von Container-Images in Umgebungen, in denen ein Docker-Daemon nicht einfach oder sicher ausgeführt werden kann, wie z. B. in einem Standard-Kubernetes-Cluster.\cite{kaniko}
 
 Das Dockerimage des Jobs holt sich das \texttt{mcr.microsoft.com/dotnet/sdk:5.0}-Image, kopiert die \texttt{publish\_dotnet}-Artefakte in das Hauptverzeichnis des Containers, öffnet den Port 80, um auf diesen von außen zugreifen zu können und führt die .dll-Datei aus.
-
+\newpage
 Schlussendlich wird im \texttt{containerize\_angular}-Job das Dockerimage erstellt. Sowohl die \texttt{publish\_angular}-Artefakte, als auch die Konfigurationsdatei \texttt{nginx.conf}, werden in das \texttt{nginx:latest}-Image kopiert. Beim Start des Containers wird \texttt{nginx} automatisch ausgeführt.
 
 Im Nachfolgenden Screenshot sieht man einen erfolgreich abgeschlossenen Pipeline-Durchgang:

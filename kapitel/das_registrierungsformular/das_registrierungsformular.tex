@@ -12,7 +12,7 @@ Der wohl komplizierteste Teil dieser Diplomarbeit ist der Aufbau und die korrekt
 	\caption{Flussdiagramm des Algorithmus}
 	\label{fig:fc}
 \end{figure}
-
+\newpage
 \subsection{\texttt{initiateDynamicComponentConfiguration()}} \label{ssec:lblInitDCC}
 
 Wenn das User-Objekt, welches von der Backend-API abgefragt wird, erfolgreich als globale Objektvariable gespeichert wurde, wird die \texttt{initiateDynamicComponentConfigu-\\ration()}-Methode aufgerufen. Aus Performance-Gründen basiert die nächste Überprüfung auf dem Wert der aktuellen Lokale. Gleicht dieser den Wert "AT", so wird ein vorgefertigtes Template für ein österreichisches RF, dargestellt im Listing~\ref{lst:template_form_aut}, für die Weiterverwendung benützt. Da davon ausgegangen wird, dass sich vor allem in der Anfangsphase nach der Veröffentlichung hauptsächlich österreichische Kunden ein Konto erstellen, spart dieser Weg enorm viel Zeit, da sofort mit der Erstellung des RF begonnen werden kann.
@@ -149,7 +149,7 @@ Wenn dieses den Typ \texttt{ZoneComponent} besitzt, handelt es sich um ein RF, w
 Im Anschluss wird ebenfalls von diesem Objekt die Telefonnummernvorwahl in die \texttt{options} als \texttt{phoneNumberPrefix}-Property der Wrapper-Klasse gespeichert.
 
 Als letzter Schritt in dieser Methode werden von Zeile 46 bis 48 die Labels, welche vorher in einer Map gespeichert wurden, als \texttt{label}-Property in die \texttt{options} der Wrapper-Objekte gespeichert. 
-
+\newpage
 Nach dem Abschluss wird das Ergebnis an die Schleife der \texttt{initiateDynamicComponent-\\Configuration()}-Methode geliefert und als Zwischenergebnis gespeichert. Wenn die Iteration fertig ist, werden die Zwischenergebnisse zusammengefasst und an die nächste Methode übergeben.
 
 \begin{figure}[H]
@@ -228,7 +228,7 @@ checkComponentRef(ref: ComponentRef<any>, component: RegisterComponent) {
 	}
 }
 \end{lstlisting}
-
+\newpage
 Abschließend werden noch CSS-Klassen für bestimmte Komponenten vergeben.
 
 \begin{figure}[H]
@@ -286,7 +286,7 @@ export interface State {
 \subsubsection{Die Initialisierung}
 Wird ein Component erstellt, registriert sich dieser in der \texttt{ngOnInit()}-Lifecycle-Hook-Methode sofort in der \texttt{fields}-Map. Seine übergebenen Werte werden an alle Observer, wie unter anderem der \texttt{UserprofileComponent}, verteilt. 
 
-\begin{lstlisting}[caption={Der Konstruktor und die \texttt{ngOnInit()}-Lifecycle-Hook-Methode des \texttt{FirstnameComponent}}, language=JavaScript]
+\begin{lstlisting}[caption={Der Konstruktor und die \texttt{ngOnInit()}-Lifecycle-Hook-Methode des \\ \texttt{FirstnameComponent}}, language=JavaScript]
 constructor(public validatorService: ValidatorService) {
 	validatorService
 	.getFieldsObservable()
@@ -309,7 +309,7 @@ ngOnInit(): void {
 }
 \end{lstlisting}
 
-Im Konstruktor hängt sich der \texttt{FirstnameComponent} auf das \texttt{fieldsSub - BehaviorSubject} als Observer und erhält somit immer die aktuellsten Daten. Die Daten, welche übergeben werden, können wie folgt zusammengefasst werden:
+Im Konstruktor hängt sich der \texttt{FirstnameComponent} auf das \texttt{fieldsSub - Behavior\-Subject} als Observer und erhält somit immer die aktuellsten Daten. Die Daten, welche übergeben werden, können wie folgt zusammengefasst werden:
 
 \begin{itemize}
 	
@@ -488,7 +488,7 @@ Die automatischen Adressvervollständigungsvorschläge kommen beim Laden des \te
 	\caption{Automatisch generierte Adressvervollständigungsvorschläge in Deutschland}
 \end{figure}
 
-Dafür wurde eine Hierarchieebene darunter ein weiterer Komponent, der \texttt{Autocomplete-\\Component} eingebaut, welcher ein HTML-Input-Element mit der Direktive \texttt{\#addresstext} besitzt. Mithilfe des in Angular integriertem \texttt{@ViewChild('..')-Property decorator} ist es nun möglich, eine globales Objekt aus dem HTML-Input-Element zu erzeugen. 
+Dafür wurde eine Hierarchieebene darunter ein weiterer Komponent, der \texttt{Autocomplete-\\Component} eingebaut, welcher ein HTML-Input-Element mit der Direktive \texttt{\#address\-text} besitzt. Mithilfe des in Angular integriertem \texttt{@ViewChild('..')-Property de\-corator} ist es nun möglich, eine globales Objekt aus dem HTML-Input-Element zu erzeugen. 
 
 \begin{lstlisting}[caption={Die \texttt{getPlaceAutocomplete()}-Methode der \texttt{AutocompleteComponent}-Klasse}, language=JavaScript,label={lst:gpac}]
 getPlaceAutocomplete() {
@@ -551,7 +551,7 @@ onUseMyLocationClicked() {
 	navigator.geolocation.getCurrentPosition(pos => this.workWithLocation(pos, this));
 }
 \end{lstlisting}
-
+\newpage
 Nachdem das Positionsobjekt erfolgreich erhalten wurde, wird die Methode von dem Listing \ref{lst:workWithLocation} aufgerufen. Dabei werden als erstes die Längen- und Breitengrade aus dem Positionsobjekt ausgelesen. Dies geschieht in Zeile zwei und drei des Listings \ref{lst:workWithLocation}. Mittels der Google Maps API werden diese zwei erstellten Variablen in ein LatLng-Objekt umgewandelt.\autocite{latLngObjekt} Den Google Maps Geocoder wird in Zeile fünf dieses LatLng-Objekt und eine Callback-Funktion in die Methode \texttt{geocode()} übergeben. Nach der Überprüfung ob das geocoding erfolgreich war, wird das Ergebnis in ein AddressDto gespeichert. Anschießend darauf wird die Methode \texttt{handleAddressDto()} mit der gespeicherten Adresse aufgerufen, die alle bezogenen Werte der \texttt{fields}-Map aktualisiert.
 
 \begin{lstlisting}[caption={Die \texttt{workWithLocation()}-Methode der \texttt{StreetComponent}-Klasse}, language=JavaScript,label={lst:workWithLocation}]

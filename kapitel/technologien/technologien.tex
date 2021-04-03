@@ -38,7 +38,7 @@ C\# wird meist nicht gleich von dem Compiler in die Maschinensprache, sondern in
 \section{Angular}
 Das Frontend dieser Diplomarbeit wurde mit den Webapplikationsframework Angular geschrieben. Angular ist ein Open-Source-Software, welche auf TypeScript basiert und von einer Online-Community und Google LLC entwickelt wird.\\
 Das Architekturkonzept von Angular ist eine Hierarchie von Komponenten. Durch Module wird der Code schneller und die Funktionalitäten können ausgelagert werden. TypeScript wird als Entwicklungssprache empfohlen, da diese Generics, statische Typisierung und klassenbasierte objektorientierte Programmierung ermöglicht. \autocite{wikiAngular}\\
-Weiters bietet Angular:
+Weiters bietet Angular laut \autocite{wikiAngular}:
 
 \begin{itemize}
 	\item Reaktive Programmierung mit RxJs
@@ -113,8 +113,8 @@ Das Frontend dieser Diplomarbeit wurde in Visual Studio Code programmiert. Diese
 %Das Backend dieser Diplomarbeit wurde im Visual Studio programmiert. Die von Microsoft stammende Entwicklungsumgebung ist 1997 erschienen und arbeitet mit Projektdateien. Visual Studio bietet viele Funktionen wie IntelliSense, automatische Syntaxprüfung, Debugger mit Bearbeiten und Fortfahren und vieles mehr. Seit 2005 hat es einen integrierten Webserver. Es unterstützt einige Programmiersprachen, wie C\#, C++, C, Visual Basic .NET, TypeScript und viele mehr. \autocite{wikiVisualStudio}
 
 Für das Backend der Diplomarbeit wurde Microsoft Visual Studio gewählt. Diese IDE (Integrated Development Environment) unterstützt den Programmierer durch eine ausgereifte Entwicklungsumgebung mit vielen Features.\\
-
-In Abbildung \ref{fig:visualStudioCodeStartview} sieht man den Startbildschirm von Microsoft Visual Studio 2019.
+\newpage
+In Abbildung \ref{fig:visualStudioStartview} sieht man den Startbildschirm von Microsoft Visual Studio 2019.
 \begin{figure}[H]
 	\centerline{
 		\includegraphics[width=1\textwidth, frame]{./grafiken/visual_studio_startview.png}
@@ -174,7 +174,7 @@ Für das Projekt der Diplomarbeit wurde GitLab genutzt. Die Versionsverwaltung b
 \end{figure}
 \section{Postman}
 Um die APIs des Backendes der Diplomarbeit zu testen, wurde das Programm Postman verwendet. Postman bietet die Funktion Http-Requests an eine beliebige URL mit jeder verfügbaren HTTP-Methode zu senden. Somit besteht die Möglichkeit, die programmierten Schnittstellen mit verschiedenen Daten schnell zu testen. Dieses Tool unterstützt SOAP, GraphQL und REST. Des weiteren ist Automated Testing möglich und es lassen sich Endpoints simulieren. Somit kann man das Verhalten der APIs sehr gut beobachten, was einem Programmierer erleichtert, Fehler zu finden. \autocite{postmanDocs} \\
-Da das Backend dieser Diplomarbeit mit JWT (JSON Web Token) geschützt ist, ist es bei einem Postman-Request nötig, diesen Token in den Header einzufügen, um die API zu testen.  \\
+Da das Backend dieser Diplomarbeit mit JWT (JSON Web Token) geschützt ist, ist es bei einem Postman-Request nötig, diesen Token in den Header einzufügen, um die API zu testen.  \newpage
 Abbildung \ref{fig:postman} zeigt einen Request von Postman.
 \begin{figure}[H]
 	\centerline{
@@ -186,7 +186,7 @@ Abbildung \ref{fig:postman} zeigt einen Request von Postman.
 
 
 \section{JSON Web Token}
-JSON Web Token(JWT) ist ein Access-Token, der auf JSON basiert. Durch JWT kann man verifizierbare Claims austauschen. In Claims werden zusätzliche Daten gespeichert, die in den Payload kommen. Mit JWT sind Stateless Sessions möglich, da jede benötigte Information für eine Authentifikation mit dem Token übertragen werden kann. Ein JSON Web Token setzt sich aus dem Header, Payload und der Signatur zusammen. Bei einem Request mit einem Token schreibt man vor dem Token noch "Bearer". \autocite{wikiJWT}
+JWT ist ein Access-Token, der auf JSON basiert. Durch JWT kann man verifizierbare Claims austauschen. In Claims werden zusätzliche Daten gespeichert, die in den Payload kommen. Mit JWT sind Stateless Sessions möglich, da jede benötigte Information für eine Authentifikation mit dem Token übertragen werden kann. Ein JSON Web Token setzt sich aus dem Header, Payload und der Signatur zusammen. Bei einem Request mit einem Token schreibt man vor dem Token noch "Bearer". \autocite{wikiJWT}
 
 Der Header ist ein JSON-Element. Darin ist gespeichert, um welchen Token-Typ es sich handelt und welche Verschlüsselungsmethode angewendet wird. Der Typ ist JWT und als Verschlüsselungsmethoden wird meist HMAC mit SHA-256 oder RSA mit SHA-256 verwendet. \autocite{wikiJWT} \\
 \begin{lstlisting}[caption={JWT-Header Beispiel}, language=json]
@@ -195,7 +195,7 @@ Der Header ist ein JSON-Element. Darin ist gespeichert, um welchen Token-Typ es 
 		"typ": "JWT"
 	}
 \end{lstlisting}
-
+\newpage
 Der Payload ist ebenfalls ein JSON-Element. In diesem JSON sind die Claims beschrieben. Es gibt einige reservierte Claims, die den Aussteller, das Subject oder das Ablaufdatum beschreiben, jedoch kann der Aussteller auch einen Private Claim definieren. \autocite{wikiJWT} \\
 \begin{lstlisting}[caption={JWT-Payload Beispiel}, language=json]
 	{
@@ -205,7 +205,7 @@ Der Payload ist ebenfalls ein JSON-Element. In diesem JSON sind die Claims besch
 	}
 \end{lstlisting}
 
-Durch JSON Web Signature(JWS) wird die Signature definiert. Die ist nach RFC 7515 genormt. Mit der im Header festgelegten Hashmethode wird der Header und der Payload Base64 kodiert und durch ein Punkt-getrenntes Format gehasht. Das Ergebnis ist die Signature. \autocite{wikiJWT}
+Durch JWS(JSON Web Signature) wird die Signature definiert. Die ist nach RFC 7515 genormt. Mit der im Header festgelegten Hashmethode wird der Header und der Payload Base64 kodiert und durch ein Punkt-getrenntes Format gehasht. Das Ergebnis ist die Signature. \autocite{wikiJWT}
 
 Der JWT-Token setzt sich nun aus dem jeweils Base64-Url kodierten Header, Payload und Signature mit einem Punkt getrennt zusammen. \autocite{wikiJWT} \\
 Der Nachfolgende Token setzt sich aus den zwei Beispielen zusammen:\\
