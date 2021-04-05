@@ -32,7 +32,7 @@ Mithilfe der CI können Entwickler ihre Codeänderungen in einem gemeinsamen „
 
 \section{Continuous Delivery}
 
-Nach der Automatisierung von Builds und Einheits- und Integrationstests bei der CI wird bei der Continuous Delivery auch die Freigabe des validierten Codes an ein Repository automatisch durchgeführt. Um also einen effizienten Continuous Delivery-Prozess zu gewährleisten, muss die CI bereits in Ihre Entwicklungs-Pipeline integriert sein. Ziel der Continuous Delivery ist eine Codebasis, die jederzeit in einer Produktivumgebung bereitgestellt werden kann.\autocite{whatIsCICD}
+Nach der Automatisierung von Builds und Einheits- und Integrationstests bei der CI wird bei der Continuous Delivery auch die Freigabe des validierten Codes an ein Repository automatisch durchgeführt. Um also einen effizienten Continuous Delivery-Prozess zu gewährleisten, muss die CI bereits in der Entwicklungs-Pipeline integriert sein. Ziel der Continuous Delivery ist eine Codebasis, die jederzeit in einer Produktivumgebung bereitgestellt werden kann.\autocite{whatIsCICD}
 
 Bei der Continuous Delivery umfasst jede Phase − von der Zusammenführung der Codeänderungen bis zur Bereitstellung produktionsreifer Builds − automatisierte Tests und Code-Freigaben. Am Ende dieses Prozesses kann das Operations-Team eine App schnell und einfach in der Produktivphase bereitstellen.\autocite{whatIsCICD}
 
@@ -40,7 +40,7 @@ Bei der Continuous Delivery umfasst jede Phase − von der Zusammenführung der 
 
 Die abschließende Phase der CI/CD-Pipeline ist das Continuous Deployment. Als Erweiterung der Continuous Delivery, bei der produktionsreife Builds automatisch an ein Code-Repository freigegeben werden, wird beim Continuous Deployment auch die Freigabe einer App in die Produktivphase automatisiert. Da der Produktivphase in der Pipeline kein manuelles Gate vorgeschaltet ist, müssen beim Continuous Deployment die automatisierten Tests immer sehr gut durchdacht sein.\autocite{whatIsCICD}
 
-In der Praxis bedeutet Continuous Deployment, dass App-Änderungen eines Entwicklers binnen weniger Minuten nach ihrer Erstellung live gehen können (vorausgesetzt, sie bestehen den automatischen Test). Dies erleichtert eine kontinuierliche Integration von User Feedback ungemein. All diese zusammenhängenden CI/CD-Praktiken machen eine Anwendungsimplementierung weniger riskant, weil Änderungen in Teilen und nicht auf einmal freigegeben werden. Die Vorabinvestitionen sind allerdings beträchtlich, da automatische Tests für die diversen Prüf- und Release-Phasen in der CI/CD-Pipeline geschrieben werden müssen.\autocite{whatIsCICD}
+In der Praxis bedeutet Continuous Deployment, dass App-Änderungen eines Entwicklers binnen weniger Minuten nach der Erstellung live gehen können (vorausgesetzt, sie bestehen den automatischen Test). Dies erleichtert eine kontinuierliche Integration von User Feedback ungemein. All diese zusammenhängenden CI/CD-Praktiken machen eine Anwendungsimplementierung weniger riskant, weil Änderungen in Teilen und nicht auf einmal freigegeben werden. Die Vorabinvestitionen sind allerdings beträchtlich, da automatische Tests für die diversen Prüf- und Release-Phasen in der CI/CD-Pipeline geschrieben werden müssen.\autocite{whatIsCICD}
 
 \section{GitLab Pipeline}
 
@@ -88,7 +88,7 @@ Wenn Sie einen Runner registrieren, müssen Sie einen Executor auswählen. Ein E
 Wenn man zum Beispiel will, dass ein CI/CD-Auftrag PowerShell-Befehle ausführt, kann man GitLab Runner auf einem Windows-Server installieren und dann einen Runner registrieren, der den Shell-Executor verwendet.
 Wenn man möchte, dass ein CI/CD-Job Befehle in einem benutzerdefinierten Docker-Container ausgeführt wird, muss man GitLab Runner auf einem Linux-Server installieren und einen Runner registrieren, der den Docker-Executor verwendet.
 Dies sind nur einige der möglichen Konfigurationen. Man könnte GitLab Runner auch auf einer virtuellen Maschine installieren und eine andere virtuelle Maschine als Executor verwenden lassen.
-Wenn man GitLab Runner in einem Docker-Container installieren und den Docker-Executor für die Ausführung der Jobs auswählen, wird dies manchmal als "Docker-in-Docker"-Konfiguration bezeichnet.\autocite{gitlabRunner}
+Wenn man GitLab Runner in einem Docker-Container installieren und den Docker-Executor für die Ausführung der Jobs auswählt, wird dies manchmal als "Docker-in-Docker"-Konfiguration bezeichnet.\autocite{gitlabRunner}
 \newpage
 \subsection{Shared Runners}
 
@@ -100,7 +100,7 @@ Shared Runners werden verwendet, wenn man mehrere Jobs mit ähnlichen Anforderun
 
 Registrierte Runner kann man sogenannte Tags zuweisen. Wenn ein CI/CD Job läuft, kann dieser anhand seiner zugewiesener Tags determinieren, welchen Runner er verwenden soll. Das hat den Vorteil, dass man für beispielsweise einen Job, der ein Ruby Projekt kompilieren soll, seinen Runner nicht umkonfigurieren muss, sondern automatisch der Ruby-Runner verwendet wird.
 
-Man muss dazu lediglich folgendes in seine \texttt{.gitlab-ci.yml} Datei einbinden:
+Man muss dazu lediglich Folgendes in seine \texttt{.gitlab-ci.yml} Datei einbinden:
 
 \begin{figure}[H]
 	\centerline{
@@ -301,7 +301,7 @@ Bei dem \texttt{publish\_angular} Job im Listing~\ref{lst:lstReleaseStage} wird 
 		- docker push "$IMAGE_NAME"
 \end{lstlisting}
 
-Beide Jobs, \texttt{containerize\_dotnet} und \texttt{containerize\_angular}, kümmern sich um den Abschluss der Continous Delivery. Ziel ist es, die Software in zwei unabhängige Docker-Images zu bündeln, um diese anschließen in die Container-Registry von GitLab zu pushen.
+Beide Jobs, \texttt{containerize\_dotnet} und \texttt{containerize\_angular}, kümmern sich um den Abschluss der Continous Delivery. Ziel ist es, die Software in zwei unabhängige Docker-Images zu bündeln, um diese anschließend in die Container-Registry von GitLab zu pushen.
 
 Um ein Docker-Image der gebündelten DotNet-Applikation zu  erstellen, wird im Job \texttt{containerize\_dotnet} ein temporäres \texttt{Dockerfile} im Hauptverzeichnis der Applikation erstellt. Das kann von Zeile 31 bis 34 im Listing~\ref{lst:lstImagesStage} beobachtet werden. Da die Angular-Jobs durchschnittlich 2 Minuten schneller sind als die Dotnet-Jobs, entstehen hier keine Probleme mit dem \texttt{containerize\_\\angular}-Job. Um das Image tatsächlich zu erstellen wird \textbf{\texttt{kaniko}} verwendet.
 

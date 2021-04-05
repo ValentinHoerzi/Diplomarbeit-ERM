@@ -15,7 +15,7 @@ Der wohl komplizierteste Teil dieser Diplomarbeit ist der Aufbau und die korrekt
 \newpage
 \subsection{\texttt{initiateDynamicComponentConfiguration()}} \label{ssec:lblInitDCC}
 
-Wenn das User-Objekt, welches von der Backend-API abgefragt wird, erfolgreich als globale Objektvariable gespeichert wurde, wird die \texttt{initiateDynamicComponentConfigu-\\ration()}-Methode aufgerufen. Aus Performance-Gründen basiert die nächste Überprüfung auf dem Wert der aktuellen Lokale. Gleicht dieser den Wert "AT", so wird ein vorgefertigtes Template für ein österreichisches RF, dargestellt im Listing~\ref{lst:template_form_aut}, für die Weiterverwendung benützt. Da davon ausgegangen wird, dass sich vor allem in der Anfangsphase nach der Veröffentlichung hauptsächlich österreichische Kunden ein Konto erstellen, spart dieser Weg enorm viel Zeit, da sofort mit der Erstellung des RF begonnen werden kann.
+Wenn das User-Objekt, welches von der Backend-API abgefragt wird, erfolgreich als globale Objektvariable gespeichert wurde, wird die \texttt{initiateDynamicComponentConfigu-\\ration()}-Methode aufgerufen. Aus Performance-Gründen basiert die nächste Überprüfung auf dem Wert der aktuellen Lokale. Gleicht dieser dem Wert "AT", so wird ein vorgefertigtes Template für ein österreichisches RF, dargestellt im Listing~\ref{lst:template_form_aut}, für die Weiterverwendung benützt. Da davon ausgegangen wird, dass sich vor allem in der Anfangsphase nach der Veröffentlichung hauptsächlich österreichische Kunden ein Konto erstellen, spart dieser Weg enorm viel Zeit, da sofort mit der Erstellung des RF begonnen werden kann.
 
 \begin{lstlisting}[caption={Vordefiniertes Template für das RF}, language=JavaScript,label={lst:template_form_aut}]
 export const AUSTRIAN_PRIVATE_PERSON_FORM_Template = [
@@ -112,11 +112,11 @@ private analyzeRow(row: string[]): RegisterComponent[][] {
 }
 \end{lstlisting}
 
-Die im Listing~\ref{lst:analyzeRow} beschriebene \texttt{analyzeRow()}-Methode nimmt ein Array von Zeichenfolgen als Parameter und gibt ein 2D-Array von \texttt{RegisterComponent}-Wrapper-Objekten zurück. Obwohl nur eine Reihe aus dem Template, also z. B. \texttt{[\{firstName\} \{lastname\}]}, überprüft wird, kann es wie in diesem Fall sein, dass ein Input zusätzlich darüber erzeugt werden muss. So wird in Zeile neun überprüft, ob der \texttt{GenderComponent} schon hinzugefügt wurde. Trifft das und die Überprüfung, ob in diesem Durchgang der \texttt{FirstnameComponent} oder der \texttt{LastnameComponent} erzeugt werden, wird der \texttt{GenderComponent} als erster eingefügt. Dieser ist für die Auswahl der Anrede zuständig. 
+Die im Listing~\ref{lst:analyzeRow} beschriebene \texttt{analyzeRow()}-Methode nimmt ein Array von Zeichenfolgen als Parameter und gibt ein 2D-Array von \texttt{RegisterComponent}-Wrapper-Objekten zurück. Obwohl nur eine Reihe aus dem Template, also z. B. \texttt{[\{firstName\} \{lastname\}]}, überprüft wird, kann es wie in diesem Fall sein, dass ein Input zusätzlich darüber erzeugt werden muss. So wird in Zeile neun überprüft, ob der \texttt{GenderComponent} schon hinzugefügt wurde. Trifft das und die Überprüfung, ob in diesem Durchgang der \texttt{FirstnameComponent} oder der \texttt{LastnameComponent} erzeugt werden, zu, wird der \texttt{GenderComponent} als erster eingefügt. Dieser ist für die Auswahl der Anrede zuständig. 
 
 Der selbe Mechanismus kann auch in Zeile 51 gefunden werden, wo es nötig ist, den \texttt{DateofbirthComponent}, welcher für die Eingabe des Geburtstages verantwortlich ist, neben dem \texttt{PhoneComponent} zu generieren.
 
-Anschließend wird in Zeile 19 sicher gestellt, dass eine Privatperson keine Auswahl einer Firma präsentiert wird.
+Anschließend wird in Zeile 19 sicher gestellt, dass einer Privatperson keine Auswahl einer Firma präsentiert wird.
 
 Um nun tatsächlich aus dem Template Objekte zu erzeugen, wird ab Zeile 23 über Schlüssel einer Map, beschrieben im Listing~\ref{lst:valueMap}, welche den String eines Templates als \texttt{key} und den korrespondierenden Component-Objekten als \texttt{value} hat, iteriert. 
 
@@ -177,7 +177,7 @@ this.bindUserDataToViewData();
 \end{lstlisting}
 
 Die \texttt{generateDynamicView()}-Methode, markiert im Flussdiagramm~\ref{fig:fc} mit Nr. 3, iteriert über jedes Array, um eine \texttt{AutoRowComponentGenerator}-Klasse zu erzeugen. Aus jedem Array in dem 2D-Array wird also eine eigene Reihe für das RF erzeugt. Dabei wird die von Angular bereitgestellte \texttt{ComponentFactoryResolver}-Klasse verwendet, um aus einer Klasse einen Component zu erstellen. 
-Jede Reihe, also jeder \texttt{AutoRowComponent-\\Generator}, wird dann nacheinander in die HTML-Datei durch eine \texttt{ViewContainerRef} eingefügt. Die \texttt{ViewContainerRef} verweist auf ein HTML-Element, wie es das Listing~\ref{lst:html} beschreibt.
+Jede Reihe, also jeder \texttt{AutoRowComponent-Generator}, wird dann nacheinander in die HTML-Datei durch eine \texttt{ViewContainerRef} eingefügt. Die \texttt{ViewContainerRef} verweist auf ein HTML-Element, wie es das Listing~\ref{lst:html} beschreibt.
 
 \begin{lstlisting}[caption={ViewContainerRef verweist auf \#componentHook}, language=JavaScript,label={lst:html}]
 <form #dynamicForm>
@@ -244,7 +244,7 @@ Abschließend werden noch CSS-Klassen für bestimmte Komponenten vergeben.
 \section{Die Validierungsmethodik}
 \subsection{Allgemeines}
 
-Für eine effiziente und dynamische Validierung wurde der \texttt{ValidatorService} programmiert. Grundsätzlich implementiert jeder Component, welcher im Registrierungsformular erzeugt wird, das \texttt{ComponentValueConfigurator}-Interface. Dadurch wird gewährleistet, dass der \texttt{ValidatorService} auf die im Listing~\ref{lst:edic} verwiesenen Methoden zugriff erhält.
+Für eine effiziente und dynamische Validierung wurde der \texttt{ValidatorService} programmiert. Grundsätzlich implementiert jeder Component, welcher im Registrierungsformular erzeugt wird, das \texttt{ComponentValueConfigurator}-Interface. Dadurch wird gewährleistet, dass der \texttt{ValidatorService} auf die im Listing~\ref{lst:edic} verwiesenen Methoden Zugriff erhält.
 
 \begin{lstlisting}[caption={Methoden aus dem \texttt{ComponentValueConfigurator}-Interface}, language=JavaScript,label={lst:edic}]
 export declare interface ComponentValueConfigurator{
@@ -254,7 +254,7 @@ export declare interface ComponentValueConfigurator{
 }
 \end{lstlisting}
 
-Wie man erkennen kann, wird die \texttt{setLabel()}-Methode im Listing~\ref{lst:ccr} dazu benötigt, um jeden Component sein Label zu übergeben.
+Wie man erkennen kann, wird die \texttt{setLabel()}-Methode im Listing~\ref{lst:ccr} dazu benötigt, um jedem Component sein Label zu übergeben.
 
 Im \texttt{ValidatorService} wird beim Initialisieren eine Map mit einem \texttt{string} als Key und einem \texttt{Options}-Objekt als Value erstellt. Diese wird über ein \texttt{BehaviorSubject<Map\\<string, Options>>} an alle Observer verteilt.
 
@@ -335,17 +335,17 @@ Im Konstruktor hängt sich der \texttt{FirstnameComponent} auf das \texttt{field
 
 \newpage
 
-Im Prinzip unterscheiden sich die HTML-Dateien der verschiedenen Komponenten kaum und besteht aus folgenden Elementen:
+Im Prinzip unterscheiden sich die HTML-Dateien der verschiedenen Komponenten kaum und bestehen aus folgenden Elementen:
 
 \begin{itemize}
 	\item Das \texttt{input}-Element kümmert sich um die Benutzereingaben. Abhängig davon, welche Aktion der Benutzer ausführt, werden verschiedene Events ausgeführt:
 	
 		\begin{itemize}
-			\item \texttt{[(ngModel)]}: Synchronisiert den Wert der Eingabe mit der verwiesenen Variable. Die Synchronisation erfolgt hierbei auf beiden Wegen. Wird der Wert im Eingabefeld geändert, wird auch der Wert der Variable geändert. Wird aber der Wert der Variable, z. B. durch das manuelle Setzten des Wertes in der \texttt{bindUserDataToViewData()}-Methode, zu finden in Zeile zehn im Listing~\ref{lst:generateDynamicView}, geändert, wird der neue Wert auch so auch auf der Website angezeigt. 
+			\item \texttt{[(ngModel)]}: Synchronisiert den Wert der Eingabe mit der verwiesenen Variable. Die Synchronisation erfolgt hierbei auf beiden Wegen. Wird der Wert im Eingabefeld geändert, wird auch der Wert der Variable geändert. Wird aber der Wert der Variable, z. B. durch das manuelle Setzten des Wertes in der \texttt{bindUserDataToViewData()}-Methode, zu finden in Zeile zehn im Listing~\ref{lst:generateDynamicView}, geändert, wird der neue Wert auch so auf der Website angezeigt. 
 			
 			\item \texttt{(change)}: Das \texttt{change}-Event wird getriggert, wenn sich der Wert der Variable ändert. Daraufhin wird der Wert \texttt{isPrestine} für dieses Feld auf \texttt{false} gesetzt, da es sich nicht mehr um ein sauberes Eingabefeld handelt.
 			
-			\item \texttt{(focus) / (focusout)}:  Sollte der Benutzer das Eingabefeld betreten oder verlassen, wird der  Wert \texttt{isTouched} auf \texttt{true} gesetzt. Solle es sich um das \texttt{(focusout)}-Event handeln, wird die im Listing~\ref{lst:validateInput} beschriebene \texttt{validate-\\Input()}-Methode aufgerufen.
+			\item \texttt{(focus) / (focusout)}:  Sollte der Benutzer das Eingabefeld betreten oder verlassen, wird der  Wert \texttt{isTouched} auf \texttt{true} gesetzt. Sollte es sich um das \texttt{(focusout)}-Event handeln, wird die im Listing~\ref{lst:validateInput} beschriebene \texttt{validate-\\Input()}-Methode aufgerufen.
 		\end{itemize} 
 	
 	\item Das \texttt{small}-Element repräsentiert die anzuzeigende Fehlermeldung. Diese wird nur dann angezeigt, wenn der Wert \texttt{isValid} der verwiesenen Variable \texttt{false} ist und diese auch tatsächlich verändert wurde. 
@@ -435,7 +435,7 @@ Die Komfortfunktionen wurden implementiert, um es den Benutzern so einfach wie m
 Wird im Kapitel \ref{sec:weitereDatenfuer} näher erklärt.
 
 \subsubsection{Der Google-API-Key}
-Um auf die Google-API zugriff zu erhalten, wurde ein Google-API-Key erzeugt. Dieser wird aus folgenden Gründen erst bei der Verwendung im \texttt{AutocompleteComponent} geladen:
+Um auf die Google-API Zugriff zu erhalten, wurde ein Google-API-Key erzeugt. Dieser wird aus folgenden Gründen erst bei der Verwendung im \texttt{AutocompleteComponent} geladen:
 
 \begin{itemize}
 	
@@ -537,12 +537,12 @@ addressHasBeenSelected(place: google.maps.places.PlaceResult) {
 
 Der \texttt{StreetComponent} hat sich mit der \texttt{addressHasBeenSelected()}-Methode auf dieses Event als Observer registriert. Da das überlieferte Objekt ein Array an Ergebnissen liefert, werden über diese iteriert und die Ergebnisse in ein temporäres Objekt gespeichert. Die \texttt{handleAddressDto()}-Methode aktualisiert jeden Wert in der \texttt{fields}-Map. 
 
-Das interessante daran ist, wenn manuell eine Adresse eines anderen Landes eingegeben wird, ein Event im \texttt{ValidatorService}, auf welches der \texttt{UserprofileComponent} registriert ist, abgefeuert wird. Es wird umgehend die \texttt{onInitViewChange()}-Methode aufgerufen, welche alle Nachfolgenden Elemente des HTML-Form-Elements, zu finden im Listing~\ref{lst:html}, löscht und wieder bei der \texttt{initiateDynamicComponentConfiguration()}-Methode startet. Somit wird ein, für das neue Land angepasste, RF generiert (Kapitel ~\ref{ssec:lblInitDCC}).
+Das Interessante daran ist, wenn manuell eine Adresse eines anderen Landes eingegeben wird, ein Event im \texttt{ValidatorService}, auf welches der \texttt{UserprofileComponent} registriert ist, abgefeuert wird. Es wird umgehend die \texttt{onInitViewChange()}-Methode aufgerufen, welche alle nachfolgenden Elemente des HTML-Form-Elements, zu finden im Listing~\ref{lst:html}, löscht und wieder bei der \texttt{initiateDynamicComponentConfiguration()}-Methode startet. Somit wird ein, für das neue Land angepasste, RF generiert (Kapitel ~\ref{ssec:lblInitDCC}).
 
 
 \subsection{Ermittlung des Standorts durch die IP - Use my location}
 
-Die Funktion für die automatische Standorterkennung wird durch einen Klick auf "Use my location" ausgelöst. Um auf den tatsächlichen Standort des Benutzers zugriff zu erhalten, muss dieser jedoch davor um seine Erlaubnis gefragt.\autocite{useMyLocation}
+Die Funktion für die automatische Standorterkennung wird durch einen Klick auf "Use my location" ausgelöst. Um auf den tatsächlichen Standort des Benutzers Zugriff zu erhalten, muss dieser jedoch davor um seine Erlaubnis gefragt werden.\autocite{useMyLocation}
 
 Die Standortermittlung funktioniert mit der \texttt{getCurrentPosition()}-Methode des \\ \texttt{navigator.geolocation}-Objektes, welche im Listing \ref{lst:useMyLocation} zu finden ist. Dabei wird eine asynchrone Abfrage gestartet, welche die Position abruft. Bei erfolgreichem Abschluss dieser Abfrage, wird die mitgegebene Funktion mit der gefundene Position ausgeführt. Als optionalen zweiten Parameter kann dabei auch eine Funktion mitgegeben werden, die nur bei Auftreten eines Fehlers aufgerufen wird. \autocite{useMyLocation}
 
