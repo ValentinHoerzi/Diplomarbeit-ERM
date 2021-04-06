@@ -101,7 +101,7 @@ private analyzeRow(row: string[]): RegisterComponent[][] {
 					let dateofbirthComponent: RegisterComponent = {
 						type: DateofbirthComponent,
 					};
-					componentRow.push(dateofbirthComponent);
+				   componentRow.push(dateofbirthComponent);
 				}
 				break;
 			}
@@ -146,7 +146,7 @@ Im ersten Schritt wird, wenn das vom Template angeforderte Feld in der Map exist
 
 Wenn dieses den Typ \texttt{ZoneComponent} besitzt, handelt es sich um ein RF, welches für ein Land wie Italien oder Amerika bestimmt ist. Um eine erfolgreiche Registrierung in diesen Ländern abzuschließen, muss hier nämlich die zugehörige Provinz (IT) oder der zugehöriger Bundesstaat (US) angegeben werden. Natürlich funktioniert das für jedes Land, welches dieses Kriterium erfüllen muss. Diese Daten werden anschließend aus dem \texttt{Country}-Objekt der Shopify-API gelesen und als \texttt{zone}-Property in die \texttt{options} gespeichert. 
 
-Im Anschluss wird ebenfalls von diesem Objekt die Telefonnummernvorwahl in die \texttt{options} als \texttt{phoneNumberPrefix}-Property der Wrapper-Klasse gespeichert.
+Im Anschluss wird ebenfalls von diesem Objekt die Telefonnummernvorwahl in die \texttt{opti\-ons} als \texttt{phoneNumberPrefix}-Property der Wrapper-Klasse gespeichert.
 
 Als letzter Schritt in dieser Methode werden von Zeile 46 bis 48 die Labels, welche vorher in einer Map gespeichert wurden, als \texttt{label}-Property in die \texttt{options} der Wrapper-Objekte gespeichert. 
 \newpage
